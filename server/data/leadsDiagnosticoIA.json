@@ -1,0 +1,32 @@
+[
+  {
+    "nome": "Marcos",
+    "whatsapp": "962451262",
+    "empresa": "MarkusLaw",
+    "cidade": "Lisboa",
+    "segmento": "Advogado",
+    "dataEnvio": "2026-06-18T16:51:59.029Z",
+    "diagnosticoStatus": "nao_aparece",
+    "origem": "backend-express",
+    "limiterKey": "c4e912d85dbde789b4a918041524d8238c8d93446feff9273a1f13425ae1a919",
+    "browserLimiterKey": "7737a5e6bf8a82fe4a599e96e0fc6e1cb7e76e61922a900395cbfb1cbba78baf",
+    "clientId": "2deab3ed-cbfa-4df6-a5b5-2763a6b808da",
+    "ip": "78.137.208.48",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+  },
+  {
+    "nome": "Matheus Bottaro",
+    "whatsapp": "13991159468",
+    "empresa": "Casa do ads",
+    "cidade": "Lisboa",
+    "segmento": "Imersão Google Ads e Inteligência Artificial",
+    "dataEnvio": "2026-06-18T16:26:20.488Z",
+    "diagnosticoStatus": "aparece",
+    "origem": "backend-express",
+    "limiterKey": "103e0e51b0fd694f9d8dd68bd0391484e2932b3b3594010d06712d3bfec3efb6",
+    "browserLimiterKey": "cf1f91ad1929f793ac8df299adb5372fd25b1ce24813f2e65ba4da2fa1dcbba0",
+    "clientId": "1dc075b3-9741-4310-9462-426c3892f499",
+    "ip": "177.26.237.48",
+    "userAgent": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.5 Mobile/15E148 Safari/604.1"
+  }
+]
