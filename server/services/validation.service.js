@@ -3,7 +3,8 @@ const LIMITES = {
   whatsapp: 30,
   empresa: 120,
   cidade: 80,
-  segmento: 100
+  segmento: 100,
+  url: 500
 };
 
 function limparCampo(valor = "", limite = 120) {
@@ -20,32 +21,16 @@ function campoMuitoLongo(valor = "", limite) {
   return valor.toString().trim().length > limite;
 }
 
-export function validarFormularioDiagnostico(body = {}) {
-  const errors = {};
-  const camposPermitidos = new Set(["nome", "whatsapp", "empresa", "cidade", "segmento", "website"]);
-
-  for (const campo of Object.keys(body || {})) {
-    if (!camposPermitidos.has(campo)) {
-      errors.formulario = "Não foi possível validar o envio. Atualize a página e tente novamente.";
-      break;
-    }
-  }
-
-  if (body.website || body.site || body.url) {
-    errors.formulario = "Não foi possível validar o envio. Atualize a página e tente novamente.";
-  }
-
+function validarCamposComuns(body, errors) {
   const nomeOriginal = body.nome?.toString() || "";
   const whatsappOriginal = body.whatsapp?.toString() || "";
   const empresaOriginal = body.empresa?.toString() || "";
   const cidadeOriginal = body.cidade?.toString() || "";
-  const segmentoOriginal = body.segmento?.toString() || "";
 
   const nome = limparCampo(nomeOriginal, LIMITES.nome);
   const whatsapp = limparCampo(whatsappOriginal, LIMITES.whatsapp);
   const empresa = limparCampo(empresaOriginal, LIMITES.empresa);
   const cidade = limparCampo(cidadeOriginal, LIMITES.cidade);
-  const segmento = limparCampo(segmentoOriginal, LIMITES.segmento);
 
   if (!nome) {
     errors.nome = "Informe seu nome para personalizar o diagnóstico.";
@@ -75,21 +60,137 @@ export function validarFormularioDiagnostico(body = {}) {
     errors.cidade = "A cidade está muito longa. Use até 80 caracteres.";
   }
 
+  return { nome, whatsapp, empresa, cidade };
+}
+
+function normalizarUrl(valor = "") {
+  const texto = limparCampo(valor, LIMITES.url);
+  if (!texto) return "";
+
+  const candidato = /^https?:\/\//i.test(texto) ? texto : `https://${texto}`;
+
+  try {
+    const url = new URL(candidato);
+
+    if (!["http:", "https:"].includes(url.protocol) || !url.hostname || !url.hostname.includes(".")) {
+      return "";
+    }
+
+    return url.toString();
+  } catch {
+    return "";
+  }
+}
+
+function validarHoneypot(body, errors) {
+  if (body.website) {
+    errors.formulario = "Não foi possível validar o envio. Atualize a página e tente novamente.";
+  }
+}
+
+export function validarFormularioDiagnostico(body = {}) {
+  const errors = {};
+  const camposPermitidos = new Set([
+    "nome",
+    "whatsapp",
+    "empresa",
+    "cidade",
+    "segmento",
+    "website",
+    "tipoDiagnostico"
+  ]);
+
+  for (const campo of Object.keys(body || {})) {
+    if (!camposPermitidos.has(campo)) {
+      errors.formulario = "Não foi possível validar o envio. Atualize a página e tente novamente.";
+      break;
+    }
+  }
+
+  // Compatibilidade e proteção do fluxo antigo: site/url continuam não sendo campos legítimos deste diagnóstico.
+  if (body.site || body.url) {
+    errors.formulario = "Não foi possível validar o envio. Atualize a página e tente novamente.";
+  }
+
+  validarHoneypot(body, errors);
+  const comuns = validarCamposComuns(body, errors);
+
+  const segmentoOriginal = body.segmento?.toString() || "";
+  const segmento = limparCampo(segmentoOriginal, LIMITES.segmento);
+
   if (!segmento) {
     errors.segmento = "Informe o segmento da sua empresa.";
   } else if (campoMuitoLongo(segmentoOriginal, LIMITES.segmento)) {
     errors.segmento = "O segmento está muito longo. Use até 100 caracteres.";
   }
 
+  if (body.tipoDiagnostico && body.tipoDiagnostico !== "recomendacao_ia") {
+    errors.tipoDiagnostico = "Tipo de diagnóstico inválido para esta análise.";
+  }
+
   return {
     isValid: Object.keys(errors).length === 0,
     errors,
     data: {
-      nome,
-      whatsapp,
-      empresa,
-      cidade,
-      segmento
+      ...comuns,
+      segmento,
+      tipoDiagnostico: "recomendacao_ia"
+    }
+  };
+}
+
+export function validarFormularioReputacao(body = {}) {
+  const errors = {};
+  const camposPermitidos = new Set([
+    "nome",
+    "whatsapp",
+    "empresa",
+    "cidade",
+    "perfilGoogle",
+    "siteEmpresa",
+    "website",
+    "tipoDiagnostico"
+  ]);
+
+  for (const campo of Object.keys(body || {})) {
+    if (!camposPermitidos.has(campo)) {
+      errors.formulario = "Não foi possível validar o envio. Atualize a página e tente novamente.";
+      break;
+    }
+  }
+
+  validarHoneypot(body, errors);
+  const comuns = validarCamposComuns(body, errors);
+
+  const perfilGoogleOriginal = body.perfilGoogle?.toString() || "";
+  const siteEmpresaOriginal = body.siteEmpresa?.toString() || "";
+  const perfilGoogle = normalizarUrl(perfilGoogleOriginal);
+  const siteEmpresa = normalizarUrl(siteEmpresaOriginal);
+
+  if (!perfilGoogleOriginal.trim()) {
+    errors.perfilGoogle = "Informe o link do Perfil da Empresa no Google.";
+  } else if (campoMuitoLongo(perfilGoogleOriginal, LIMITES.url) || !perfilGoogle) {
+    errors.perfilGoogle = "Informe um link válido do Perfil da Empresa no Google.";
+  }
+
+  if (!siteEmpresaOriginal.trim()) {
+    errors.siteEmpresa = "Informe o site da empresa.";
+  } else if (campoMuitoLongo(siteEmpresaOriginal, LIMITES.url) || !siteEmpresa) {
+    errors.siteEmpresa = "Informe um endereço de site válido.";
+  }
+
+  if (body.tipoDiagnostico && body.tipoDiagnostico !== "reputacao") {
+    errors.tipoDiagnostico = "Tipo de diagnóstico inválido para esta análise.";
+  }
+
+  return {
+    isValid: Object.keys(errors).length === 0,
+    errors,
+    data: {
+      ...comuns,
+      perfilGoogle,
+      siteEmpresa,
+      tipoDiagnostico: "reputacao"
     }
   };
 }

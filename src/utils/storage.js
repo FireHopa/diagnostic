@@ -40,10 +40,21 @@ export function obterClientId() {
 }
 
 export function criarChaveDiagnostico(formData) {
+  const tipoDiagnostico = formData.tipoDiagnostico === "reputacao" ? "reputacao" : "recomendacao_ia";
   const whatsapp = normalizarWhatsapp(formData.whatsapp);
   const empresa = normalizarTexto(formData.empresa);
   const cidade = normalizarTexto(formData.cidade);
-  const segmento = normalizarTexto(formData.segmento);
+  const segmento = normalizarTexto(formData.segmento || "");
+
+  const complemento = tipoDiagnostico === "recomendacao_ia" ? `|${segmento}` : "";
+  return `${tipoDiagnostico}|${whatsapp}|${empresa}|${cidade}${complemento}`;
+}
+
+function criarChaveLegada(formData) {
+  const whatsapp = normalizarWhatsapp(formData.whatsapp);
+  const empresa = normalizarTexto(formData.empresa);
+  const cidade = normalizarTexto(formData.cidade);
+  const segmento = normalizarTexto(formData.segmento || "");
 
   return `${whatsapp}|${empresa}|${cidade}|${segmento}`;
 }
@@ -83,7 +94,12 @@ export function obterDiagnosticosSolicitados() {
 export function verificarBloqueioLocal(formData) {
   const chave = criarChaveDiagnostico(formData);
   const registros = obterDiagnosticosSolicitados();
-  const registro = registros[chave];
+  let registro = registros[chave];
+
+  // Compatibilidade com bloqueios gravados pelo diagnóstico antigo antes da criação de tipoDiagnostico.
+  if (!registro && formData.tipoDiagnostico !== "reputacao") {
+    registro = registros[criarChaveLegada(formData)];
+  }
 
   if (!registro) {
     return {
@@ -110,8 +126,9 @@ export function marcarDiagnosticoSolicitadoLocal(formData, lead) {
       dataEnvio: lead.dataEnvio,
       empresa: lead.empresa,
       cidade: lead.cidade,
-      segmento: lead.segmento,
+      segmento: lead.segmento || "",
       whatsapp: lead.whatsapp,
+      tipoDiagnostico: lead.tipoDiagnostico || formData.tipoDiagnostico || "recomendacao_ia",
       diagnosticoStatus: lead.diagnosticoStatus
     };
 

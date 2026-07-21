@@ -471,8 +471,7 @@ export async function gerarDiagnosticoComOpenAI(formData, diagnosticoBase) {
     tools: [
       {
         type: "web_search",
-        search_context_size: searchContextSize,
-        external_web_access: true
+        search_context_size: searchContextSize
       }
     ],
     tool_choice: process.env.OPENAI_TOOL_CHOICE || "required",

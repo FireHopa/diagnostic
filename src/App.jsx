@@ -1,29 +1,43 @@
 import React, { useEffect, useRef, useState } from "react";
 import Hero from "./components/Hero.jsx";
+import DiagnosticSelector from "./components/DiagnosticSelector.jsx";
 import DiagnosticForm from "./components/DiagnosticForm.jsx";
 import DiagnosticResult from "./components/DiagnosticResult.jsx";
+import ReputationForm from "./components/ReputationForm.jsx";
+import ReputationResult from "./components/ReputationResult.jsx";
 import InfoSection from "./components/InfoSection.jsx";
 import Footer from "./components/Footer.jsx";
 import { gerarDiagnostico, gerarDiagnosticoViaApi } from "./utils/diagnostico.js";
+import { gerarReputacaoViaApi } from "./utils/reputacao.js";
 import {
   enviarLeadParaWebhook,
   marcarDiagnosticoSolicitadoLocal,
   obterClientId,
-  salvarLeadNoLocalStorage,
-  verificarBloqueioLocal
+  salvarLeadNoLocalStorage
 } from "./utils/storage.js";
 
 const aguardar = (ms) => new Promise((resolve) => window.setTimeout(resolve, ms));
 
-const loadingSteps = [
-  "Identificando quem aparece com mais força no seu nicho e na sua cidade...",
-  "Comparando sinais de autoridade, reputação e clareza digital...",
-  "Organizando os motivos que podem fazer concorrentes aparecerem antes...",
-  "Preparando os 4Q's do seu diagnóstico...",
-  "Finalizando seus pontos fortes, pontos fracos e próximos passos..."
-];
+const loadingStepsPorTipo = {
+  recomendacao_ia: [
+    "Identificando quem aparece com mais força no seu nicho e na sua cidade...",
+    "Comparando sinais de autoridade, reputação e clareza digital...",
+    "Organizando os motivos que podem fazer concorrentes aparecerem antes...",
+    "Preparando os 4Q's do seu diagnóstico...",
+    "Finalizando seus pontos fortes, pontos fracos e próximos passos..."
+  ],
+  reputacao: [
+    "Localizando a presença digital da empresa...",
+    "Analisando avaliações e sinais de confiança...",
+    "Investigando o que clientes e outras fontes estão falando...",
+    "Analisando prova social e autoridade digital...",
+    "Avaliando os sinais encontrados por mecanismos de busca e Inteligência Artificial...",
+    "Organizando o plano de ação de autoridade de reputação..."
+  ]
+};
 
 export default function App() {
+  const [tipoDiagnostico, setTipoDiagnostico] = useState(null);
   const [loading, setLoading] = useState(false);
   const [diagnostico, setDiagnostico] = useState(null);
   const [ctaMessage, setCtaMessage] = useState("");
@@ -31,6 +45,8 @@ export default function App() {
   const [loadingStep, setLoadingStep] = useState(0);
   const [elapsedSeconds, setElapsedSeconds] = useState(0);
   const resultRef = useRef(null);
+
+  const loadingSteps = loadingStepsPorTipo[tipoDiagnostico] || loadingStepsPorTipo.recomendacao_ia;
 
   useEffect(() => {
     if (!loading) return undefined;
@@ -50,47 +66,64 @@ export default function App() {
       window.clearInterval(stepTimer);
       window.clearInterval(secondsTimer);
     };
-  }, [loading]);
+  }, [loading, tipoDiagnostico, loadingSteps.length]);
 
-  const handleDiagnosticSubmit = async (formData) => {
-    const bloqueioLocal = verificarBloqueioLocal(formData);
-
+  const selecionarDiagnostico = (tipo) => {
+    setTipoDiagnostico(tipo);
     setDiagnostico(null);
     setCtaMessage("");
     setApiNotice("");
 
-    if (bloqueioLocal.bloqueado) {
-      setApiNotice(bloqueioLocal.message);
+    window.setTimeout(() => {
+      document.getElementById("diagnostico")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 100);
+  };
 
-      window.setTimeout(() => {
-        resultRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
-      }, 100);
+  const voltarParaSelecao = () => {
+    if (loading) return;
+    setTipoDiagnostico(null);
+    setDiagnostico(null);
+    setCtaMessage("");
+    setApiNotice("");
 
-      return;
-    }
+    window.setTimeout(() => {
+      document.getElementById("diagnosticos")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 100);
+  };
+
+  const handleDiagnosticSubmit = async (formData) => {
+    const tipoAtual = formData.tipoDiagnostico === "reputacao" ? "reputacao" : "recomendacao_ia";
+    const payload = { ...formData, tipoDiagnostico: tipoAtual };
+    setDiagnostico(null);
+    setCtaMessage("");
+    setApiNotice("");
 
     setLoading(true);
 
     try {
       const clientId = obterClientId();
+      const chamada = tipoAtual === "reputacao"
+        ? gerarReputacaoViaApi(payload, { timeoutMs: 150000, clientId })
+        : gerarDiagnosticoViaApi(payload, { timeoutMs: 120000, clientId });
 
-      const [resultado] = await Promise.all([
-        gerarDiagnosticoViaApi(formData, { timeoutMs: 120000, clientId }),
-        aguardar(2000)
-      ]);
+      const [resultado] = await Promise.all([chamada, aguardar(2000)]);
 
       const lead = {
-        nome: formData.nome.trim(),
-        whatsapp: formData.whatsapp.trim(),
-        empresa: formData.empresa.trim(),
-        cidade: formData.cidade.trim(),
-        segmento: formData.segmento.trim(),
+        nome: payload.nome.trim(),
+        whatsapp: payload.whatsapp.trim(),
+        empresa: payload.empresa.trim(),
+        cidade: payload.cidade.trim(),
+        segmento: payload.segmento?.trim() || "",
+        siteEmpresa: payload.siteEmpresa?.trim() || "",
+        perfilGoogle: payload.perfilGoogle?.trim() || "",
+        tipoDiagnostico: tipoAtual,
         dataEnvio: new Date().toISOString(),
-        diagnosticoStatus: resultado.status
+        diagnosticoStatus: resultado.status,
+        notaGeral: Number.isFinite(resultado.notaGeral) ? resultado.notaGeral : null
       };
 
       salvarLeadNoLocalStorage(lead);
-      marcarDiagnosticoSolicitadoLocal(formData, lead);
+      marcarDiagnosticoSolicitadoLocal(payload, lead);
       enviarLeadParaWebhook(lead);
 
       setDiagnostico(resultado);
@@ -102,21 +135,31 @@ export default function App() {
 
       console.warn("Não foi possível concluir a análise completa agora.", error);
 
+      if (tipoAtual === "reputacao") {
+        setApiNotice(
+          error.message ||
+            "Não foi possível realizar uma avaliação confiável da reputação neste momento. Nenhuma nota fictícia foi gerada."
+        );
+        return;
+      }
+
+      // O fallback local é preservado exclusivamente no diagnóstico legado de recomendação por IA.
       await aguardar(1200);
 
-      const resultadoLocal = gerarDiagnostico(formData);
+      const resultadoLocal = gerarDiagnostico(payload);
       const lead = {
-        nome: formData.nome.trim(),
-        whatsapp: formData.whatsapp.trim(),
-        empresa: formData.empresa.trim(),
-        cidade: formData.cidade.trim(),
-        segmento: formData.segmento.trim(),
+        nome: payload.nome.trim(),
+        whatsapp: payload.whatsapp.trim(),
+        empresa: payload.empresa.trim(),
+        cidade: payload.cidade.trim(),
+        segmento: payload.segmento.trim(),
+        tipoDiagnostico: "recomendacao_ia",
         dataEnvio: new Date().toISOString(),
         diagnosticoStatus: resultadoLocal.status
       };
 
       salvarLeadNoLocalStorage(lead);
-      marcarDiagnosticoSolicitadoLocal(formData, lead);
+      marcarDiagnosticoSolicitadoLocal(payload, lead);
       enviarLeadParaWebhook(lead);
 
       setApiNotice(
@@ -138,34 +181,43 @@ export default function App() {
     window.alert(message);
   };
 
-  const loadingMessage = loadingSteps[loadingStep];
+  const loadingMessage = loadingSteps[loadingStep] || loadingSteps[0];
   const showDelayNotice = elapsedSeconds >= 25;
 
   return (
     <main className="min-h-screen bg-soft">
-      <Hero />
-      <DiagnosticForm onSubmit={handleDiagnosticSubmit} loading={loading} />
+      <Hero tipoDiagnostico={tipoDiagnostico} />
+
+      {!tipoDiagnostico ? (
+        <DiagnosticSelector onSelect={selecionarDiagnostico} disabled={loading} />
+      ) : null}
+
+      {tipoDiagnostico === "recomendacao_ia" ? (
+        <DiagnosticForm onSubmit={handleDiagnosticSubmit} loading={loading} onBack={voltarParaSelecao} />
+      ) : null}
+
+      {tipoDiagnostico === "reputacao" ? (
+        <ReputationForm onSubmit={handleDiagnosticSubmit} loading={loading} onBack={voltarParaSelecao} />
+      ) : null}
 
       {loading ? (
         <section className="px-6 py-12 md:px-8">
           <div className="mx-auto max-w-4xl rounded-3xl border border-blue-100 bg-white p-8 text-center shadow-card">
             <div className="mx-auto h-12 w-12 animate-spin rounded-full border-4 border-blue-100 border-t-primary" />
-            <p className="mt-6 text-lg font-black text-dark">
-              {loadingMessage}
-            </p>
-            <p className="mt-3 text-sm font-semibold text-gray-500">
-              Tempo de análise: {elapsedSeconds}s
-            </p>
+            <p className="mt-6 text-lg font-black text-dark">{loadingMessage}</p>
+            <p className="mt-3 text-sm font-semibold text-gray-500">Tempo de análise: {elapsedSeconds}s</p>
             {showDelayNotice ? (
               <div className="mt-5 rounded-2xl border border-orange-200 bg-orange-50 p-4 text-sm font-semibold leading-6 text-orange-900">
-                A análise pode levar alguns segundos porque estamos comparando sinais de autoridade e concorrência antes de entregar o resultado. Não feche a página.
+                {tipoDiagnostico === "reputacao"
+                  ? "A análise pode levar alguns segundos porque estamos cruzando fontes públicas antes de atribuir qualquer nota. Não feche a página."
+                  : "A análise pode levar alguns segundos porque estamos comparando sinais de autoridade e concorrência antes de entregar o resultado. Não feche a página."}
               </div>
             ) : null}
           </div>
         </section>
       ) : null}
 
-      <InfoSection />
+      {tipoDiagnostico === "recomendacao_ia" ? <InfoSection /> : null}
 
       {apiNotice ? (
         <section className="px-6 py-4 md:px-8">
@@ -176,11 +228,13 @@ export default function App() {
       ) : null}
 
       <div ref={resultRef}>
-        <DiagnosticResult
-          diagnostico={diagnostico}
-          onCtaClick={handleCtaClick}
-          ctaMessage={ctaMessage}
-        />
+        {tipoDiagnostico === "recomendacao_ia" ? (
+          <DiagnosticResult diagnostico={diagnostico} onCtaClick={handleCtaClick} ctaMessage={ctaMessage} />
+        ) : null}
+
+        {tipoDiagnostico === "reputacao" ? (
+          <ReputationResult diagnostico={diagnostico} onCtaClick={handleCtaClick} ctaMessage={ctaMessage} />
+        ) : null}
       </div>
 
       <Footer />

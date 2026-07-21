@@ -1,4 +1,4 @@
-# Deploy na VPS - Diagnóstico IA 4Q's
+# Deploy na VPS - Plataforma de Diagnósticos IA
 
 Domínio configurado para esta entrega:
 
@@ -121,8 +121,9 @@ pm2 logs diagnostico-ia
 
 - Chave OpenAI somente no backend.
 - Rota pública de leads removida.
-- Sem exposição de fontes, pesquisas, confiança ou informações técnicas para visitante.
-- Bloqueio de duplicidade por WhatsApp + empresa + cidade + segmento.
+- O diagnóstico original continua sem expor informações técnicas internas.
+- O diagnóstico de reputação mostra apenas fontes públicas efetivamente usadas, sem expor prompts, chaves ou logs privados.
+- Bloqueio de duplicidade considera o tipo de diagnóstico e preserva compatibilidade com registros antigos.
 - Bloqueio por navegador com client id.
 - Rate limit por IP a cada 15 minutos.
 - Limite diário por IP.

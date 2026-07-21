@@ -5,12 +5,25 @@ const initialFormData = {
   whatsapp: "",
   empresa: "",
   cidade: "",
-  segmento: "",
+  perfilGoogle: "",
+  siteEmpresa: "",
   website: "",
-  tipoDiagnostico: "recomendacao_ia"
+  tipoDiagnostico: "reputacao"
 };
 
-export default function DiagnosticForm({ onSubmit, loading, onBack }) {
+function urlNormalizavel(value = "") {
+  const texto = value.trim();
+  if (!texto) return false;
+
+  try {
+    const url = new URL(/^https?:\/\//i.test(texto) ? texto : `https://${texto}`);
+    return Boolean(url.hostname && url.hostname.includes("."));
+  } catch {
+    return false;
+  }
+}
+
+export default function ReputationForm({ onSubmit, loading, onBack }) {
   const [formData, setFormData] = useState(initialFormData);
   const [errors, setErrors] = useState({});
 
@@ -34,21 +47,31 @@ export default function DiagnosticForm({ onSubmit, loading, onBack }) {
       label: "Nome da empresa",
       placeholder: "Nome da sua empresa",
       type: "text",
-      maxLength: 120
+      maxLength: 120,
+      full: true
     },
     {
       id: "cidade",
       label: "Cidade",
-      placeholder: "Exemplo: Lisboa",
+      placeholder: "Exemplo: São Paulo",
       type: "text",
       maxLength: 80
     },
     {
-      id: "segmento",
-      label: "Nicho ou segmento",
-      placeholder: "Exemplo: contabilidade",
+      id: "perfilGoogle",
+      label: "Link do Perfil da Empresa no Google",
+      placeholder: "Exemplo: maps.app.goo.gl/...",
       type: "text",
-      maxLength: 100
+      maxLength: 500,
+      full: true
+    },
+    {
+      id: "siteEmpresa",
+      label: "Site da empresa",
+      placeholder: "Exemplo: suaempresa.com.br",
+      type: "text",
+      maxLength: 500,
+      full: true
     }
   ];
 
@@ -56,11 +79,11 @@ export default function DiagnosticForm({ onSubmit, loading, onBack }) {
     const newErrors = {};
 
     if (!formData.nome.trim()) {
-      newErrors.nome = "Informe seu nome para personalizar o diagnóstico.";
+      newErrors.nome = "Informe seu nome.";
     }
 
     if (!formData.whatsapp.trim()) {
-      newErrors.whatsapp = "Informe seu WhatsApp para receber o convite depois.";
+      newErrors.whatsapp = "Informe seu WhatsApp.";
     } else if (formData.whatsapp.replace(/\D/g, "").length < 8) {
       newErrors.whatsapp = "O WhatsApp precisa ter pelo menos 8 números.";
     }
@@ -72,15 +95,23 @@ export default function DiagnosticForm({ onSubmit, loading, onBack }) {
     }
 
     if (!formData.cidade.trim()) {
-      newErrors.cidade = "Informe a cidade onde sua empresa atua.";
+      newErrors.cidade = "Informe a cidade da empresa.";
+    }
+
+    if (!formData.perfilGoogle.trim()) {
+      newErrors.perfilGoogle = "Informe o link do Perfil da Empresa no Google.";
+    } else if (!urlNormalizavel(formData.perfilGoogle)) {
+      newErrors.perfilGoogle = "Informe um link válido do Perfil da Empresa no Google.";
+    }
+
+    if (!formData.siteEmpresa.trim()) {
+      newErrors.siteEmpresa = "Informe o site da empresa.";
+    } else if (!urlNormalizavel(formData.siteEmpresa)) {
+      newErrors.siteEmpresa = "Informe um endereço de site válido.";
     }
 
     if (formData.website?.trim()) {
       newErrors.formulario = "Não foi possível validar o envio. Atualize a página e tente novamente.";
-    }
-
-    if (!formData.segmento.trim()) {
-      newErrors.segmento = "Informe o segmento da sua empresa.";
     }
 
     setErrors(newErrors);
@@ -98,9 +129,7 @@ export default function DiagnosticForm({ onSubmit, loading, onBack }) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-
     if (!validate()) return;
-
     onSubmit(formData);
   };
 
@@ -109,20 +138,26 @@ export default function DiagnosticForm({ onSubmit, loading, onBack }) {
       <div className="mx-auto max-w-4xl rounded-3xl bg-white p-5 shadow-card md:p-8 lg:p-10">
         <div className="mb-7 flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
           <div>
-            <p className="text-xs font-black uppercase tracking-[0.22em] text-primary">Recomendação por IA</p>
-            <h2 className="mt-2 text-2xl font-black text-dark md:text-3xl">Quem a IA tende a recomendar no seu mercado?</h2>
+            <p className="text-xs font-black uppercase tracking-[0.22em] text-primary">
+              Reputação e autoridade digital
+            </p>
+            <h2 className="mt-2 text-2xl font-black text-dark md:text-3xl">
+              Vamos analisar a sua própria empresa
+            </h2>
+            <p className="mt-2 max-w-2xl text-sm leading-6 text-gray-600">
+              Use os links reais da empresa para reduzir ambiguidades e tornar a análise mais confiável.
+            </p>
           </div>
-          {onBack ? (
-            <button
-              type="button"
-              onClick={onBack}
-              disabled={loading}
-              className="shrink-0 rounded-xl border border-gray-200 px-4 py-2 text-sm font-bold text-gray-600 transition hover:border-gray-300 hover:bg-gray-50 disabled:opacity-60"
-            >
-              Trocar diagnóstico
-            </button>
-          ) : null}
+          <button
+            type="button"
+            onClick={onBack}
+            disabled={loading}
+            className="shrink-0 rounded-xl border border-gray-200 px-4 py-2 text-sm font-bold text-gray-600 transition hover:border-gray-300 hover:bg-gray-50 disabled:opacity-60"
+          >
+            Trocar diagnóstico
+          </button>
         </div>
+
         <form onSubmit={handleSubmit} className="space-y-5" noValidate>
           <input
             type="text"
@@ -143,7 +178,7 @@ export default function DiagnosticForm({ onSubmit, loading, onBack }) {
 
           <div className="grid gap-5 md:grid-cols-2">
             {campos.map((campo) => (
-              <label key={campo.id} className={campo.id === "empresa" ? "md:col-span-2" : ""}>
+              <label key={campo.id} className={campo.full ? "md:col-span-2" : ""}>
                 <span className="mb-2 block text-sm font-bold text-dark">{campo.label}</span>
                 <input
                   type={campo.type}
@@ -171,7 +206,7 @@ export default function DiagnosticForm({ onSubmit, loading, onBack }) {
             disabled={loading}
             className="w-full rounded-2xl bg-primary px-6 py-4 text-base font-black text-white shadow-glow transition hover:-translate-y-0.5 hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-70"
           >
-            {loading ? "Analisando concorrentes..." : "Descobrir meus concorrentes recomendados pela IA"}
+            {loading ? "Analisando reputação..." : "Analisar reputação da empresa"}
           </button>
         </form>
       </div>

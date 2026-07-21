@@ -212,7 +212,7 @@ export function gerarDiagnostico(formData) {
 // Front-end chama apenas o seu backend.
 // A chave da OpenAI fica no .env do servidor, nunca no navegador.
 export async function gerarDiagnosticoViaApi(formData, options = {}) {
-  const timeoutMs = options.timeoutMs || 120000;
+  const timeoutMs = options.timeoutMs || 300000;
   const controller = new AbortController();
   const timeoutId = window.setTimeout(() => controller.abort(), timeoutMs);
 

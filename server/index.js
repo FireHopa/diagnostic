@@ -4,7 +4,8 @@ import cors from "cors";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { gerarDiagnosticoComIA } from "./services/diagnostico-ai.service.js";
-import { validarFormularioDiagnostico } from "./services/validation.service.js";
+import { gerarDiagnosticoReputacao } from "./services/reputacao-ai.service.js";
+import { validarFormularioDiagnostico, validarFormularioReputacao } from "./services/validation.service.js";
 import { listarLeads, salvarLead } from "./services/leads.repository.js";
 import { enviarLeadParaWebhook } from "./services/webhook.service.js";
 import {
@@ -12,6 +13,7 @@ import {
   encontrarDiagnosticoDuplicado,
   montarRespostaBloqueio,
   obterBlockDays,
+  permitirDiagnosticosRepetidos,
   obterClientId,
   obterIpRequisicao
 } from "./services/diagnostico-limiter.service.js";
@@ -209,6 +211,83 @@ app.get("/api/health", (req, res) => {
   res.json({ ok: true });
 });
 
+app.post("/api/diagnostico-reputacao", verificarOrigemDoFormulario, limitarDiagnosticoPorIp, limitarDiagnosticoDiarioPorIp, async (req, res) => {
+  try {
+    const validacao = validarFormularioReputacao(req.body);
+
+    if (!validacao.isValid) {
+      return res.status(400).json({
+        message: "Confira os campos do formulário antes de continuar.",
+        errors: validacao.errors
+      });
+    }
+
+    const clientId = obterClientId(req);
+    const blockDays = obterBlockDays();
+    const chavesLimiter = criarChavesLimiter(validacao.data, clientId);
+
+    if (!permitirDiagnosticosRepetidos()) {
+      const leadsAtuais = await listarLeads();
+      const diagnosticoDuplicado = encontrarDiagnosticoDuplicado(leadsAtuais, chavesLimiter, blockDays);
+
+      if (diagnosticoDuplicado) {
+        return res.status(409).json(montarRespostaBloqueio(diagnosticoDuplicado, blockDays));
+      }
+    }
+
+    console.log("[reputacao] diagnóstico iniciado", {
+      empresa: validacao.data.empresa,
+      cidade: validacao.data.cidade,
+      tipoDiagnostico: "reputacao"
+    });
+
+    const diagnostico = await gerarDiagnosticoReputacao(validacao.data);
+
+    const lead = {
+      ...validacao.data,
+      tipoDiagnostico: "reputacao",
+      dataEnvio: new Date().toISOString(),
+      diagnosticoStatus: diagnostico.status,
+      notaGeral: Number.isFinite(diagnostico.notaGeral) ? diagnostico.notaGeral : null,
+      origem: "landing-diagnostico-ia",
+      limiterKey: chavesLimiter.limiterKey,
+      browserLimiterKey: chavesLimiter.browserLimiterKey,
+      clientId,
+      ip: obterIpRequisicao(req),
+      userAgent: req.headers["user-agent"] || ""
+    };
+
+    await salvarLead(lead);
+    enviarLeadParaWebhook(lead).catch((error) => {
+      console.error("Falha assíncrona no webhook de reputação:", error.message);
+    });
+
+    console.log("[reputacao] diagnóstico concluído", {
+      empresa: validacao.data.empresa,
+      status: diagnostico.status,
+      notaGeral: diagnostico.notaGeral
+    });
+
+    return res.json(diagnostico);
+  } catch (error) {
+    console.error("[reputacao] erro no endpoint:", error.message);
+
+    if (error.code === "PESQUISA_INDISPONIVEL") {
+      return res.status(503).json({
+        code: "PESQUISA_INDISPONIVEL",
+        message:
+          "A pesquisa pública necessária para avaliar a reputação não está disponível neste momento. Nenhuma nota fictícia foi gerada. Tente novamente mais tarde."
+      });
+    }
+
+    return res.status(502).json({
+      code: "ERRO_PESQUISA_REPUTACAO",
+      message:
+        "Não foi possível concluir uma avaliação confiável da reputação neste momento. Nenhuma análise fictícia foi exibida."
+    });
+  }
+});
+
 app.post("/api/diagnostico-ia", verificarOrigemDoFormulario, limitarDiagnosticoPorIp, limitarDiagnosticoDiarioPorIp, async (req, res) => {
   try {
     const validacao = validarFormularioDiagnostico(req.body);
@@ -223,11 +302,14 @@ app.post("/api/diagnostico-ia", verificarOrigemDoFormulario, limitarDiagnosticoP
     const clientId = obterClientId(req);
     const blockDays = obterBlockDays();
     const chavesLimiter = criarChavesLimiter(validacao.data, clientId);
-    const leadsAtuais = await listarLeads();
-    const diagnosticoDuplicado = encontrarDiagnosticoDuplicado(leadsAtuais, chavesLimiter, blockDays);
 
-    if (diagnosticoDuplicado) {
-      return res.status(409).json(montarRespostaBloqueio(diagnosticoDuplicado, blockDays));
+    if (!permitirDiagnosticosRepetidos()) {
+      const leadsAtuais = await listarLeads();
+      const diagnosticoDuplicado = encontrarDiagnosticoDuplicado(leadsAtuais, chavesLimiter, blockDays);
+
+      if (diagnosticoDuplicado) {
+        return res.status(409).json(montarRespostaBloqueio(diagnosticoDuplicado, blockDays));
+      }
     }
 
     const diagnostico = await gerarDiagnosticoComIA(validacao.data);
@@ -235,6 +317,7 @@ app.post("/api/diagnostico-ia", verificarOrigemDoFormulario, limitarDiagnosticoP
 
     const lead = {
       ...validacao.data,
+      tipoDiagnostico: "recomendacao_ia",
       dataEnvio: new Date().toISOString(),
       diagnosticoStatus: diagnosticoPublico.status,
       origem: "landing-diagnostico-ia",

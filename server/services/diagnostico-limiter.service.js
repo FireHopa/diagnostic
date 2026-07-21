@@ -37,6 +37,11 @@ export function obterClientId(req) {
   return clientId.trim().slice(0, 120);
 }
 
+export function permitirDiagnosticosRepetidos() {
+  const valor = (process.env.DIAGNOSTICO_ALLOW_REPEAT || "").toString().trim().toLowerCase();
+  return ["true", "1", "yes", "on", "sim"].includes(valor);
+}
+
 export function obterBlockDays() {
   const valor = Number(process.env.DIAGNOSTICO_DUPLICATE_BLOCK_DAYS);
 
@@ -48,19 +53,29 @@ export function obterBlockDays() {
 }
 
 export function criarChavesLimiter(data, clientId = "") {
+  const tipoDiagnostico = data.tipoDiagnostico === "reputacao" ? "reputacao" : "recomendacao_ia";
   const whatsapp = normalizarWhatsapp(data.whatsapp);
   const empresa = normalizarTexto(data.empresa);
   const cidade = normalizarTexto(data.cidade);
-  const segmento = normalizarTexto(data.segmento);
+  const segmento = normalizarTexto(data.segmento || "");
   const client = normalizarTexto(clientId);
 
-  const basePedido = `${whatsapp}|${empresa}|${cidade}|${segmento}`;
-  const baseBrowser = client ? `${client}|${empresa}|${cidade}|${segmento}` : "";
+  const complemento = tipoDiagnostico === "recomendacao_ia" ? `|${segmento}` : "";
+  const basePedido = `${tipoDiagnostico}|${whatsapp}|${empresa}|${cidade}${complemento}`;
+  const baseBrowser = client ? `${tipoDiagnostico}|${client}|${empresa}|${cidade}${complemento}` : "";
+
+  // Chaves legadas preservam o bloqueio de solicitações de recomendação já registradas antes da separação por tipo.
+  const basePedidoLegado = `${whatsapp}|${empresa}|${cidade}|${segmento}`;
+  const baseBrowserLegado = client ? `${client}|${empresa}|${cidade}|${segmento}` : "";
 
   return {
     limiterKey: gerarHash(basePedido),
     browserLimiterKey: baseBrowser ? gerarHash(baseBrowser) : "",
+    legacyLimiterKey: tipoDiagnostico === "recomendacao_ia" ? gerarHash(basePedidoLegado) : "",
+    legacyBrowserLimiterKey:
+      tipoDiagnostico === "recomendacao_ia" && baseBrowserLegado ? gerarHash(baseBrowserLegado) : "",
     dadosNormalizados: {
+      tipoDiagnostico,
       whatsapp,
       empresa,
       cidade,
@@ -86,9 +101,17 @@ export function encontrarDiagnosticoDuplicado(leads = [], chaves, blockDays) {
       return false;
     }
 
-    const mesmaChaveDoPedido = lead.limiterKey && lead.limiterKey === chaves.limiterKey;
-    const mesmaChaveDoNavegador =
-      chaves.browserLimiterKey && lead.browserLimiterKey && lead.browserLimiterKey === chaves.browserLimiterKey;
+    const mesmaChaveDoPedido = Boolean(
+      lead.limiterKey &&
+        (lead.limiterKey === chaves.limiterKey ||
+          (chaves.legacyLimiterKey && lead.limiterKey === chaves.legacyLimiterKey))
+    );
+
+    const mesmaChaveDoNavegador = Boolean(
+      lead.browserLimiterKey &&
+        (lead.browserLimiterKey === chaves.browserLimiterKey ||
+          (chaves.legacyBrowserLimiterKey && lead.browserLimiterKey === chaves.legacyBrowserLimiterKey))
+    );
 
     return mesmaChaveDoPedido || mesmaChaveDoNavegador;
   });
@@ -107,6 +130,7 @@ export function montarRespostaBloqueio(lead, blockDays) {
       empresa: lead.empresa,
       cidade: lead.cidade,
       segmento: lead.segmento,
+      tipoDiagnostico: lead.tipoDiagnostico || "recomendacao_ia",
       dataEnvio: lead.dataEnvio,
       diagnosticoStatus: lead.diagnosticoStatus
     }
