@@ -4,6 +4,7 @@ const LIMITES = {
   empresa: 120,
   cidade: 80,
   segmento: 100,
+  produtoPrincipal: 160,
   url: 500
 };
 
@@ -26,11 +27,13 @@ function validarCamposComuns(body, errors) {
   const whatsappOriginal = body.whatsapp?.toString() || "";
   const empresaOriginal = body.empresa?.toString() || "";
   const cidadeOriginal = body.cidade?.toString() || "";
+  const produtoPrincipalOriginal = body.produtoPrincipal?.toString() || "";
 
   const nome = limparCampo(nomeOriginal, LIMITES.nome);
   const whatsapp = limparCampo(whatsappOriginal, LIMITES.whatsapp);
   const empresa = limparCampo(empresaOriginal, LIMITES.empresa);
   const cidade = limparCampo(cidadeOriginal, LIMITES.cidade);
+  const produtoPrincipal = limparCampo(produtoPrincipalOriginal, LIMITES.produtoPrincipal);
 
   if (!nome) {
     errors.nome = "Informe seu nome para personalizar o diagnóstico.";
@@ -38,10 +41,10 @@ function validarCamposComuns(body, errors) {
     errors.nome = "O nome está muito longo. Use até 80 caracteres.";
   }
 
-  if (!whatsapp) {
-    errors.whatsapp = "Informe seu WhatsApp para receber o convite depois.";
-  } else if (whatsapp.replace(/\D/g, "").length < 8) {
-    errors.whatsapp = "O WhatsApp precisa ter pelo menos 8 números.";
+  // WhatsApp deixou de ser solicitado ao usuário. O campo permanece opcional
+  // apenas para compatibilidade com registros e integrações anteriores.
+  if (whatsapp && whatsapp.replace(/\D/g, "").length < 8) {
+    errors.whatsapp = "O WhatsApp informado é inválido.";
   } else if (campoMuitoLongo(whatsappOriginal, LIMITES.whatsapp)) {
     errors.whatsapp = "O WhatsApp está muito longo. Revise o número informado.";
   }
@@ -60,7 +63,13 @@ function validarCamposComuns(body, errors) {
     errors.cidade = "A cidade está muito longa. Use até 80 caracteres.";
   }
 
-  return { nome, whatsapp, empresa, cidade };
+  if (!produtoPrincipal) {
+    errors.produtoPrincipal = "Informe o principal produto ou serviço da empresa.";
+  } else if (campoMuitoLongo(produtoPrincipalOriginal, LIMITES.produtoPrincipal)) {
+    errors.produtoPrincipal = "O principal produto está muito longo. Use até 160 caracteres.";
+  }
+
+  return { nome, whatsapp, empresa, cidade, produtoPrincipal };
 }
 
 function normalizarUrl(valor = "") {
@@ -96,6 +105,7 @@ export function validarFormularioDiagnostico(body = {}) {
     "empresa",
     "cidade",
     "segmento",
+    "produtoPrincipal",
     "website",
     "tipoDiagnostico"
   ]);
@@ -107,7 +117,6 @@ export function validarFormularioDiagnostico(body = {}) {
     }
   }
 
-  // Compatibilidade e proteção do fluxo antigo: site/url continuam não sendo campos legítimos deste diagnóstico.
   if (body.site || body.url) {
     errors.formulario = "Não foi possível validar o envio. Atualize a página e tente novamente.";
   }
@@ -146,6 +155,7 @@ export function validarFormularioReputacao(body = {}) {
     "whatsapp",
     "empresa",
     "cidade",
+    "produtoPrincipal",
     "perfilGoogle",
     "siteEmpresa",
     "website",
