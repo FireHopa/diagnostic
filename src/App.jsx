@@ -7,6 +7,7 @@ import ReputationForm from "./components/ReputationForm.jsx";
 import ReputationResult from "./components/ReputationResult.jsx";
 import InfoSection from "./components/InfoSection.jsx";
 import Footer from "./components/Footer.jsx";
+import Header from "./components/Header.jsx";
 import { gerarDiagnostico, gerarDiagnosticoViaApi } from "./utils/diagnostico.js";
 import { gerarReputacaoViaApi } from "./utils/reputacao.js";
 import {
@@ -103,8 +104,8 @@ export default function App() {
     try {
       const clientId = obterClientId();
       const chamada = tipoAtual === "reputacao"
-        ? gerarReputacaoViaApi(payload, { timeoutMs: 150000, clientId })
-        : gerarDiagnosticoViaApi(payload, { timeoutMs: 120000, clientId });
+        ? gerarReputacaoViaApi(payload, { timeoutMs: 300000, clientId })
+        : gerarDiagnosticoViaApi(payload, { timeoutMs: 300000, clientId });
 
       const [resultado] = await Promise.all([chamada, aguardar(2000)]);
 
@@ -185,7 +186,12 @@ export default function App() {
   const showDelayNotice = elapsedSeconds >= 25;
 
   return (
-    <main className="min-h-screen bg-soft">
+    <main className="ai-page-shell min-h-screen bg-white">
+      <Header
+        onNewAnalysis={voltarParaSelecao}
+        showNewAnalysis={Boolean(tipoDiagnostico || diagnostico)}
+        disabled={loading}
+      />
       <Hero tipoDiagnostico={tipoDiagnostico} />
 
       {!tipoDiagnostico ? (
@@ -201,13 +207,50 @@ export default function App() {
       ) : null}
 
       {loading ? (
-        <section className="px-6 py-12 md:px-8">
-          <div className="mx-auto max-w-4xl rounded-3xl border border-blue-100 bg-white p-8 text-center shadow-card">
-            <div className="mx-auto h-12 w-12 animate-spin rounded-full border-4 border-blue-100 border-t-primary" />
-            <p className="mt-6 text-lg font-black text-dark">{loadingMessage}</p>
-            <p className="mt-3 text-sm font-semibold text-gray-500">Tempo de análise: {elapsedSeconds}s</p>
+        <section className="px-4 py-10 md:px-6 md:py-12">
+          <div className="mx-auto max-w-[720px] rounded-2xl border border-line bg-white p-5 md:p-6">
+            <div className="flex items-center gap-3">
+              <span className="relative flex h-9 w-9 items-center justify-center rounded-xl bg-surface" aria-hidden="true">
+                <span className="ai-gradient-mark h-4 w-4 animate-pulse rounded-[5px]" />
+              </span>
+              <div>
+                <p className="text-[15px] font-semibold text-dark">Analisando sua empresa</p>
+                <p className="mt-0.5 text-[12px] text-gray-400">A IA está organizando os sinais encontrados</p>
+              </div>
+            </div>
+
+            <div className="mt-6 divide-y divide-line border-y border-line">
+              {loadingSteps.map((step, index) => {
+                const completed = index < loadingStep;
+                const active = index === loadingStep;
+                return (
+                  <div key={step} className="flex gap-3 py-3.5">
+                    <span
+                      className={`mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-[10px] font-semibold ${
+                        completed
+                          ? "bg-[#E6F4EA] text-[#137333]"
+                          : active
+                            ? "bg-blue-50 text-primary"
+                            : "bg-surface text-gray-400"
+                      }`}
+                    >
+                      {completed ? "✓" : active ? "•" : "○"}
+                    </span>
+                    <p className={`text-[13px] leading-5 ${active ? "font-medium text-dark" : completed ? "text-gray-500" : "text-gray-400"}`}>
+                      {step}
+                    </p>
+                  </div>
+                );
+              })}
+            </div>
+
+            <div className="mt-5 flex items-center justify-between gap-4 text-[12px] text-gray-400">
+              <span>{loadingMessage}</span>
+              <span className="shrink-0 font-medium text-gray-500">{elapsedSeconds}s</span>
+            </div>
+
             {showDelayNotice ? (
-              <div className="mt-5 rounded-2xl border border-orange-200 bg-orange-50 p-4 text-sm font-semibold leading-6 text-orange-900">
+              <div className="mt-5 rounded-xl border border-[#F3D7A3] bg-[#FEF7E0] p-4 text-[13px] font-medium leading-5 text-[#8A4D00]">
                 {tipoDiagnostico === "reputacao"
                   ? "A análise pode levar alguns segundos porque estamos cruzando fontes públicas antes de atribuir qualquer nota. Não feche a página."
                   : "A análise pode levar alguns segundos porque estamos comparando sinais de autoridade e concorrência antes de entregar o resultado. Não feche a página."}
@@ -220,8 +263,8 @@ export default function App() {
       {tipoDiagnostico === "recomendacao_ia" ? <InfoSection /> : null}
 
       {apiNotice ? (
-        <section className="px-6 py-4 md:px-8">
-          <div className="mx-auto max-w-4xl rounded-2xl border border-orange-200 bg-orange-50 p-4 text-sm font-semibold text-orange-900">
+        <section className="px-4 py-4 md:px-6">
+          <div className="mx-auto max-w-[840px] rounded-xl border border-[#F3D7A3] bg-[#FEF7E0] p-4 text-[13px] font-medium leading-5 text-[#8A4D00]">
             {apiNotice}
           </div>
         </section>

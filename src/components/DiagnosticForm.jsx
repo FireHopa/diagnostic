@@ -105,25 +105,29 @@ export default function DiagnosticForm({ onSubmit, loading, onBack }) {
   };
 
   return (
-    <section id="diagnostico" className="px-6 py-10 md:px-8 md:py-12">
-      <div className="mx-auto max-w-4xl rounded-3xl bg-white p-5 shadow-card md:p-8 lg:p-10">
-        <div className="mb-7 flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
-          <div>
-            <p className="text-xs font-black uppercase tracking-[0.22em] text-primary">Recomendação por IA</p>
-            <h2 className="mt-2 text-2xl font-black text-dark md:text-3xl">Quem a IA tende a recomendar no seu mercado?</h2>
+    <section id="diagnostico" className="px-4 pb-12 pt-6 md:px-6 md:pb-14 md:pt-8">
+      <div className="mx-auto max-w-[720px]">
+        <div className="mb-6 flex items-start justify-between gap-4">
+          <div className="min-w-0">
+            <p className="text-[13px] font-medium text-primary">Recomendação por IA</p>
+            <h2 className="mt-2 text-[22px] font-semibold leading-7 tracking-[-0.025em] text-dark md:text-[24px]">
+              Vamos analisar o seu mercado
+            </h2>
+            <p className="mt-2 text-[14px] leading-6 text-muted">Preencha as informações abaixo para iniciar a análise.</p>
           </div>
           {onBack ? (
             <button
               type="button"
               onClick={onBack}
               disabled={loading}
-              className="shrink-0 rounded-xl border border-gray-200 px-4 py-2 text-sm font-bold text-gray-600 transition hover:border-gray-300 hover:bg-gray-50 disabled:opacity-60"
+              className="shrink-0 rounded-xl border border-line bg-white px-3.5 py-2 text-[13px] font-medium text-gray-600 transition hover:bg-surface-hover hover:text-dark disabled:opacity-50"
             >
               Trocar diagnóstico
             </button>
           ) : null}
         </div>
-        <form onSubmit={handleSubmit} className="space-y-5" noValidate>
+
+        <form onSubmit={handleSubmit} className="rounded-2xl border border-line bg-white p-5 md:p-6" noValidate>
           <input
             type="text"
             name="website"
@@ -136,7 +140,7 @@ export default function DiagnosticForm({ onSubmit, loading, onBack }) {
           />
 
           {errors.formulario ? (
-            <div className="rounded-2xl border border-red-200 bg-red-50 p-4 text-sm font-semibold text-red-700">
+            <div className="mb-5 rounded-xl border border-red-200 bg-red-50 p-4 text-[13px] font-medium leading-5 text-red-700">
               {errors.formulario}
             </div>
           ) : null}
@@ -144,7 +148,7 @@ export default function DiagnosticForm({ onSubmit, loading, onBack }) {
           <div className="grid gap-5 md:grid-cols-2">
             {campos.map((campo) => (
               <label key={campo.id} className={campo.id === "empresa" ? "md:col-span-2" : ""}>
-                <span className="mb-2 block text-sm font-bold text-dark">{campo.label}</span>
+                <span className="mb-2 block text-[13px] font-medium text-dark">{campo.label}</span>
                 <input
                   type={campo.type}
                   name={campo.id}
@@ -152,13 +156,13 @@ export default function DiagnosticForm({ onSubmit, loading, onBack }) {
                   onChange={handleChange}
                   placeholder={campo.placeholder}
                   maxLength={campo.maxLength}
-                  className={`focus-ring w-full rounded-2xl border bg-white px-4 py-4 text-dark shadow-sm transition ${
-                    errors[campo.id] ? "border-red-400" : "border-gray-200"
+                  className={`focus-ring h-12 w-full rounded-xl border bg-white px-4 text-[14px] text-dark outline-none transition placeholder:text-gray-400 ${
+                    errors[campo.id] ? "border-red-400" : "border-[#DADCE0] hover:border-gray-400"
                   }`}
                   disabled={loading}
                 />
                 {errors[campo.id] ? (
-                  <span className="mt-2 block text-sm font-medium text-red-600">
+                  <span className="mt-2 block text-[12px] font-medium leading-5 text-red-600">
                     {errors[campo.id]}
                   </span>
                 ) : null}
@@ -166,13 +170,16 @@ export default function DiagnosticForm({ onSubmit, loading, onBack }) {
             ))}
           </div>
 
-          <button
-            type="submit"
-            disabled={loading}
-            className="w-full rounded-2xl bg-primary px-6 py-4 text-base font-black text-white shadow-glow transition hover:-translate-y-0.5 hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-70"
-          >
-            {loading ? "Analisando concorrentes..." : "Descobrir meus concorrentes recomendados pela IA"}
-          </button>
+          <div className="mt-6 flex justify-end border-t border-line pt-5">
+            <button
+              type="submit"
+              disabled={loading}
+              className="inline-flex min-h-11 w-full items-center justify-center rounded-xl bg-primary px-5 py-3 text-[14px] font-semibold text-white transition hover:bg-[#1765CC] disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
+            >
+              {loading ? "Analisando concorrentes..." : "Iniciar análise"}
+              {!loading ? <span className="ml-2" aria-hidden="true">→</span> : null}
+            </button>
+          </div>
         </form>
       </div>
     </section>

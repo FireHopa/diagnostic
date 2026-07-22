@@ -3,52 +3,56 @@ import React from "react";
 const cards = [
   {
     tipo: "recomendacao_ia",
-    eyebrow: "Diagnóstico 1",
-    titulo: "Sua empresa está sendo recomendada pela IA?",
+    numero: "01",
+    titulo: "Recomendação por Inteligência Artificial",
     descricao:
-      "Descubra quais empresas aparecem com maior força nas respostas das Inteligências Artificiais e o que elas estão fazendo diferente.",
-    botao: "Analisar recomendação por IA"
+      "Descubra quais empresas aparecem com maior força nas respostas das IAs e o que elas estão fazendo diferente."
   },
   {
     tipo: "reputacao",
-    eyebrow: "Diagnóstico 2",
-    titulo: "Sua empresa transmite confiança e autoridade no digital?",
+    numero: "02",
+    titulo: "Reputação e autoridade digital",
     descricao:
-      "Descubra como sua reputação, avaliações, prova social, presença digital e autoridade estão sendo percebidas.",
-    botao: "Analisar reputação da empresa"
+      "Analise confiança, avaliações, prova social, presença digital e autoridade percebida da sua empresa."
   }
 ];
 
+function ArrowIcon() {
+  return (
+    <svg viewBox="0 0 24 24" className="h-5 w-5 fill-none stroke-current" strokeWidth="1.8" aria-hidden="true">
+      <path d="M5 12h13M13 7l5 5-5 5" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
 export default function DiagnosticSelector({ onSelect, disabled = false }) {
   return (
-    <section id="diagnosticos" className="px-6 py-10 md:px-8 md:py-12">
-      <div className="mx-auto max-w-5xl">
-        <div className="grid gap-5 md:grid-cols-2">
-          {cards.map((card) => (
-            <article
-              key={card.tipo}
-              className="group flex h-full flex-col rounded-3xl border border-gray-100 bg-white p-6 shadow-card transition hover:-translate-y-1 hover:border-blue-100 md:p-8"
-            >
-              <p className="text-xs font-black uppercase tracking-[0.22em] text-primary">
-                {card.eyebrow}
-              </p>
-              <h2 className="mt-4 text-2xl font-black leading-tight text-dark md:text-3xl">
+    <section id="diagnosticos" className="px-4 pb-16 pt-6 md:px-6 md:pb-20 md:pt-8">
+      <div className="mx-auto max-w-[800px] space-y-3">
+        {cards.map((card) => (
+          <button
+            key={card.tipo}
+            type="button"
+            onClick={() => onSelect(card.tipo)}
+            disabled={disabled}
+            className="group flex w-full items-start gap-4 rounded-2xl border border-line bg-white p-5 text-left transition duration-200 hover:border-[#DADCE0] hover:bg-surface disabled:cursor-not-allowed disabled:opacity-60 md:p-6"
+          >
+            <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-surface text-[12px] font-semibold text-gray-500 transition group-hover:bg-white">
+              {card.numero}
+            </span>
+            <span className="min-w-0 flex-1">
+              <span className="block text-[17px] font-semibold leading-6 tracking-[-0.015em] text-dark md:text-[18px]">
                 {card.titulo}
-              </h2>
-              <p className="mt-4 flex-1 text-base leading-7 text-gray-600">
+              </span>
+              <span className="mt-2 block max-w-[650px] text-[14px] leading-6 text-muted md:text-[15px]">
                 {card.descricao}
-              </p>
-              <button
-                type="button"
-                onClick={() => onSelect(card.tipo)}
-                disabled={disabled}
-                className="mt-7 w-full rounded-2xl bg-primary px-5 py-4 text-sm font-black uppercase tracking-wide text-white shadow-glow transition hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-60"
-              >
-                {card.botao}
-              </button>
-            </article>
-          ))}
-        </div>
+              </span>
+            </span>
+            <span className="mt-2 shrink-0 text-gray-400 transition group-hover:translate-x-0.5 group-hover:text-primary">
+              <ArrowIcon />
+            </span>
+          </button>
+        ))}
       </div>
     </section>
   );

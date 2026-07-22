@@ -4,13 +4,17 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: "#0026FF",
-        dark: "#111827",
-        soft: "#F3F4F6"
+        primary: "#1A73E8",
+        dark: "#1F1F1F",
+        soft: "#F8F9FA",
+        surface: "#F8F9FA",
+        "surface-hover": "#F1F3F4",
+        muted: "#5F6368",
+        line: "#E5E7EB"
       },
       boxShadow: {
-        glow: "0 20px 60px rgba(0, 38, 255, 0.16)",
-        card: "0 18px 45px rgba(17, 24, 39, 0.08)"
+        glow: "0 1px 2px rgba(0, 0, 0, 0.04)",
+        card: "0 1px 2px rgba(0, 0, 0, 0.04)"
       }
     }
   },

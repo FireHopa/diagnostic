@@ -1,27 +1,27 @@
 import React from "react";
 
 const itensAnalise = [
-  "Quem a IA está recomendando",
-  "Por que essas empresas são escolhidas",
-  "Por que sua empresa pode não aparecer",
-  "O que precisa ser corrigido"
+  ["01", "QUEM", "Quem a IA está recomendando"],
+  ["02", "POR QUÊ", "Por que essas empresas são escolhidas"],
+  ["03", "O QUE FALTA", "Por que sua empresa pode não aparecer"],
+  ["04", "PRÓXIMOS PASSOS", "O que precisa ser corrigido"]
 ];
 
 export default function InfoSection() {
   return (
-    <section className="px-6 pb-14 md:px-8 md:pb-16">
-      <div className="mx-auto max-w-4xl rounded-3xl border border-gray-100 bg-white p-5 shadow-sm md:p-6">
-        <p className="text-sm font-black uppercase tracking-[0.22em] text-primary">
-          Como funciona
-        </p>
+    <section className="px-4 pb-16 md:px-6 md:pb-20">
+      <div className="mx-auto max-w-[840px] border-t border-line pt-8">
+        <div className="mb-5">
+          <p className="text-[13px] font-medium text-primary">Como funciona</p>
+          <h2 className="mt-2 text-[22px] font-semibold tracking-[-0.025em] text-dark">Os 4Q's do diagnóstico</h2>
+        </div>
 
-        <div className="mt-5 grid gap-3 md:grid-cols-4">
-          {itensAnalise.map((item, index) => (
-            <div key={item} className="rounded-2xl bg-soft p-4">
-              <span className="flex h-9 w-9 items-center justify-center rounded-full bg-primary text-xs font-black text-white">
-                {index + 1}Q
-              </span>
-              <p className="mt-3 text-sm font-black leading-5 text-dark">{item}</p>
+        <div className="divide-y divide-line rounded-2xl border border-line bg-white px-5 md:px-6">
+          {itensAnalise.map(([numero, label, item]) => (
+            <div key={numero} className="grid gap-2 py-4 sm:grid-cols-[52px_150px_1fr] sm:items-center">
+              <span className="text-[12px] font-semibold text-gray-400">{numero}</span>
+              <span className="text-[12px] font-semibold tracking-[0.08em] text-gray-500">{label}</span>
+              <span className="text-[14px] leading-6 text-dark">{item}</span>
             </div>
           ))}
         </div>
