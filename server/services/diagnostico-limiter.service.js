@@ -12,10 +12,6 @@ function normalizarTexto(texto = "") {
     .replace(/\s+/g, " ");
 }
 
-function normalizarWhatsapp(whatsapp = "") {
-  return whatsapp.toString().replace(/\D/g, "");
-}
-
 function gerarHash(valor = "") {
   return crypto.createHash("sha256").update(valor).digest("hex");
 }
@@ -54,32 +50,31 @@ export function obterBlockDays() {
 
 export function criarChavesLimiter(data, clientId = "") {
   const tipoDiagnostico = data.tipoDiagnostico === "reputacao" ? "reputacao" : "recomendacao_ia";
-  const whatsapp = normalizarWhatsapp(data.whatsapp);
   const empresa = normalizarTexto(data.empresa);
   const cidade = normalizarTexto(data.cidade);
   const segmento = normalizarTexto(data.segmento || "");
+  const principalProduto = normalizarTexto(data.principalProduto || "");
   const client = normalizarTexto(clientId);
 
   const complemento = tipoDiagnostico === "recomendacao_ia" ? `|${segmento}` : "";
-  const basePedido = `${tipoDiagnostico}|${whatsapp}|${empresa}|${cidade}${complemento}`;
-  const baseBrowser = client ? `${tipoDiagnostico}|${client}|${empresa}|${cidade}${complemento}` : "";
+  const basePedido = `${tipoDiagnostico}|${empresa}|${cidade}${complemento}|${principalProduto}`;
+  const baseBrowser = client ? `${tipoDiagnostico}|${client}|${empresa}|${cidade}${complemento}|${principalProduto}` : "";
 
-  // Chaves legadas preservam o bloqueio de solicitações de recomendação já registradas antes da separação por tipo.
-  const basePedidoLegado = `${whatsapp}|${empresa}|${cidade}|${segmento}`;
+  // Compatibilidade com a chave de navegador antiga, que não dependia do WhatsApp.
   const baseBrowserLegado = client ? `${client}|${empresa}|${cidade}|${segmento}` : "";
 
   return {
     limiterKey: gerarHash(basePedido),
     browserLimiterKey: baseBrowser ? gerarHash(baseBrowser) : "",
-    legacyLimiterKey: tipoDiagnostico === "recomendacao_ia" ? gerarHash(basePedidoLegado) : "",
+    legacyLimiterKey: "",
     legacyBrowserLimiterKey:
       tipoDiagnostico === "recomendacao_ia" && baseBrowserLegado ? gerarHash(baseBrowserLegado) : "",
     dadosNormalizados: {
       tipoDiagnostico,
-      whatsapp,
       empresa,
       cidade,
-      segmento
+      segmento,
+      principalProduto
     }
   };
 }
@@ -125,11 +120,12 @@ export function montarRespostaBloqueio(lead, blockDays) {
     bloqueado: true,
     message:
       `Este diagnóstico ${prazoTexto}. Para evitar uso repetido da análise com IA, não vamos gerar uma nova consulta agora. ` +
-      "Nossa equipe pode continuar pelo WhatsApp com base na solicitação já enviada.",
+      "O resultado anterior continua disponível no histórico deste vendedor.",
     leadAnterior: {
       empresa: lead.empresa,
       cidade: lead.cidade,
       segmento: lead.segmento,
+      principalProduto: lead.principalProduto || "",
       tipoDiagnostico: lead.tipoDiagnostico || "recomendacao_ia",
       dataEnvio: lead.dataEnvio,
       diagnosticoStatus: lead.diagnosticoStatus

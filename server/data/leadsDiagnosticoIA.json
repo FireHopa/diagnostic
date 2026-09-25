@@ -1,5 +1,1240 @@
 [
   {
+    "nome": "Mais Credit",
+    "empresa": "Mais Credit",
+    "cidade": "Brasil",
+    "principalProduto": "juros abusivos",
+    "segmento": "Empresa de Renegociação de dívida, juros abusivos em financiamentos de veículos, imóvel e empréstimo",
+    "tipoDiagnostico": "recomendacao_ia",
+    "diagnosticoId": "f6731bbe-cc53-4718-b6cc-c802724a405d",
+    "dataEnvio": "2026-07-22T18:59:26.954Z",
+    "diagnosticoStatus": "aparece",
+    "vendedorId": "danielle",
+    "vendedorNome": "Danielle",
+    "diagnosticoResultado": {
+      "status": "aparece",
+      "perguntaPrincipal": "Qual a empresa mais recomendada do nicho de Empresa de Renegociação de dívida, juros abusivos em financiamentos de veículos, imóvel e empréstimo na cidade Brasil?",
+      "titulo": "Mais Credit aparece com sinais públicos relevantes, mas disputa autoridade com empresas que comunicam revisão de juros abusivos de forma mais clara e ampla.",
+      "resumo": "Com base em sinais públicos encontrados na web, não existe um ranking oficial de IA para esse nicho. A resposta mais segura é: as empresas com maior probabilidade de serem recomendadas por IA com base em sinais públicos são aquelas que têm site claro, páginas específicas, explicação simples do serviço, prova de atuação, conteúdo educativo, FAQ, menções externas e sinais de reputação. A Mais Credit aparece com site oficial, conteúdo sobre confiabilidade e presença em Reclame Aqui, mas também aparecem reclamações públicas e concorrentes com comunicação forte no mesmo tema.",
+      "quatroQsResumo": {
+        "quemIARecomenda": "As empresas com maior probabilidade de serem recomendadas por IA com base em sinais públicos para renegociação de dívida, revisão de juros abusivos e contratos de financiamento no Brasil são: Mais Credit Consultoria, GRS Soluções, Revision Solutions, Click Consultoria e Really Soluções Financeiras.",
+        "porqueEssasEmpresasSaoEscolhidas": "Essas empresas aparecem porque deixam rastros públicos que ajudam a IA a entender o que fazem: sites com páginas sobre juros abusivos, revisão de financiamento, contratos bancários, atendimento nacional, explicações de processo, perguntas frequentes, depoimentos, contatos e menções em plataformas externas como Reclame Aqui.",
+        "porqueMinhaEmpresaNaoERecomendada": "A Mais Credit pode deixar de ser recomendada em algumas respostas porque o mercado é sensível, com muitas dúvidas sobre promessas de redução de parcelas, confiança, risco jurídico e reclamações públicas. Se a empresa não organizar muito bem provas, clareza, limites do serviço, reputação e conteúdos educativos, a IA pode preferir concorrentes com comunicação mais transparente ou fontes externas mais consistentes.",
+        "pontosFortesFracosEOQuePrecisaSerFeito": "O ponto forte da Mais Credit é já ter site oficial, conteúdo próprio sobre confiabilidade e presença pública relacionada a juros abusivos. Os pontos fracos são a existência de reclamações públicas, possível excesso de promessa comercial e necessidade de deixar mais claro como funciona o serviço, quais são os riscos, quais resultados dependem de análise e quais provas sustentam a autoridade. O que precisa ser feito é transformar site, FAQ, avaliações, cases, depoimentos, conteúdos e Perfil da Empresa no Google em sinais claros para humanos e inteligências artificiais."
+      },
+      "empresasMaisRecomendadas": [
+        {
+          "posicao": 1,
+          "nome": "Mais Credit Consultoria",
+          "resumoAutoridade": "A Mais Credit aparece com site oficial focado em juros abusivos em financiamento de veículos, conteúdo próprio sobre reputação e menções em plataformas externas.",
+          "porQueTemMaisAutoridade": "Tem forte aderência ao termo principal informado pelo lead, comunica atuação em renegociação extrajudicial de financiamento de veículos e possui conteúdo específico sobre confiabilidade e Reclame Aqui. Isso facilita a compreensão por IA, embora também exija gestão ativa de reputação por haver reclamações públicas encontradas.",
+          "sinaisFortes": [
+            "Site oficial encontrado com mensagem direta sobre juros abusivos em financiamento de veículo",
+            "Conteúdo próprio explicando reputação e confiabilidade da empresa",
+            "Menções externas em Reclame Aqui e PROTESTE, o que amplia rastros públicos da marca",
+            "Material em PDF sobre juros abusivos de financiamento de veículos",
+            "Posicionamento nacional relacionado a renegociação extrajudicial de financiamentos"
+          ],
+          "possiveisFraquezas": [
+            "Reclamações públicas podem reduzir confiança se não forem bem respondidas e contextualizadas",
+            "Comunicação precisa evitar promessas absolutas de resultado",
+            "Pode precisar de páginas mais específicas para financiamento de imóvel, empréstimo e renegociação de dívida além de veículos",
+            "Precisa reforçar provas auditáveis, cases e limites claros do serviço"
+          ]
+        },
+        {
+          "posicao": 2,
+          "nome": "GRS Soluções",
+          "resumoAutoridade": "A GRS Soluções aparece com site claro sobre revisão de contratos de financiamento de veículo, imóvel e empréstimo, com FAQ e explicações voltadas ao consumidor.",
+          "porQueTemMaisAutoridade": "Tem forte correspondência com o nicho completo informado: veículos, imóveis, empréstimos e contratos de financiamento. O site apresenta explicações simples, perguntas frequentes, escopo de atuação nacional e linguagem educativa, sinais que ajudam uma IA a entender e recomendar.",
+          "sinaisFortes": [
+            "Site oficial com foco em revisão de juros e contratos de financiamento",
+            "Abrange veículo, imóvel e empréstimo, além de pessoa física e jurídica",
+            "FAQ com perguntas comuns sobre juros abusivos e análise de contrato",
+            "Comunicação educativa sobre Código de Defesa do Consumidor e Banco Central",
+            "Atuação declarada em todo o Brasil"
+          ],
+          "possiveisFraquezas": [
+            "Autoridade depende de validação externa além do próprio site",
+            "Depoimentos e resultados precisam ser tratados com cuidado para não parecer promessa garantida",
+            "Pode precisar fortalecer presença em fontes independentes e avaliações públicas"
+          ]
+        },
+        {
+          "posicao": 3,
+          "nome": "Revision Solutions",
+          "resumoAutoridade": "A Revision Solutions aparece com site oficial dedicado à revisão de juros abusivos de financiamento de automóvel, informações de contato, CNPJ, FAQ e depoimentos.",
+          "porQueTemMaisAutoridade": "A empresa possui página institucional estruturada, explica missão, valores, equipe, processo, contatos e dúvidas frequentes. Esses elementos ajudam sistemas de IA a mapear quem é a empresa, o que faz e onde atua.",
+          "sinaisFortes": [
+            "Site oficial específico para revisão de juros abusivos",
+            "FAQ sobre revisão, contratos quitados, parcelas em atraso e negociação extrajudicial",
+            "Apresenta CNPJ, endereço, canais de atendimento e SAC",
+            "Comunica proposta de equipe especializada e agilidade no processo",
+            "Possui menções em Reclame Aqui, aumentando rastros públicos"
+          ],
+          "possiveisFraquezas": [
+            "Também aparecem reclamações públicas sobre a empresa",
+            "Foco principal parece mais concentrado em automóvel do que em imóvel e empréstimos",
+            "Precisa reforçar transparência sobre riscos, prazos e limites de resultado"
+          ]
+        },
+        {
+          "posicao": 4,
+          "nome": "Click Consultoria",
+          "resumoAutoridade": "A Click Consultoria aparece com site voltado a revisão de contratos e juros abusivos, com páginas de conteúdo recentes e posicionamento nacional.",
+          "porQueTemMaisAutoridade": "O site apresenta uma proposta comercial direta, blog com artigos sobre juros abusivos, busca e apreensão e irregularidades contratuais. Conteúdos frequentes ajudam IAs a reconhecerem contexto, especialidade e intenção de educar o cliente.",
+          "sinaisFortes": [
+            "Site oficial com foco em revisão de contratos e juros abusivos",
+            "Conteúdos publicados sobre financiamento, busca e apreensão e cláusulas abusivas",
+            "Posicionamento claro de consultoria financeira contra juros abusivos",
+            "Promessa de atendimento humanizado e foco em transparência",
+            "Boa aderência semântica às dúvidas do público"
+          ],
+          "possiveisFraquezas": [
+            "Afirmações comerciais fortes precisam ser sustentadas por provas externas",
+            "É necessário verificar reputação pública fora do site",
+            "Pode precisar deixar mais claro o alcance real dos serviços e limites legais"
+          ]
+        },
+        {
+          "posicao": 5,
+          "nome": "Really Soluções Financeiras",
+          "resumoAutoridade": "A Really Soluções Financeiras aparece com site voltado à revisão de contratos, juros abusivos e renegociação extrajudicial com instituições financeiras.",
+          "porQueTemMaisAutoridade": "A página usa termos muito próximos das perguntas do público, como revisão de contratos, análise gratuita, defesa do consumidor, economia real e renegociação direta. Também cita diferenciais como atuação desde 2015, OAB/SP e ISO 9001 no conteúdo encontrado, o que pode aumentar percepção de confiança se comprovado de forma clara.",
+          "sinaisFortes": [
+            "Site oficial com foco em revisão de contratos e juros abusivos",
+            "Comunicação sobre renegociação extrajudicial com instituições financeiras",
+            "Lista bancos e instituições comuns no Brasil, aumentando correspondência com buscas dos clientes",
+            "Apresenta diferenciais de confiança no próprio site",
+            "Linguagem comercial clara para quem quer entender se paga juros abusivos"
+          ],
+          "possiveisFraquezas": [
+            "Diferenciais citados precisam de comprovação fácil e verificável",
+            "Pode precisar de mais menções independentes e avaliações públicas",
+            "Afirmações de resultado devem ser contextualizadas para não parecer garantia"
+          ]
+        }
+      ],
+      "empresasRecomendadas": [
+        "Mais Credit Consultoria",
+        "GRS Soluções",
+        "Revision Solutions",
+        "Click Consultoria",
+        "Really Soluções Financeiras"
+      ],
+      "sinaisEncontradosDaEmpresa": [
+        "Site oficial da Mais Credit encontrado com posicionamento direto sobre juros abusivos em financiamento de veículo.",
+        "Página própria da Mais Credit encontrada falando sobre confiabilidade e reputação no Reclame Aqui.",
+        "Lista de reclamações da Mais Credit encontrada no Reclame Aqui, indicando presença pública e necessidade de gestão de reputação.",
+        "Material em PDF da Mais Credit encontrado sobre juros abusivos em financiamento de veículos.",
+        "Menção pública da Mais Credit encontrada em reclamação na PROTESTE."
+      ],
+      "sinaisNaoEncontradosOuFracos": [
+        "Não foram encontrados sinais fortes, nesta análise inicial, de páginas específicas da Mais Credit para financiamento de imóvel e empréstimos com a mesma clareza do tema veículos.",
+        "A presença em reclamações públicas pode gerar dúvida para a IA se não houver respostas, contexto, provas e conteúdos de confiança suficientes.",
+        "Não foi possível validar, apenas pela busca inicial, um Perfil da Empresa no Google completo, forte e otimizado para atuação nacional/local.",
+        "Faltam sinais públicos facilmente verificáveis de cases detalhados, metodologia, limites do serviço e diferenciais comparativos.",
+        "A comunicação precisa reforçar que cada caso depende de análise técnica, evitando aparência de promessa garantida."
+      ],
+      "motivosDasEmpresasIndicadas": [
+        "Possuem site oficial ou páginas públicas com alta correspondência aos termos juros abusivos, revisão de contrato, financiamento de veículo, imóvel, empréstimo e renegociação de dívida.",
+        "Apresentam conteúdo explicativo, FAQ ou páginas de serviço que ajudam a IA a entender o que a empresa faz.",
+        "Algumas empresas mostram canais de atendimento, CNPJ, endereço, depoimentos ou diferenciais, o que aumenta a leitura de confiança.",
+        "Têm menções externas em plataformas como Reclame Aqui ou outros sites, criando sinais fora do próprio domínio.",
+        "Comunicam de forma direta para o cliente leigo, usando termos que aparecem naturalmente nas dúvidas de contratação."
+      ],
+      "porQueSuaEmpresaPodeNaoAparecer": "A Mais Credit pode não aparecer sempre como recomendação principal porque, embora tenha sinais relevantes, o tema juros abusivos é sensível e envolve alto risco percebido pelo consumidor. IAs tendem a privilegiar empresas com comunicação muito clara, reputação bem organizada, provas externas, respostas consistentes a reclamações, páginas por serviço, FAQ transparente e limites legais bem explicados. Se a IA encontra reclamações, promessas fortes ou pouca clareza sobre metodologia e riscos, pode preferir concorrentes com conteúdo mais educativo e menos ambíguo.",
+      "diagnosticoDaEmpresa": {
+        "resumoEmpresa": "A Mais Credit é uma empresa com presença pública real no nicho de juros abusivos, especialmente em financiamento de veículos. Nesta análise inicial, ela aparece como uma das empresas com maior probabilidade de serem recomendadas por IA com base em sinais públicos, mas precisa reforçar confiança, clareza, prova e reputação para disputar melhor com concorrentes que comunicam revisão de contratos de forma mais ampla, incluindo imóvel, empréstimos e renegociação de dívidas.",
+        "pontosFortes": [
+          "Site oficial encontrado e diretamente relacionado ao serviço de juros abusivos.",
+          "Conteúdo próprio sobre reputação e confiabilidade, o que mostra preocupação com objeções do cliente.",
+          "Aderência forte ao principal produto informado: juros abusivos em financiamento de veículos.",
+          "Material educativo encontrado em PDF sobre juros abusivos.",
+          "Presença em fontes externas, o que cria rastros públicos que podem ser lidos por mecanismos de busca e IA."
+        ],
+        "pontosFracos": [
+          "Reclamações públicas podem afetar a percepção de confiança se não forem tratadas como ativo de reputação.",
+          "O posicionamento encontrado parece mais forte em veículos do que em imóvel, empréstimos e renegociação de dívidas em geral.",
+          "Pode faltar uma arquitetura de páginas específicas por serviço, problema, tipo de contrato e região atendida.",
+          "Pode haver risco de a comunicação parecer promessa de resultado se não explicar limites, critérios e análise caso a caso.",
+          "Faltam, na busca inicial, provas públicas mais organizadas como cases detalhados, depoimentos verificáveis, metodologia e diferenciais claros."
+        ],
+        "prioridadeMaxima": "Transformar a presença digital da Mais Credit em uma base de autoridade clara: explicar com transparência quem é a empresa, como funciona a análise de juros abusivos, quais contratos atende, quais resultados dependem de análise, quais riscos existem, quais provas sustentam a confiança e onde a empresa atende no Brasil."
+      },
+      "analisePerguntasClientes": {
+        "avisoMetodologico": "Estas perguntas são uma estimativa estratégica criada com base no comportamento de busca, nas dúvidas comuns do público e nas etapas de decisão de compra. Não representam volume oficial de buscas nem acesso ao histórico privado de perguntas de usuários do ChatGPT, Gemini, IA do Google ou outras plataformas.",
+        "grupos": {
+          "entenderProblema": [
+            "Como saber se estou pagando juros abusivos no financiamento do meu carro?",
+            "Juros altos no financiamento sempre são considerados abusivos?",
+            "O que é revisão de contrato de financiamento e quando vale a pena fazer?",
+            "Meu financiamento de veículo ficou muito caro, isso pode ser cobrança abusiva?",
+            "Como comparar a taxa do meu contrato com a média do Banco Central?",
+            "Juros abusivos também podem acontecer em empréstimo pessoal e financiamento de imóvel?"
+          ],
+          "procurarSolucao": [
+            "Quem pode me ajudar a analisar se meu contrato tem juros abusivos?",
+            "Existe empresa confiável para reduzir juros de financiamento no Brasil?",
+            "Como funciona uma consultoria de revisão de juros abusivos?",
+            "Dá para renegociar dívida de veículo sem entrar na Justiça?",
+            "O que eu preciso enviar para fazer uma análise do meu financiamento?",
+            "Como diminuir parcelas de financiamento sem cair em golpe?"
+          ],
+          "compararOpcoes": [
+            "É melhor contratar uma empresa de consultoria ou um advogado para juros abusivos?",
+            "Qual a diferença entre revisão extrajudicial e ação judicial contra juros abusivos?",
+            "Mais Credit é melhor que outras empresas de revisão de financiamento?",
+            "Como comparar empresas que prometem reduzir juros do financiamento?",
+            "O que uma empresa séria de juros abusivos precisa mostrar antes de eu contratar?",
+            "Vale mais a pena negociar direto com o banco ou contratar uma empresa especializada?"
+          ],
+          "precoConfiancaReputacao": [
+            "Quanto custa contratar uma empresa para revisar juros abusivos?",
+            "Como saber se a Mais Credit é confiável?",
+            "Empresas que reduzem juros de financiamento são seguras?",
+            "O que olhar no Reclame Aqui antes de contratar uma consultoria de juros abusivos?",
+            "É normal pagar taxa antes de resolver juros abusivos no financiamento?",
+            "Quais sinais mostram que uma empresa de revisão de contrato pode ser golpe?"
+          ],
+          "proximasDeComprar": [
+            "Quero analisar meu financiamento hoje, qual empresa posso contratar?",
+            "A Mais Credit atende financiamento de carro em qualquer lugar do Brasil?",
+            "Como falar com um especialista para revisar meu contrato de veículo?",
+            "Posso contratar revisão de juros abusivos se estou com parcelas atrasadas?",
+            "Quanto tempo demora para tentar reduzir juros abusivos do financiamento?",
+            "Quais documentos preciso separar para contratar uma análise de juros abusivos?"
+          ]
+        },
+        "maiorIntencaoContratacao": [
+          "Quem pode me ajudar a analisar se meu contrato tem juros abusivos?",
+          "Existe empresa confiável para reduzir juros de financiamento no Brasil?",
+          "Como diminuir parcelas de financiamento sem cair em golpe?",
+          "Quanto custa contratar uma empresa para revisar juros abusivos?",
+          "Como saber se a Mais Credit é confiável?",
+          "Quero analisar meu financiamento hoje, qual empresa posso contratar?",
+          "A Mais Credit atende financiamento de carro em qualquer lugar do Brasil?",
+          "Como falar com um especialista para revisar meu contrato de veículo?",
+          "Posso contratar revisão de juros abusivos se estou com parcelas atrasadas?",
+          "Quais documentos preciso separar para contratar uma análise de juros abusivos?"
+        ],
+        "perguntasPrioritarias": [
+          "Como saber se estou pagando juros abusivos no financiamento do meu carro?",
+          "O que é revisão de contrato de financiamento e quando vale a pena fazer?",
+          "Quem pode me ajudar a analisar se meu contrato tem juros abusivos?",
+          "Como funciona uma consultoria de revisão de juros abusivos?",
+          "Dá para renegociar dívida de veículo sem entrar na Justiça?",
+          "É melhor contratar uma empresa de consultoria ou um advogado para juros abusivos?",
+          "O que uma empresa séria de juros abusivos precisa mostrar antes de eu contratar?",
+          "Como saber se a Mais Credit é confiável?",
+          "É normal pagar taxa antes de resolver juros abusivos no financiamento?",
+          "Quais documentos preciso separar para contratar uma análise de juros abusivos?"
+        ],
+        "temasConteudo": [
+          "Guia simples para identificar juros abusivos em financiamento de veículo",
+          "Como funciona a revisão de contrato de financiamento na prática",
+          "Diferença entre negociação extrajudicial e processo judicial por juros abusivos",
+          "Checklist para escolher uma empresa confiável de revisão de juros",
+          "O que enviar para analisar um contrato de financiamento",
+          "Principais dúvidas sobre parcelas atrasadas, busca e apreensão e renegociação",
+          "Como consultar taxa média do Banco Central e entender seu contrato",
+          "Reputação, Reclame Aqui e sinais de confiança antes de contratar consultoria"
+        ]
+      },
+      "problemasUrgentes": [
+        "Site pouco claro para humanos e inteligências artificiais",
+        "Poucas avaliações ou avaliações sem palavras-chave relevantes",
+        "Falta de páginas específicas para serviços e cidade",
+        "Pouca presença em conteúdos, artigos, redes sociais e menções externas",
+        "Falta de prova de autoridade, como cases, depoimentos e diferenciais",
+        "Google Perfil da Empresa incompleto ou mal otimizado"
+      ],
+      "proximosPassos": [
+        "Organizar o site para explicar quem é a empresa, o que faz, para quem faz e onde atende",
+        "Melhorar avaliações no Google com palavras naturais dos clientes",
+        "Criar conteúdos que respondam perguntas reais dos clientes",
+        "Reforçar autoridade com cases, depoimentos, números e diferenciais",
+        "Preparar a empresa para ser compreendida por humanos e agentes de IA"
+      ],
+      "chamadaFinal": "A Mais Credit já existe nos sinais públicos do nicho, mas agora precisa vencer a próxima disputa: não apenas aparecer no Google, e sim ser compreendida, confiável e recomendável por sistemas de IA."
+    },
+    "origem": "landing-diagnostico-ia",
+    "limiterKey": "c81d4a1cb5dd682c4fb6eeeba28d4a1eb93ddd238ec6f77136a5a8984876a0b6",
+    "browserLimiterKey": "5bcd79e07053249f68e435aafe14de1a363d5d0a0a82eee7523aca0df4c04c7a",
+    "clientId": "af85b3c9-50e3-431b-a98b-31e5b0fb9db3",
+    "ip": "189.121.91.22",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36"
+  },
+  {
+    "nome": "Matheus Bottaro",
+    "empresa": "Casa do ADS",
+    "cidade": "Brasil",
+    "principalProduto": "Consultoria, imersão",
+    "segmento": "google ads",
+    "tipoDiagnostico": "recomendacao_ia",
+    "diagnosticoId": "a2a13136-4fb9-4776-9dd7-f853b67332e1",
+    "dataEnvio": "2026-07-22T18:22:59.863Z",
+    "diagnosticoStatus": "aparece",
+    "vendedorId": "matheus",
+    "vendedorNome": "Matheus",
+    "diagnosticoResultado": {
+      "status": "aparece",
+      "perguntaPrincipal": "Qual a empresa mais recomendada do nicho de google ads na cidade Brasil?",
+      "titulo": "Matheus Bottaro, a Casa do ADS aparece com sinais públicos relevantes, mas disputa autoridade com agências e referências nacionais fortes em Google Ads.",
+      "resumo": "Com base em sinais públicos encontrados na web, não existe um ranking oficial de recomendação do ChatGPT, Gemini ou IA do Google. A análise indica empresas com maior probabilidade de serem recomendadas por IA com base em sinais públicos. Para o nicho de Google Ads no Brasil, a Casa do ADS tem sinais positivos, como site oficial, proposta ligada a Google Ads, consultoria, imersão, educação aplicada, presença no LinkedIn, menção a Google Partners e experiência declarada. Mesmo assim, concorrentes como Clinks, NP Digital Brasil, Pareto e Cadastra aparecem com autoridade forte por presença institucional, histórico, premiações, conteúdos e reconhecimento público no mercado de performance.",
+      "quatroQsResumo": {
+        "quemIARecomenda": "As empresas com maior probabilidade de serem recomendadas por IA com base em sinais públicos para Google Ads no Brasil são: Clinks, NP Digital Brasil, Casa do ADS, Pareto e Cadastra. A resposta clara para a pergunta principal é: a Clinks aparece como uma das referências mais fortes quando a busca é especificamente por agência Google Ads no Brasil, enquanto a Casa do ADS aparece com boa autoridade no recorte de consultoria, imersão e educação aplicada em Google Ads.",
+        "porqueEssasEmpresasSaoEscolhidas": "Essas empresas são escolhidas porque deixam sinais públicos mais fáceis de interpretar: site oficial claro, páginas sobre Google Ads ou mídia paga, menções a Google Partner ou Premier Partner, conteúdos, histórico, depoimentos, presença institucional, atuação nacional e provas de confiança. Para uma IA, quanto mais claro é o conjunto de sinais, mais fácil é entender quem é a empresa, o que ela faz, para quem atende e por que pode ser recomendada.",
+        "porqueMinhaEmpresaNaoERecomendada": "A Casa do ADS pode não ser indicada em primeiro lugar porque, apesar de ter sinais positivos, concorre com agências que aparecem há mais tempo em listas, premiações, páginas institucionais, conteúdos e menções externas. Se a IA encontrar mais sinais consolidados de autoridade em concorrentes, ela pode priorizar essas empresas antes da Casa do ADS, principalmente em buscas amplas como 'melhores empresas de Google Ads no Brasil'.",
+        "pontosFortesFracosEOQuePrecisaSerFeito": "O ponto forte da Casa do ADS é ter posicionamento específico em Google Ads, consultoria, imersão, educação aplicada, site próprio e sinais de especialização. O ponto fraco é que a autoridade precisa estar ainda mais organizada para IA: páginas específicas por serviço, provas públicas, cases, depoimentos, avaliações, FAQ, conteúdos comparativos e clareza sobre o público ideal. O que precisa ser feito é transformar a experiência e a proposta em sinais digitais objetivos, repetidos e fáceis de validar."
+      },
+      "empresasMaisRecomendadas": [
+        {
+          "posicao": 1,
+          "nome": "Clinks",
+          "resumoAutoridade": "A Clinks aparece como uma referência muito forte quando a busca é especificamente por agência Google Ads no Brasil, com site focado em Google Ads e linguagem direta sobre certificação, confiança e gestão de campanhas.",
+          "porQueTemMaisAutoridade": "Tem alta probabilidade de ser compreendida por IA porque seu site comunica de forma clara o serviço principal, usa termos diretamente ligados a Google Ads, apresenta posicionamento de agência especializada e traz sinais de certificação, histórico e depoimentos.",
+          "sinaisFortes": [
+            "Site oficial com foco claro em agência Google Ads",
+            "Menção pública a Google Partner e certificações relacionadas ao Google Ads",
+            "Comunicação direta sobre gestão de campanhas, resultados, depoimentos e confiança"
+          ],
+          "possiveisFraquezas": [
+            "Pode ser percebida mais como agência de gestão do que como imersão ou educação aplicada",
+            "A recomendação pode variar conforme o tipo de cliente, porte da empresa e objetivo da contratação"
+          ]
+        },
+        {
+          "posicao": 2,
+          "nome": "NP Digital Brasil",
+          "resumoAutoridade": "A NP Digital Brasil aparece como uma marca forte no mercado de marketing digital e performance, com presença institucional robusta, atuação nacional e associação ao nome Neil Patel.",
+          "porQueTemMaisAutoridade": "Tem sinais amplos de autoridade porque combina marca reconhecida, site bem estruturado, páginas de serviços, mídia paga, SEO, presença global e menções a reconhecimento no mercado de performance.",
+          "sinaisFortes": [
+            "Marca nacional e global conhecida no marketing digital",
+            "Páginas de serviços incluindo mídia paga e campanhas em Google Ads",
+            "Sinais de autoridade institucional, conteúdo, reputação e presença em diferentes canais"
+          ],
+          "possiveisFraquezas": [
+            "Pode parecer mais voltada a empresas médias e grandes do que a pequenos negócios ou alunos em imersão",
+            "Por ser ampla, pode não ser percebida como especialista exclusiva em Google Ads"
+          ]
+        },
+        {
+          "posicao": 3,
+          "nome": "Casa do ADS",
+          "resumoAutoridade": "A Casa do ADS aparece com sinais públicos relevantes para Google Ads, consultoria, imersão e educação aplicada, especialmente por ter site oficial, página de imersão, presença no LinkedIn e comunicação especializada em Google Ads.",
+          "porQueTemMaisAutoridade": "A empresa parece ter autoridade no recorte de ensino prático, consultoria e imersão em Google Ads. O site comunica experiência, atuação com pequenas e médias empresas, profissionais de marketing, tráfego pago, redes sociais e inteligência artificial.",
+          "sinaisFortes": [
+            "Site oficial encontrado com foco em Google Ads, consultoria, imersão e educação aplicada",
+            "Menção pública a Google Partners e experiência declarada no mercado",
+            "Presença no LinkedIn e páginas específicas relacionadas à imersão presencial"
+          ],
+          "possiveisFraquezas": [
+            "Pode precisar organizar melhor provas públicas, avaliações, cases e diferenciais em páginas fáceis de interpretar",
+            "Pode disputar buscas amplas com agências maiores, mais citadas em listas e premiações externas"
+          ]
+        },
+        {
+          "posicao": 4,
+          "nome": "Pareto",
+          "resumoAutoridade": "A Pareto aparece como referência nacional em performance e Google Ads por ter sido citada em conteúdo do Think with Google relacionado a Premier Partner Awards e cases de campanhas.",
+          "porQueTemMaisAutoridade": "A IA tende a dar peso a menções em fontes fortes do próprio ecossistema Google, especialmente quando há associação a cases, performance, automação, campanhas de pesquisa e Performance Max.",
+          "sinaisFortes": [
+            "Menção em conteúdo do Think with Google sobre agências brasileiras e Premier Partner Awards",
+            "Associação pública com estratégia, performance e campanhas de Google Ads",
+            "Sinal externo forte vindo de uma fonte ligada ao Google"
+          ],
+          "possiveisFraquezas": [
+            "Pode ser percebida mais como referência de performance e tecnologia do que como consultoria ou imersão",
+            "Pode não ser a primeira opção para empresas que buscam atendimento mais educativo e prático"
+          ]
+        },
+        {
+          "posicao": 5,
+          "nome": "Cadastra",
+          "resumoAutoridade": "A Cadastra aparece como referência nacional em marketing digital e performance, com menção pública em conteúdo do Think with Google relacionado a Premier Partner Awards.",
+          "porQueTemMaisAutoridade": "Tem autoridade por aparecer em fonte externa relevante, por atuar em performance digital e por carregar sinais de empresa estruturada, reconhecida e com presença institucional no mercado.",
+          "sinaisFortes": [
+            "Menção em conteúdo do Think with Google sobre agências brasileiras de destaque",
+            "Sinais de atuação consolidada em marketing digital e performance",
+            "Reconhecimento externo que ajuda a IA a validar autoridade"
+          ],
+          "possiveisFraquezas": [
+            "Pode ser mais lembrada como agência ampla de marketing digital do que como especialista exclusiva em Google Ads",
+            "Pode não comunicar uma oferta de imersão ou consultoria prática com tanta especificidade quanto a Casa do ADS"
+          ]
+        }
+      ],
+      "empresasRecomendadas": [
+        "Clinks",
+        "NP Digital Brasil",
+        "Casa do ADS",
+        "Pareto",
+        "Cadastra"
+      ],
+      "sinaisEncontradosDaEmpresa": [
+        "Foi encontrado site oficial da Casa do ADS com comunicação ligada a Google Ads, consultoria, imersão e educação aplicada.",
+        "Foram encontradas páginas específicas da Casa do ADS, incluindo página inicial e página de imersão presencial em São Paulo.",
+        "O site comunica que a Casa do ADS atua com pequenas e médias empresas e profissionais de marketing interessados em tráfego pago, redes sociais e inteligência artificial.",
+        "Foram encontrados sinais de presença institucional no LinkedIn da Casa do ADS.",
+        "Foi encontrada página da Casa do ADS no Reclame Aqui, o que indica existência de sinal público de reputação que precisa ser monitorado e bem trabalhado."
+      ],
+      "sinaisNaoEncontradosOuFracos": [
+        "Não foi possível confirmar, nesta análise inicial, se a Casa do ADS aparece com força superior a grandes agências nacionais em listas externas de melhores empresas de Google Ads.",
+        "Os sinais de autoridade da Casa do ADS parecem bons, mas podem estar menos distribuídos em fontes externas do que concorrentes citados por portais, premiações e listas do mercado.",
+        "A cidade informada foi 'Brasil', o que amplia a concorrência para nível nacional e coloca a Casa do ADS contra marcas maiores e mais consolidadas.",
+        "Pode haver necessidade de reforçar páginas específicas para consultoria em Google Ads, imersão em Google Ads, cases, depoimentos e perguntas frequentes.",
+        "A análise inicial não encontrou dados suficientes para afirmar notas, quantidade de avaliações ou ranking oficial da Casa do ADS."
+      ],
+      "motivosDasEmpresasIndicadas": [
+        "Possuem presença digital mais clara e consistente para humanos e inteligências artificiais.",
+        "Deixam sinais públicos de confiança, reputação, especialidade e atuação nacional.",
+        "Têm conteúdos, páginas ou menções que ajudam a IA a entender o que fazem e onde atendem.",
+        "Apresentam provas de autoridade, como certificações, depoimentos, cases, premiações, diferenciais ou histórico.",
+        "Comunicam melhor seus serviços, público atendido e motivos para serem escolhidas."
+      ],
+      "porQueSuaEmpresaPodeNaoAparecer": "A Casa do ADS pode não aparecer em primeiro lugar porque a IA tende a recomendar empresas com sinais públicos mais fortes, repetidos e fáceis de validar. Quando a busca é ampla, como 'melhores empresas de Google Ads no Brasil', agências com mais menções externas, premiações, listas, cases, avaliações e conteúdos institucionais podem ser priorizadas. Para aumentar a chance de recomendação, a Casa do ADS precisa tornar sua especialidade, provas, resultados, depoimentos, formatos de consultoria e imersão mais claros para humanos e inteligências artificiais.",
+      "diagnosticoDaEmpresa": {
+        "resumoEmpresa": "A Casa do ADS é uma empresa com sinais públicos relevantes no mercado de Google Ads, especialmente no formato de consultoria, imersão e educação aplicada. Ela já aparece na web com site oficial, páginas de oferta, presença institucional e uma proposta voltada a ensinar e aplicar estratégias do Google de forma prática. O desafio principal não parece ser ausência total de presença, mas sim transformar essa presença em autoridade mais forte, comparável às marcas nacionais que aparecem em listas, premiações e fontes externas.",
+        "pontosFortes": [
+          "Nome da empresa diretamente associado ao universo de Ads, o que facilita entendimento de nicho",
+          "Site oficial encontrado e páginas específicas sobre imersão e experiência ADS",
+          "Posicionamento ligado a Google Ads, consultoria, educação aplicada e prática",
+          "Sinais de atuação nacional e atendimento a empresas em todo o Brasil",
+          "Presença no LinkedIn e em fonte pública de reputação como Reclame Aqui"
+        ],
+        "pontosFracos": [
+          "Concorrentes nacionais aparecem com sinais externos mais fortes em listas, premiações e sites de autoridade",
+          "A empresa pode precisar de mais páginas específicas por intenção de busca, como consultoria Google Ads, imersão Google Ads e treinamento para empresas",
+          "Pode faltar maior exposição estruturada de cases, depoimentos, resultados, diferenciais e perguntas frequentes",
+          "A autoridade local fica menos clara porque a cidade informada é Brasil, o que transforma a análise em disputa nacional",
+          "Pode haver necessidade de otimizar melhor sinais para IA, como textos objetivos, entidades, FAQ, dados estruturados e consistência de marca"
+        ],
+        "prioridadeMaxima": "Criar uma camada de autoridade clara para IA, com páginas específicas sobre consultoria em Google Ads, imersão em Google Ads, treinamento para empresas, cases, depoimentos, FAQ, diferenciais, quem atende, onde atende e por que a Casa do ADS deve ser escolhida em vez de uma agência tradicional."
+      },
+      "analisePerguntasClientes": {
+        "avisoMetodologico": "Estas perguntas são uma estimativa estratégica criada com base no comportamento de busca, nas dúvidas comuns do público e nas etapas de decisão de compra. Não representam volume oficial de buscas nem acesso ao histórico privado de perguntas de usuários do ChatGPT, Gemini, IA do Google ou outras plataformas.",
+        "grupos": {
+          "entenderProblema": [
+            "Por que meus anúncios no Google Ads gastam dinheiro e não trazem clientes?",
+            "Como saber se o problema está no meu Google Ads ou no meu site?",
+            "Vale a pena aprender Google Ads ou é melhor contratar alguém?",
+            "Por que meus concorrentes aparecem no Google e minha empresa não aparece?",
+            "O que uma empresa precisa ter antes de investir em Google Ads?",
+            "Google Ads funciona para pequenas empresas no Brasil?"
+          ],
+          "procurarSolucao": [
+            "Quem pode me ajudar a organizar minhas campanhas de Google Ads no Brasil?",
+            "Existe consultoria de Google Ads para empresas que já anunciam e não têm resultado?",
+            "Onde encontro uma imersão prática para aprender Google Ads de verdade?",
+            "Como escolher uma consultoria de Google Ads confiável?",
+            "Qual empresa ajuda a melhorar campanhas de Google Ads sem eu depender totalmente de uma agência?",
+            "Preciso de uma mentoria ou consultoria para entender meus anúncios no Google, quem procurar?"
+          ],
+          "compararOpcoes": [
+            "É melhor contratar uma agência de Google Ads ou fazer uma imersão para aprender?",
+            "Casa do ADS é melhor para consultoria ou para treinamento em Google Ads?",
+            "Qual a diferença entre consultoria, mentoria e gestão de Google Ads?",
+            "Clinks, NP Digital ou Casa do ADS: qual faz mais sentido para uma pequena empresa?",
+            "Para meu negócio, vale mais uma agência de performance ou uma consultoria especializada em Google Ads?",
+            "Como comparar empresas que trabalham com Google Ads no Brasil?"
+          ],
+          "precoConfiancaReputacao": [
+            "Quanto custa uma consultoria de Google Ads no Brasil?",
+            "Como saber se uma empresa de Google Ads é confiável antes de contratar?",
+            "A Casa do ADS tem boas avaliações e reputação?",
+            "O que devo perguntar antes de contratar uma consultoria de Google Ads?",
+            "Quais sinais mostram que uma empresa realmente entende de Google Ads?",
+            "Como evitar cair em promessa falsa de resultado com Google Ads?"
+          ],
+          "proximasDeComprar": [
+            "Qual empresa contratar para revisar minha conta de Google Ads ainda este mês?",
+            "Quero fazer uma imersão de Google Ads para minha equipe, qual empresa recomenda?",
+            "A Casa do ADS atende empresas de qualquer cidade do Brasil?",
+            "Como falar com a Casa do ADS para contratar consultoria ou imersão?",
+            "Qual consultoria de Google Ads pode me ajudar a vender mais com campanhas já existentes?",
+            "Preciso melhorar meus anúncios no Google rápido, vale contratar a Casa do ADS?"
+          ]
+        },
+        "maiorIntencaoContratacao": [
+          "Qual empresa contratar para revisar minha conta de Google Ads ainda este mês?",
+          "Quero fazer uma imersão de Google Ads para minha equipe, qual empresa recomenda?",
+          "A Casa do ADS atende empresas de qualquer cidade do Brasil?",
+          "Como falar com a Casa do ADS para contratar consultoria ou imersão?",
+          "Qual consultoria de Google Ads pode me ajudar a vender mais com campanhas já existentes?",
+          "Preciso melhorar meus anúncios no Google rápido, vale contratar a Casa do ADS?",
+          "Quanto custa uma consultoria de Google Ads no Brasil?",
+          "Como saber se uma empresa de Google Ads é confiável antes de contratar?",
+          "O que devo perguntar antes de contratar uma consultoria de Google Ads?",
+          "Como escolher uma consultoria de Google Ads confiável?"
+        ],
+        "perguntasPrioritarias": [
+          "Por que meus anúncios no Google Ads gastam dinheiro e não trazem clientes?",
+          "Como saber se o problema está no meu Google Ads ou no meu site?",
+          "Google Ads funciona para pequenas empresas no Brasil?",
+          "Existe consultoria de Google Ads para empresas que já anunciam e não têm resultado?",
+          "Onde encontro uma imersão prática para aprender Google Ads de verdade?",
+          "É melhor contratar uma agência de Google Ads ou fazer uma imersão para aprender?",
+          "Qual a diferença entre consultoria, mentoria e gestão de Google Ads?",
+          "Quanto custa uma consultoria de Google Ads no Brasil?",
+          "A Casa do ADS tem boas avaliações e reputação?",
+          "Como falar com a Casa do ADS para contratar consultoria ou imersão?"
+        ],
+        "temasConteudo": [
+          "Guia simples para entender por que o Google Ads não está trazendo clientes",
+          "Consultoria, mentoria, gestão ou imersão em Google Ads: qual escolher",
+          "Como funciona uma imersão prática de Google Ads para empresas",
+          "Checklist para saber se sua conta de Google Ads está desperdiçando dinheiro",
+          "Quanto custa uma consultoria de Google Ads e o que deve estar incluído",
+          "Como avaliar se uma empresa de Google Ads é confiável",
+          "Cases e exemplos práticos de melhoria em campanhas de Google Ads",
+          "Perguntas frequentes antes de contratar a Casa do ADS"
+        ]
+      },
+      "problemasUrgentes": [
+        "Site pouco claro para humanos e inteligências artificiais",
+        "Poucas avaliações ou avaliações sem palavras-chave relevantes",
+        "Falta de páginas específicas para serviços e cidade",
+        "Pouca presença em conteúdos, artigos, redes sociais e menções externas",
+        "Falta de prova de autoridade, como cases, depoimentos e diferenciais",
+        "Google Perfil da Empresa incompleto ou mal otimizado"
+      ],
+      "proximosPassos": [
+        "Organizar o site para explicar quem é a empresa, o que faz, para quem faz e onde atende",
+        "Melhorar avaliações no Google com palavras naturais dos clientes",
+        "Criar conteúdos que respondam perguntas reais dos clientes",
+        "Reforçar autoridade com cases, depoimentos, números e diferenciais",
+        "Preparar a empresa para ser compreendida por humanos e agentes de IA"
+      ],
+      "chamadaFinal": "A Casa do ADS já tem sinais para aparecer na disputa, mas o próximo passo é transformar sua experiência em provas claras, páginas específicas e respostas objetivas para que humanos e inteligências artificiais entendam por que ela deve ser recomendada antes dos concorrentes."
+    },
+    "origem": "landing-diagnostico-ia",
+    "limiterKey": "0e8383756c691896f11f389b21763d384fe9b12952133542cb984a9bf0e0570c",
+    "browserLimiterKey": "f65884432e8880cf955915bffa810bb84e56f7f99184b2693db8481aa2229fee",
+    "clientId": "d8e997ac-3b9e-4d5a-b34e-5cfe22953e01",
+    "ip": "187.21.239.144",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36 Edg/150.0.0.0"
+  },
+  {
+    "nome": "Valéria Fialho",
+    "empresa": "Leandro Palestrante",
+    "cidade": "São Paulo",
+    "principalProduto": "Palestra",
+    "segmento": "Palestra Empresarial",
+    "tipoDiagnostico": "recomendacao_ia",
+    "diagnosticoId": "20fdb9fc-ca34-454a-9add-f22c586482c3",
+    "dataEnvio": "2026-07-22T16:05:51.640Z",
+    "diagnosticoStatus": "nao_aparece",
+    "vendedorId": "valeria",
+    "vendedorNome": "Valeria",
+    "diagnosticoResultado": {
+      "status": "nao_aparece",
+      "perguntaPrincipal": "Qual a empresa mais recomendada do nicho de Palestra Empresarial na cidade São Paulo?",
+      "titulo": "Valéria Fialho, a Leandro Palestrante não apareceu entre as referências mais fortes encontradas para Palestra Empresarial em São Paulo.",
+      "resumo": "Com base em sinais públicos encontrados na web, a resposta mais estratégica é: não há um ranking oficial único para dizer qual é a empresa mais recomendada do nicho de Palestra Empresarial em São Paulo. Porém, existem empresas com maior probabilidade de serem recomendadas por IA com base em sinais públicos, porque comunicam melhor seus serviços, têm site claro, páginas específicas, presença local, histórico, curadoria de palestrantes, conteúdos e provas de confiança. Nesta análise inicial, a Leandro Palestrante não apareceu com força suficiente nas buscas realizadas para competir com essas referências.",
+      "quatroQsResumo": {
+        "quemIARecomenda": "As empresas com maior probabilidade de serem recomendadas por IA com base em sinais públicos para Palestra Empresarial em São Paulo são: Palestrarte, Palavra Speakers Bureau, Grupo Oxigena, Athenas Palestras e Mega Palestrantes.",
+        "porqueEssasEmpresasSaoEscolhidas": "Essas empresas aparecem com sites oficiais claros, linguagem voltada para contratação corporativa, páginas sobre palestrantes ou palestras para empresas, dados de contato, sinais de experiência, menções em redes como LinkedIn ou conteúdos próprios. Isso facilita a compreensão por humanos, Google e sistemas de IA.",
+        "porqueMinhaEmpresaNaoERecomendada": "A Leandro Palestrante pode não estar sendo recomendada porque, nas buscas realizadas, não foram encontrados sinais públicos fortes e claros associando o nome da empresa a palestra empresarial em São Paulo, avaliações, site oficial bem identificado, páginas de serviço, cases, depoimentos ou presença local robusta.",
+        "pontosFortesFracosEOQuePrecisaSerFeito": "O ponto forte é que o nome Leandro Palestrante já sugere diretamente o serviço, o que pode ajudar na memorização e no posicionamento. O ponto fraco é que a autoridade pública parece fraca ou pouco organizada. Para aumentar a chance de recomendação por IA, é necessário estruturar site, Google Perfil da Empresa, avaliações, páginas por serviço e cidade, conteúdos sobre palestras empresariais e provas de confiança."
+      },
+      "empresasMaisRecomendadas": [
+        {
+          "posicao": 1,
+          "nome": "Palestrarte",
+          "resumoAutoridade": "A Palestrarte aparece como uma referência forte em contratação de palestrantes, workshops e experiências para eventos corporativos.",
+          "porQueTemMaisAutoridade": "Tem site oficial claro, posicionamento específico em consultoria para contratação de palestrantes, comunicação voltada para empresas, histórico declarado desde 2002, conteúdos recentes sobre palestras corporativas e presença no LinkedIn com descrição de atuação em palestras e treinamentos corporativos.",
+          "sinaisFortes": [
+            "Site oficial com proposta clara de curadoria e contratação de palestrantes",
+            "Comunicação direcionada para eventos corporativos e empresas",
+            "Conteúdos publicados sobre temas como convenção de vendas, confraternização de empresa e palestrante corporativo",
+            "Sinais de experiência de mercado e histórico de atuação",
+            "Presença no LinkedIn com posicionamento no segmento de palestras para empresas"
+          ],
+          "possiveisFraquezas": [
+            "Alguns números exibidos no site aparecem de forma genérica ou não totalmente legível na busca",
+            "A recomendação pode variar conforme tema específico da palestra, orçamento e perfil do evento"
+          ]
+        },
+        {
+          "posicao": 2,
+          "nome": "Palavra Speakers Bureau",
+          "resumoAutoridade": "A Palavra Speakers Bureau aparece como uma empresa tradicional no mercado de palestrantes renomados e contratação para empresas.",
+          "porQueTemMaisAutoridade": "O site comunica atuação no mercado de palestras e eventos desde 1999, usa o conceito de lecture agency, informa localização em São Paulo/SP e organiza a oferta em torno de palestrantes para empresas, o que gera sinais claros para mecanismos de busca e IA.",
+          "sinaisFortes": [
+            "Site oficial claro e voltado para contratação de palestrantes",
+            "Histórico declarado de atuação desde 1999",
+            "Localização indicada em São Paulo/SP",
+            "Posicionamento como bureau de palestrantes renomados",
+            "Clareza sobre o público corporativo atendido"
+          ],
+          "possiveisFraquezas": [
+            "Pode ser percebida como mais voltada a palestrantes renomados e cachês mais altos",
+            "Pode não ser a opção mais adequada para empresas que buscam palestras muito locais ou de menor orçamento"
+          ]
+        },
+        {
+          "posicao": 3,
+          "nome": "Grupo Oxigena",
+          "resumoAutoridade": "O Grupo Oxigena aparece com forte foco em contratação de palestrantes, personalidades e atrações para eventos corporativos, com endereço em São Paulo.",
+          "porQueTemMaisAutoridade": "O site informa atuação com relacionamento oficial com palestrantes, curadoria, negociação, atendimento personalizado e endereço na Faria Lima, em São Paulo. Também apresenta promessa de agilidade na resposta e posicionamento voltado para empresas que precisam contratar palestrantes com segurança.",
+          "sinaisFortes": [
+            "Site oficial com foco claro em contratar palestrantes e personalidades",
+            "Endereço informado em Jardim Paulistano, São Paulo",
+            "Linguagem comercial voltada para empresas e eventos corporativos",
+            "Explica diferenciais como curadoria, negociação e atendimento personalizado",
+            "Apresenta contato, formulário e canais comerciais"
+          ],
+          "possiveisFraquezas": [
+            "A autoridade depende da comprovação externa de resultados, avaliações e cases públicos",
+            "Pode concorrer em categoria mais ampla, incluindo atrações e personalidades, não apenas palestra empresarial"
+          ]
+        },
+        {
+          "posicao": 4,
+          "nome": "Athenas Palestras",
+          "resumoAutoridade": "A Athenas Palestras aparece como agência de palestrantes corporativos com proposta de curadoria rápida para eventos empresariais em todo o Brasil.",
+          "porQueTemMaisAutoridade": "O site apresenta números de autoridade, como eventos realizados, quantidade de palestrantes disponíveis e promessa de orçamento rápido. Também possui perguntas frequentes, contatos, linguagem corporativa e clareza sobre atendimento a empresas em São Paulo e no Brasil.",
+          "sinaisFortes": [
+            "Site oficial com proposta clara de curadoria de palestrantes corporativos",
+            "Comunicação específica para eventos empresariais",
+            "Perguntas frequentes que ajudam a IA a entender preço, processo e atendimento",
+            "Contato telefônico com DDD 11",
+            "Sinais de volume de eventos e base de palestrantes disponíveis"
+          ],
+          "possiveisFraquezas": [
+            "Alguns depoimentos ou nomes exibidos precisam ser validados em uma auditoria mais profunda",
+            "Pode ter autoridade ainda em construção quando comparada a empresas mais antigas do setor"
+          ]
+        },
+        {
+          "posicao": 5,
+          "nome": "Mega Palestrantes",
+          "resumoAutoridade": "A Mega Palestrantes aparece como plataforma de conexão entre empresas e palestrantes para eventos corporativos e palestras empresariais.",
+          "porQueTemMaisAutoridade": "A busca encontrou página oficial mencionando atuação há mais de 10 anos conectando empresas aos melhores palestrantes do Brasil para eventos corporativos e palestras empresariais. Também há sinais de catálogo de palestrantes, temas de negócios, liderança e transformação empresarial, além de presença relacionada a São Paulo.",
+          "sinaisFortes": [
+            "Site oficial voltado à contratação de palestrantes",
+            "Comunicação direta sobre eventos corporativos e palestras empresariais",
+            "Sinal de histórico de mais de 10 anos de atuação",
+            "Catálogo de palestrantes e temas empresariais",
+            "Boa correspondência semântica com buscas por palestra empresarial"
+          ],
+          "possiveisFraquezas": [
+            "Pode depender de comparação mais profunda de reputação e avaliações públicas",
+            "A presença local em São Paulo precisa ser confirmada com mais detalhes em auditoria completa"
+          ]
+        }
+      ],
+      "empresasRecomendadas": [
+        "Palestrarte",
+        "Palavra Speakers Bureau",
+        "Grupo Oxigena",
+        "Athenas Palestras",
+        "Mega Palestrantes"
+      ],
+      "sinaisEncontradosDaEmpresa": [
+        "O nome Leandro Palestrante tem aderência semântica direta ao serviço de palestra, o que pode ser positivo para posicionamento e lembrança.",
+        "A empresa informada tem um nicho claro: Palestra Empresarial, com atuação pretendida em São Paulo.",
+        "Existe oportunidade de construir uma presença digital mais fácil de ser compreendida por sistemas de IA a partir de páginas, avaliações, conteúdos e provas de autoridade."
+      ],
+      "sinaisNaoEncontradosOuFracos": [
+        "Nas buscas realizadas, não foi encontrado um site oficial claramente identificado da Leandro Palestrante com força comparável aos concorrentes listados.",
+        "Não foram encontrados sinais fortes de avaliações públicas associadas diretamente a Leandro Palestrante no contexto de palestra empresarial em São Paulo.",
+        "Não foram encontrados, nesta análise inicial, cases, depoimentos, páginas específicas de serviço, conteúdo recorrente ou menções externas suficientes para sustentar recomendação forte por IA.",
+        "A busca pelo nome da empresa trouxe sinais pouco claros e misturados, o que pode dificultar a identificação correta por mecanismos de busca e sistemas de IA.",
+        "Concorrentes aparecem com linguagem mais estruturada para contratação corporativa, curadoria de palestrantes, histórico, localização e canais comerciais."
+      ],
+      "motivosDasEmpresasIndicadas": [
+        "Possuem presença digital mais clara e consistente para humanos e inteligências artificiais.",
+        "Deixam sinais públicos de confiança, reputação, especialidade e atuação local.",
+        "Têm conteúdos, páginas ou menções que ajudam a IA a entender o que fazem e onde atendem.",
+        "Apresentam provas de autoridade, como histórico, diferenciais, contatos, curadoria, portfólio ou presença em redes profissionais.",
+        "Comunicam melhor seus serviços, público atendido e motivos para serem escolhidas."
+      ],
+      "porQueSuaEmpresaPodeNaoAparecer": "A Leandro Palestrante pode não aparecer nas recomendações porque a IA tende a escolher empresas que deixam rastros digitais mais claros. Se o site não aparece com força, se o Google Perfil da Empresa não está bem otimizado, se faltam avaliações com palavras como palestra empresarial, empresa, equipe, evento corporativo e São Paulo, e se não há conteúdos, cases e depoimentos públicos, a IA pode entender que concorrentes são opções mais seguras para recomendar.",
+      "diagnosticoDaEmpresa": {
+        "resumoEmpresa": "A Leandro Palestrante tem um nome com potencial comercial, porque comunica rapidamente a ideia de palestra. Porém, na análise web inicial, a empresa não apareceu entre as referências mais fortes do nicho de Palestra Empresarial em São Paulo. Isso indica que o principal desafio não é apenas ranquear no Google, mas organizar sinais digitais para que humanos, buscadores e agentes de IA entendam claramente quem é a empresa, que tipo de palestra oferece, para quais empresas, em quais regiões atende e quais provas de confiança sustentam a contratação.",
+        "pontosFortes": [
+          "Nome com associação direta ao serviço de palestra",
+          "Nicho e cidade definidos pelo lead, o que permite criar uma estratégia local clara",
+          "Boa oportunidade de posicionamento se forem criadas páginas específicas para palestra empresarial em São Paulo",
+          "Possibilidade de construir autoridade com avaliações, vídeos, cases, depoimentos e conteúdos educativos"
+        ],
+        "pontosFracos": [
+          "Baixa força pública encontrada nas buscas realizadas",
+          "Site oficial, avaliações e presença local não apareceram com clareza suficiente na pesquisa inicial",
+          "Faltam sinais públicos fortes de autoridade, como cases, depoimentos, clientes atendidos e diferenciais",
+          "Concorrentes comunicam melhor curadoria, experiência, histórico e contratação corporativa",
+          "A empresa pode estar pouco preparada para ser compreendida e recomendada por sistemas de IA"
+        ],
+        "prioridadeMaxima": "Criar e organizar uma base digital clara para palestra empresarial em São Paulo, com site oficial otimizado, página específica do serviço, Google Perfil da Empresa completo, avaliações com linguagem natural dos clientes, depoimentos, cases, vídeos e conteúdos que respondam às dúvidas de quem contrata palestrantes corporativos."
+      },
+      "problemasUrgentes": [
+        "Site pouco claro para humanos e inteligências artificiais",
+        "Poucas avaliações ou avaliações sem palavras-chave relevantes",
+        "Falta de páginas específicas para serviços e cidade",
+        "Pouca presença em conteúdos, artigos, redes sociais e menções externas",
+        "Falta de prova de autoridade, como cases, depoimentos e diferenciais",
+        "Google Perfil da Empresa incompleto ou mal otimizado"
+      ],
+      "proximosPassos": [
+        "Organizar o site para explicar quem é a empresa, o que faz, para quem faz e onde atende",
+        "Melhorar avaliações no Google com palavras naturais dos clientes",
+        "Criar conteúdos que respondam perguntas reais dos clientes",
+        "Reforçar autoridade com cases, depoimentos, números e diferenciais",
+        "Preparar a empresa para ser compreendida por humanos e agentes de IA"
+      ],
+      "chamadaFinal": "O próximo movimento é transformar a Leandro Palestrante em uma opção mais clara, confiável e fácil de recomendar por IA, construindo sinais públicos que mostrem especialidade, reputação e autoridade em palestra empresarial em São Paulo."
+    },
+    "origem": "landing-diagnostico-ia",
+    "limiterKey": "b3b7865b526c7d9a00fe711af022b22ae1b966356bd115aad4d9cad0eb1f7459",
+    "browserLimiterKey": "11dd50553a32a7ddb36fa50747d37baabdc3651ff94b44f42d6633592e6c5938",
+    "clientId": "9358fed7-38d7-4f1a-8a9a-e77938e38b7a",
+    "ip": "189.33.66.105",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36"
+  },
+  {
+    "nome": "Matheus Bottaro",
+    "empresa": "Casa do ADS",
+    "cidade": "Brasil",
+    "principalProduto": "Consultoria, imersão",
+    "segmento": "google ads",
+    "tipoDiagnostico": "recomendacao_ia",
+    "diagnosticoId": "e8351ff3-1f55-4a23-aa41-76767c645cf0",
+    "dataEnvio": "2026-07-22T15:15:40.030Z",
+    "diagnosticoStatus": "aparece",
+    "vendedorId": "matheus",
+    "vendedorNome": "Matheus",
+    "diagnosticoResultado": {
+      "status": "aparece",
+      "perguntaPrincipal": "Qual a empresa mais recomendada do nicho de google ads na cidade Brasil?",
+      "titulo": "Matheus Bottaro, a Casa do ADS aparece com sinais públicos relevantes, mas disputa autoridade com agências e referências nacionais mais consolidadas em Google Ads.",
+      "resumo": "Com base em sinais públicos encontrados na web, não existe um ranking oficial de IA para “melhor empresa de Google Ads no Brasil”. A resposta mais segura é: as empresas com maior probabilidade de serem recomendadas por IA com base em sinais públicos são aquelas que combinam site claro, páginas específicas, selo Google Partner ou Premier Partner, avaliações, cases, conteúdo, autoridade de marca e menções externas. A Casa do ADS aparece com bons sinais em treinamentos, imersões e consultoria, mas pode não ser a primeira recomendação quando a busca tem intenção de contratar uma agência de gestão de Google Ads.",
+      "quatroQsResumo": {
+        "quemIARecomenda": "Para a pergunta “Qual a empresa mais recomendada do nicho de google ads na cidade Brasil?”, uma IA tenderia a recomendar primeiro empresas e referências com sinais públicos mais fortes em Google Ads no Brasil. Nesta análise inicial, as 5 empresas com maior probabilidade de serem recomendadas por IA com base em sinais públicos são: Clinks, Keepers Digital, NP Digital Brasil, GOAT Digital e Casa do ADS.",
+        "porqueEssasEmpresasSaoEscolhidas": "Essas empresas aparecem com sinais de autoridade como site oficial, posicionamento claro em Google Ads ou marketing de performance, presença em diretórios ou rankings, menções externas, certificações, status de parceiro Google, conteúdo, provas de confiança, avaliações ou páginas específicas de serviço.",
+        "porqueMinhaEmpresaNaoERecomendada": "A Casa do ADS pode não ser recomendada em primeiro lugar porque os sinais encontrados apontam com força para treinamentos, imersões, cursos e consultoria, enquanto algumas buscas por “empresa de Google Ads” ou “agência Google Ads” podem favorecer agências com páginas focadas em gestão contínua de campanhas, Google Partner, cases corporativos e presença em diretórios de fornecedores.",
+        "pontosFortesFracosEOQuePrecisaSerFeito": "O ponto forte da Casa do ADS é ter sinais públicos relevantes, como site, páginas de imersão, menções a muitos participantes e avaliações encontradas em fonte de terceiros. O ponto fraco é que a IA pode não entender com clareza se a empresa deve ser recomendada como agência, consultoria, treinamento, mentoria ou imersão. O que precisa ser feito é organizar páginas específicas para consultoria Google Ads, imersão Google Ads, treinamento para empresários, atendimento no Brasil e provas claras de autoridade, com cases, depoimentos, avaliações e diferenciais."
+      },
+      "empresasMaisRecomendadas": [
+        {
+          "posicao": 1,
+          "nome": "Clinks",
+          "resumoAutoridade": "A Clinks aparece como uma referência muito forte para buscas de agência Google Ads no Brasil, com posicionamento direto em gestão de campanhas e Google Partner.",
+          "porQueTemMaisAutoridade": "Tem site oficial claro, página específica para Google Ads, comunicação focada em links patrocinados, menção a certificações, histórico desde 2010 e discurso forte de especialização em campanhas Google Ads.",
+          "sinaisFortes": [
+            "Site oficial com foco direto em Google Ads",
+            "Posicionamento de agência especializada em links patrocinados",
+            "Menção a Google Partner e certificações Google Ads",
+            "Depoimentos e argumentos comerciais de performance",
+            "Clareza sobre serviço, proposta e público atendido"
+          ],
+          "possiveisFraquezas": [
+            "Pode ter comunicação mais voltada para gestão de campanhas do que para imersões ou treinamentos",
+            "A autoridade depende de validação contínua de certificações, cases e avaliações atuais"
+          ]
+        },
+        {
+          "posicao": 2,
+          "nome": "Keepers Digital",
+          "resumoAutoridade": "A Keepers Digital aparece em diretório internacional de avaliação de agências, com foco em PPC e Google Ads no Brasil.",
+          "porQueTemMaisAutoridade": "Foi encontrada em listagem da Clutch para agências de Google Ads no Brasil e em perfil com avaliações verificadas, além de se posicionar como Google Premier Partner e especialista em PPC Marketing.",
+          "sinaisFortes": [
+            "Presença em diretório relevante de agências",
+            "Perfil com avaliações verificadas na Clutch",
+            "Posicionamento em PPC e Google Ads",
+            "Menção pública a Google Premier Partner",
+            "Clareza sobre serviços de mídia paga"
+          ],
+          "possiveisFraquezas": [
+            "Pode ser mais reconhecida em diretórios B2B do que em buscas locais comuns no Brasil",
+            "A comunicação pode ser mais voltada a empresas que procuram agência do que a empresários que procuram imersão ou capacitação"
+          ]
+        },
+        {
+          "posicao": 3,
+          "nome": "NP Digital Brasil",
+          "resumoAutoridade": "A NP Digital Brasil tem autoridade de marca muito forte no marketing digital, associada ao nome Neil Patel e à atuação global em performance, SEO e mídia.",
+          "porQueTemMaisAutoridade": "A empresa possui forte reconhecimento de marca, operação no Brasil, presença em conteúdos e menções externas, além de associação com uma marca global de marketing digital, o que facilita a recomendação por sistemas de IA em buscas amplas.",
+          "sinaisFortes": [
+            "Marca internacional conhecida no marketing digital",
+            "Presença no Brasil",
+            "Forte volume de conteúdo e menções externas",
+            "Autoridade associada a Neil Patel",
+            "Atuação ampla em estratégias digitais e performance"
+          ],
+          "possiveisFraquezas": [
+            "Pode não aparecer como a opção mais especializada exclusivamente em Google Ads",
+            "Pode ser percebida como empresa maior e menos focada em imersões práticas para pequenos negócios"
+          ]
+        },
+        {
+          "posicao": 4,
+          "nome": "GOAT Digital",
+          "resumoAutoridade": "A GOAT Digital aparece como agência de performance em São Paulo com sinais públicos de estrutura, clientes e reconhecimento em programas de parceiros.",
+          "porQueTemMaisAutoridade": "A empresa possui sinais de presença no mercado de performance, menção a Google Partner Premier em fonte pública e posicionamento orientado a resultados digitais, o que favorece recomendações para quem busca agência de tráfego pago ou Google Ads.",
+          "sinaisFortes": [
+            "Posicionamento como agência de performance",
+            "Menção pública a Google Partner Premier",
+            "Sede em São Paulo e atuação no mercado digital",
+            "Sinais de estrutura e base de clientes",
+            "Reconhecimento em ecossistemas de marketing e tecnologia"
+          ],
+          "possiveisFraquezas": [
+            "Pode ter autoridade mais ampla em performance, não apenas em Google Ads",
+            "Algumas informações públicas precisam ser confirmadas em auditoria direta de site, perfil Google e cases atuais"
+          ]
+        },
+        {
+          "posicao": 5,
+          "nome": "Casa do ADS",
+          "resumoAutoridade": "A Casa do ADS aparece com sinais públicos relevantes ligados a Google Ads, imersões, treinamentos, consultoria e comunidade de participantes.",
+          "porQueTemMaisAutoridade": "Foram encontrados site oficial, páginas específicas de imersão, menção a mais de 40 mil participantes em treinamentos e fonte de terceiros indicando avaliações no Google. Isso mostra que a marca já tem sinais de autoridade, especialmente em educação e imersão em Google Ads.",
+          "sinaisFortes": [
+            "Site oficial encontrado",
+            "Páginas específicas de imersão em Google Ads",
+            "Menção pública a mais de 40 mil participantes",
+            "Sinais de avaliações e reputação em fonte de terceiros",
+            "Clareza inicial de atuação com treinamentos, consultoria e imersões"
+          ],
+          "possiveisFraquezas": [
+            "Pode não estar posicionada de forma tão clara como agência de gestão de Google Ads",
+            "A IA pode confundir a empresa entre curso, consultoria, mentoria, imersão e serviço contínuo",
+            "Precisa reforçar páginas específicas para consultoria Google Ads no Brasil",
+            "Precisa organizar provas de autoridade de forma mais fácil de ler por humanos e IAs"
+          ]
+        }
+      ],
+      "empresasRecomendadas": [
+        "Clinks",
+        "Keepers Digital",
+        "NP Digital Brasil",
+        "GOAT Digital",
+        "Casa do ADS"
+      ],
+      "sinaisEncontradosDaEmpresa": [
+        "Foi encontrado site oficial da Casa do ADS com páginas de imersão.",
+        "Foram encontradas páginas específicas de imersão, incluindo São Paulo e Lisboa.",
+        "O site menciona mais de 40 mil participantes em treinamentos, cursos, mentorias e imersões presenciais.",
+        "Foi encontrada fonte de terceiros citando avaliações no Google para Casa do ADS em São Paulo.",
+        "Foi encontrada presença no Reclame Aqui com nome relacionado a cursos, consultoria e treinamentos, embora a empresa apareça como não verificada nessa fonte."
+      ],
+      "sinaisNaoEncontradosOuFracos": [
+        "A busca não deixou claro se a Casa do ADS deve ser entendida principalmente como agência, consultoria, curso, mentoria ou imersão.",
+        "Não foram encontrados, nesta análise inicial, dados suficientes para confirmar um Google Perfil da Empresa completo e otimizado a partir de fonte oficial.",
+        "Não foram validados diretamente números de avaliações, nota média ou volume de reviews em fonte oficial do Google Perfil da Empresa.",
+        "Não foram encontrados nesta etapa muitos cases detalhados de clientes com antes e depois, investimento, resultado e contexto.",
+        "A presença da marca parece forte em imersão e treinamento, mas pode ser menos direta para buscas de contratação de agência Google Ads."
+      ],
+      "motivosDasEmpresasIndicadas": [
+        "Possuem presença digital mais clara e consistente para humanos e inteligências artificiais.",
+        "Deixam sinais públicos de confiança, reputação, especialidade e atuação no Brasil.",
+        "Têm conteúdos, páginas, diretórios ou menções que ajudam a IA a entender o que fazem e onde atendem.",
+        "Apresentam provas de autoridade, como certificações, avaliações, depoimentos, cases, diferenciais, histórico ou reconhecimento de mercado.",
+        "Comunicam melhor seus serviços, público atendido e motivos para serem escolhidas em buscas por Google Ads."
+      ],
+      "porQueSuaEmpresaPodeNaoAparecer": "A Casa do ADS pode não aparecer como primeira recomendação porque a IA tende a escolher empresas que deixam extremamente claro quem são, o que fazem, onde atendem, para quem trabalham, quais resultados entregam e quais provas públicas sustentam sua autoridade. Se a busca for por “agência Google Ads”, concorrentes com páginas de gestão de campanhas, selo Google Partner, diretórios, cases e avaliações podem parecer mais fáceis de recomendar. Se a busca for por “imersão Google Ads”, “treinamento Google Ads” ou “consultoria Google Ads”, a Casa do ADS tende a ter mais chance de aparecer.",
+      "diagnosticoDaEmpresa": {
+        "resumoEmpresa": "A Casa do ADS tem sinais públicos reais de autoridade, principalmente no campo de educação, imersões, treinamentos e consultoria em Google Ads. A empresa não parece invisível, mas precisa organizar melhor sua leitura para IA: deixar mais claro se vende consultoria, imersão, treinamento, mentoria, gestão de campanhas ou uma combinação desses serviços. Quanto mais específica for essa comunicação, maior a chance de ser compreendida e recomendada por mecanismos de busca e sistemas de IA.",
+        "pontosFortes": [
+          "Site oficial encontrado com páginas específicas de imersão",
+          "Sinais de grande volume de participantes em treinamentos e imersões",
+          "Atuação associada diretamente a Google Ads",
+          "Possível reputação local em São Paulo indicada por fonte de terceiros",
+          "Boa oportunidade de se posicionar como referência nacional em imersão e consultoria de Google Ads"
+        ],
+        "pontosFracos": [
+          "A proposta pode estar pouco clara para buscas genéricas como “empresa de Google Ads” ou “agência Google Ads”",
+          "Faltam, nesta análise inicial, fontes oficiais suficientes confirmando avaliações, nota e otimização do Google Perfil da Empresa",
+          "Pode haver confusão entre curso, consultoria, mentoria, imersão e agência",
+          "Faltam páginas específicas mais evidentes para cada intenção de busca: consultoria, imersão, treinamento, auditoria e gestão",
+          "Concorrentes aparecem com sinais mais diretos de agência, certificação, diretórios e gestão de campanhas"
+        ],
+        "prioridadeMaxima": "Criar uma arquitetura de autoridade clara para a Casa do ADS, separando páginas e mensagens para consultoria Google Ads, imersão Google Ads, treinamento Google Ads, auditoria de campanhas e atendimento no Brasil, com provas visíveis como avaliações, cases, depoimentos, números, certificações, diferenciais e perguntas frequentes."
+      },
+      "problemasUrgentes": [
+        "Site pouco claro para humanos e inteligências artificiais",
+        "Poucas avaliações ou avaliações sem palavras-chave relevantes",
+        "Falta de páginas específicas para serviços e cidade",
+        "Pouca presença em conteúdos, artigos, redes sociais e menções externas",
+        "Falta de prova de autoridade, como cases, depoimentos e diferenciais",
+        "Google Perfil da Empresa incompleto ou mal otimizado"
+      ],
+      "proximosPassos": [
+        "Organizar o site para explicar quem é a empresa, o que faz, para quem faz e onde atende",
+        "Melhorar avaliações no Google com palavras naturais dos clientes",
+        "Criar conteúdos que respondam perguntas reais dos clientes",
+        "Reforçar autoridade com cases, depoimentos, números e diferenciais",
+        "Preparar a empresa para ser compreendida por humanos e agentes de IA"
+      ],
+      "chamadaFinal": "O próximo movimento é transformar a Casa do ADS em uma marca fácil de entender, fácil de confiar e fácil de recomendar por humanos, Google e sistemas de IA."
+    },
+    "origem": "landing-diagnostico-ia",
+    "limiterKey": "0e8383756c691896f11f389b21763d384fe9b12952133542cb984a9bf0e0570c",
+    "browserLimiterKey": "f65884432e8880cf955915bffa810bb84e56f7f99184b2693db8481aa2229fee",
+    "clientId": "d8e997ac-3b9e-4d5a-b34e-5cfe22953e01",
+    "ip": "187.21.239.144",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36 Edg/150.0.0.0"
+  },
+  {
+    "nome": "Matheus",
+    "empresa": "Bob Inteligencia Artificial",
+    "cidade": "São Paulo",
+    "principalProduto": "AEO e GEO",
+    "segmento": "Inteligencia Artificial",
+    "tipoDiagnostico": "recomendacao_ia",
+    "diagnosticoId": "37b03edc-dbaa-421e-89d0-752ae0c7e363",
+    "dataEnvio": "2026-07-22T15:09:38.004Z",
+    "diagnosticoStatus": "nao_aparece",
+    "vendedorId": "roberto",
+    "vendedorNome": "Roberto",
+    "diagnosticoResultado": {
+      "status": "nao_aparece",
+      "perguntaPrincipal": "Qual a empresa mais recomendada do nicho de Inteligencia Artificial na cidade São Paulo?",
+      "titulo": "Matheus, a Bob Inteligencia Artificial ainda não aparece entre as empresas com sinais públicos mais fortes em IA, AEO e GEO em São Paulo.",
+      "resumo": "Com base em sinais públicos encontrados na web, não existe um ranking oficial de recomendação por IA para esse nicho. Porém, ao observar site oficial, clareza de serviço, presença local, páginas específicas, menções e autoridade temática, algumas empresas aparecem com maior probabilidade de serem recomendadas por IA com base em sinais públicos. Para a busca sobre Inteligência Artificial em São Paulo, especialmente quando o recorte envolve AEO, GEO, SEO para IA e visibilidade em respostas de IA, a Bob Inteligencia Artificial não apareceu com sinais públicos fortes o suficiente nas pesquisas realizadas.",
+      "quatroQsResumo": {
+        "quemIARecomenda": "As empresas com maior probabilidade de serem recomendadas por IA com base em sinais públicos são: Teia Studio, FIVESIXTEN, GEO AEO by Flowup, JAGEO e Geon AI. Elas aparecem porque possuem páginas claras, termos diretamente ligados a IA, GEO, AEO, automação ou SEO para IA, além de sinais de localização, conteúdo e proposta mais compreensível.",
+        "porqueEssasEmpresasSaoEscolhidas": "Essas empresas são escolhidas porque deixam rastros digitais mais fáceis para uma IA interpretar: explicam o que fazem, usam palavras relacionadas ao serviço, têm páginas específicas, comunicam atuação em São Paulo ou no Brasil, apresentam especialidade e, em alguns casos, mostram plataforma, metodologia, artigos, localização, números ou posicionamento claro.",
+        "porqueMinhaEmpresaNaoERecomendada": "A Bob Inteligencia Artificial pode não estar sendo recomendada porque, nas pesquisas públicas feitas, não foram encontrados sinais fortes e claros ligando a empresa a São Paulo, AEO, GEO, avaliações, site oficial, cases, páginas de serviço e presença local. Quando a IA encontra concorrentes com páginas mais completas e linguagem mais explícita, ela tende a confiar mais nesses concorrentes.",
+        "pontosFortesFracosEOQuePrecisaSerFeito": "O ponto forte é que o nome Bob Inteligencia Artificial comunica diretamente o tema IA e o serviço AEO e GEO é atual e estratégico. O ponto fraco é que a empresa precisa transformar essa proposta em sinais públicos claros: site estruturado, páginas de AEO, GEO e São Paulo, Google Perfil da Empresa otimizado, avaliações com palavras-chave naturais, cases, depoimentos e conteúdos educativos. O objetivo não é apenas aparecer no Google, mas ser compreendida, confiável e recomendável por sistemas de IA."
+      },
+      "empresasMaisRecomendadas": [
+        {
+          "posicao": 1,
+          "nome": "Teia Studio",
+          "resumoAutoridade": "A Teia Studio aparece como uma referência forte porque possui site oficial claro, posicionamento ligado a inteligência artificial, reputação algorítmica, GEO e monitoramento de marcas em sistemas de IA generativa.",
+          "porQueTemMaisAutoridade": "A empresa comunica de forma objetiva que atua com governança observacional e reputação algorítmica em sistemas como ChatGPT, Claude, Gemini e Perplexity. Também informa sede em São Paulo, mais especificamente em Pinheiros, e apresenta conceitos, plataforma, números e estrutura de atuação. Isso facilita a compreensão por buscadores e inteligências artificiais.",
+          "sinaisFortes": [
+            "Site oficial com proposta clara sobre IA, GEO, IGO e reputação algorítmica",
+            "Localização explícita em São Paulo, Zona Oeste, Pinheiros",
+            "Conteúdos e conceitos próprios relacionados a IA generativa, AEO, GEO e monitoramento multi-LLM",
+            "Apresenta números, plataforma e linguagem de autoridade técnica"
+          ],
+          "possiveisFraquezas": [
+            "O posicionamento pode ser mais avançado e técnico para empresários leigos",
+            "Pode não ser percebida como agência tradicional de implantação de IA ou automação operacional"
+          ]
+        },
+        {
+          "posicao": 2,
+          "nome": "FIVESIXTEN",
+          "resumoAutoridade": "A FIVESIXTEN tem sinais fortes para o recorte específico de AEO e GEO porque se posiciona diretamente como agência de visibilidade em IA localizada em São Paulo.",
+          "porQueTemMaisAutoridade": "O site informa claramente que a empresa é uma agência de AEO e GEO em São Paulo e que ajuda pequenos negócios a melhorar as chances de serem recomendados por assistentes de IA. Essa clareza de nicho, serviço, público e localização aumenta a chance de a empresa ser entendida e citada por IA.",
+          "sinaisFortes": [
+            "Página oficial com foco direto em AEO e GEO",
+            "Declara localização em São Paulo, Brasil",
+            "Explica o benefício de aumentar visibilidade, citações e probabilidade de recomendação por IA",
+            "Linguagem simples e alinhada ao problema comercial do cliente"
+          ],
+          "possiveisFraquezas": [
+            "Foram encontrados poucos sinais externos de reputação além do próprio site",
+            "Pode precisar de mais avaliações, cases públicos e menções em fontes independentes"
+          ]
+        },
+        {
+          "posicao": 3,
+          "nome": "GEO AEO by Flowup",
+          "resumoAutoridade": "GEO AEO by Flowup aparece como uma referência temática forte para Novo SEO, autoridade digital, AEO, GEO e SEO para IA no Brasil.",
+          "porQueTemMaisAutoridade": "O site funciona como um hub de conteúdo sobre GEO, AEO e SEO para IA, explicando que o objetivo não é apenas ranquear páginas, mas tornar empresas mais compreensíveis, confiáveis e citáveis por pessoas, buscadores, mecanismos de resposta e inteligências artificiais. Essa clareza conceitual ajuda muito na leitura de autoridade por IA.",
+          "sinaisFortes": [
+            "Site específico sobre GEO, AEO, Novo SEO e SEO para IA",
+            "Conteúdos educativos sobre adaptação da empresa para mecanismos de resposta e inteligências artificiais",
+            "Mensagem alinhada à ideia de clareza, autoridade e citabilidade",
+            "Oferta de diagnóstico GEO e AEO"
+          ],
+          "possiveisFraquezas": [
+            "A fonte encontrada posiciona mais como hub e diagnóstico do que como empresa local tradicional de IA em São Paulo",
+            "A presença local em São Paulo não ficou tão evidente quanto em outros concorrentes"
+          ]
+        },
+        {
+          "posicao": 4,
+          "nome": "JAGEO",
+          "resumoAutoridade": "A JAGEO apresenta sinais de autoridade em SEO semântico, GEO e IA generativa, com comunicação focada em inteligência semântica e histórico profissional.",
+          "porQueTemMaisAutoridade": "O site apresenta um fundador com histórico desde 1993 em tecnologia e atuação em SEO desde 2007, além de posicionar a marca em GEO, SEO Intelligence e IA generativa. Para IA, esse tipo de histórico e especialidade ajuda a formar confiança temática.",
+          "sinaisFortes": [
+            "Site oficial com foco em SEO semântico, GEO e IA generativa",
+            "Histórico profissional apresentado de forma clara",
+            "Especialidade ligada a tecnologia, posicionamento orgânico e inteligência semântica",
+            "Linguagem alinhada ao novo contexto de busca e IA"
+          ],
+          "possiveisFraquezas": [
+            "Pode parecer mais centrada em consultoria especializada do que em empresa de IA ampla",
+            "Sinais de presença local e avaliações públicas não ficaram tão claros nas fontes consultadas"
+          ]
+        },
+        {
+          "posicao": 5,
+          "nome": "Geon AI",
+          "resumoAutoridade": "A Geon AI aparece como agência de IA em São Paulo com foco em automação e soluções inteligentes para empresas.",
+          "porQueTemMaisAutoridade": "O site apresenta uma proposta simples e comercial: desenvolver soluções personalizadas de automação com inteligência artificial adaptadas às necessidades dos clientes. A clareza sobre serviço e o uso explícito de termos como agência de IA em São Paulo ajudam a empresa a ser compreendida em buscas locais de Inteligência Artificial.",
+          "sinaisFortes": [
+            "Site oficial com título ligado a agência de IA em São Paulo",
+            "Serviços de automação e soluções personalizadas com inteligência artificial",
+            "Linguagem acessível para empresas que querem otimizar processos",
+            "Proposta clara de atendimento e diagnóstico inicial com agente de IA"
+          ],
+          "possiveisFraquezas": [
+            "Não foi encontrada, nesta etapa, prova forte de avaliações, cases ou menções independentes",
+            "O foco é mais automação com IA do que AEO e GEO especificamente"
+          ]
+        }
+      ],
+      "empresasRecomendadas": [
+        "Teia Studio",
+        "FIVESIXTEN",
+        "GEO AEO by Flowup",
+        "JAGEO",
+        "Geon AI"
+      ],
+      "sinaisEncontradosDaEmpresa": [
+        "O nome Bob Inteligencia Artificial comunica diretamente o nicho de Inteligência Artificial.",
+        "O principal produto ou serviço informado, AEO e GEO, está alinhado a uma demanda atual de mercado: aparecer, ser compreendido e ser recomendado por sistemas de IA.",
+        "Existe oportunidade estratégica para a empresa se posicionar como especialista local em AEO e GEO em São Paulo."
+      ],
+      "sinaisNaoEncontradosOuFracos": [
+        "Não foram encontrados sinais públicos fortes e inequívocos de site oficial da Bob Inteligencia Artificial nas pesquisas realizadas.",
+        "Não foram encontrados, nesta etapa, sinais claros de Google Perfil da Empresa, avaliações, reputação local ou depoimentos públicos da Bob Inteligencia Artificial.",
+        "Não foram encontrados conteúdos, artigos, cases ou páginas específicas ligando fortemente Bob Inteligencia Artificial a AEO, GEO e São Paulo.",
+        "Concorrentes e referências apareceram com páginas mais claras, maior alinhamento semântico e melhor explicação de serviços relacionados a IA, GEO, AEO ou automação."
+      ],
+      "motivosDasEmpresasIndicadas": [
+        "Possuem presença digital mais clara e consistente para humanos e inteligências artificiais.",
+        "Deixam sinais públicos de confiança, reputação, especialidade e atuação local.",
+        "Têm conteúdos, páginas ou menções que ajudam a IA a entender o que fazem e onde atendem.",
+        "Apresentam provas de autoridade, como avaliações, depoimentos, cases, diferenciais ou histórico.",
+        "Comunicam melhor seus serviços, público atendido e motivos para serem escolhidas."
+      ],
+      "porQueSuaEmpresaPodeNaoAparecer": "A Bob Inteligencia Artificial pode não aparecer porque a IA depende de sinais públicos para entender, comparar e recomendar empresas. Se o site oficial não é fácil de encontrar, se não existem páginas específicas de AEO, GEO e São Paulo, se faltam avaliações com linguagem dos clientes, cases, depoimentos, menções externas e presença local bem estruturada, a IA tende a escolher empresas com sinais mais claros. Mesmo que a empresa seja boa, ela pode ficar invisível se a web não explicar isso de forma objetiva.",
+      "diagnosticoDaEmpresa": {
+        "resumoEmpresa": "A Bob Inteligencia Artificial tem um nome forte para o nicho e um serviço estrategicamente relevante, AEO e GEO. Porém, nesta análise inicial baseada em sinais públicos, a empresa não apareceu entre as referências mais fortes em São Paulo. Isso indica um problema de clareza e autoridade digital: a empresa precisa construir uma base pública que mostre quem é, o que faz, para quem faz, onde atende e por que merece ser recomendada por inteligências artificiais.",
+        "pontosFortes": [
+          "Nome diretamente associado a Inteligência Artificial",
+          "Serviço AEO e GEO alinhado ao novo comportamento de busca por IA",
+          "Potencial para ocupar um nicho ainda em formação no mercado local de São Paulo",
+          "Possibilidade de construir autoridade rapidamente com páginas, conteúdos e provas corretas"
+        ],
+        "pontosFracos": [
+          "Baixa visibilidade pública encontrada nas pesquisas realizadas",
+          "Falta aparente de site oficial forte e facilmente reconhecível",
+          "Ausência de sinais claros de avaliações, cases, depoimentos e reputação local",
+          "Pouca evidência pública ligando a empresa a AEO, GEO e São Paulo",
+          "Concorrentes comunicam melhor serviços, localização, especialidade e autoridade"
+        ],
+        "prioridadeMaxima": "Criar e organizar uma presença digital clara para que humanos, Google e sistemas de IA entendam que a Bob Inteligencia Artificial é uma empresa de AEO e GEO em São Paulo, com serviços específicos, provas de confiança, avaliações, conteúdos e diferenciais verificáveis."
+      },
+      "problemasUrgentes": [
+        "Site pouco claro para humanos e inteligências artificiais",
+        "Poucas avaliações ou avaliações sem palavras-chave relevantes",
+        "Falta de páginas específicas para serviços e cidade",
+        "Pouca presença em conteúdos, artigos, redes sociais e menções externas",
+        "Falta de prova de autoridade, como cases, depoimentos e diferenciais",
+        "Google Perfil da Empresa incompleto ou mal otimizado"
+      ],
+      "proximosPassos": [
+        "Organizar o site para explicar quem é a empresa, o que faz, para quem faz e onde atende",
+        "Melhorar avaliações no Google com palavras naturais dos clientes",
+        "Criar conteúdos que respondam perguntas reais dos clientes",
+        "Reforçar autoridade com cases, depoimentos, números e diferenciais",
+        "Preparar a empresa para ser compreendida por humanos e agentes de IA"
+      ],
+      "chamadaFinal": "Matheus, o próximo movimento é transformar a Bob Inteligencia Artificial em uma entidade clara, confiável e citável na web, para que ela deixe de depender apenas de busca tradicional e passe a disputar recomendações em respostas de IA."
+    },
+    "origem": "landing-diagnostico-ia",
+    "limiterKey": "86e90399d2247e9c4a75d7ff53cc3339ba49b4a6774a379aad1208bcd5b3c199",
+    "browserLimiterKey": "ae06dc68d64b9f1276ca36fd7d17283e09722e30a9f055943a3a847e61db6ffc",
+    "clientId": "2be8cde1-3ff5-41bc-bfcb-849e548a2f72",
+    "ip": "187.21.239.144",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36"
+  },
+  {
+    "nome": "Matheus Bottaro",
+    "empresa": "Casa do ADS",
+    "cidade": "Brasil",
+    "principalProduto": "Consultoria, imersão",
+    "segmento": "google ads",
+    "tipoDiagnostico": "recomendacao_ia",
+    "diagnosticoId": "065c293f-be90-48bd-bcff-cd49fe44a06f",
+    "dataEnvio": "2026-07-22T14:58:08.334Z",
+    "diagnosticoStatus": "aparece",
+    "vendedorId": "matheus",
+    "vendedorNome": "Matheus",
+    "diagnosticoResultado": {
+      "status": "aparece",
+      "perguntaPrincipal": "Qual a empresa mais recomendada do nicho de google ads na cidade Brasil?",
+      "titulo": "Matheus Bottaro, a Casa do ADS aparece com sinais públicos relevantes, mas disputa autoridade com agências que têm provas digitais mais consolidadas.",
+      "resumo": "Com base nos sinais públicos encontrados, não existe um ranking oficial único da melhor empresa de Google Ads no Brasil. Porém, entre as empresas com maior probabilidade de serem recomendadas por IA com base em sinais públicos, aparecem referências como Clinks, Casa do ADS, Spiner, MAVI Marketing Digital e Last Rocket. A Casa do ADS aparece porque tem site oficial, páginas de imersão, posicionamento em Google Ads, menções em LinkedIn, Reclame Aqui e outros diretórios. Mesmo assim, concorrentes podem ser mais recomendados quando apresentam certificações, cases, depoimentos, números, páginas de serviço mais objetivas e provas de autoridade mais fáceis de interpretar por humanos e inteligências artificiais.",
+      "quatroQsResumo": {
+        "quemIARecomenda": "As empresas com maior probabilidade de serem recomendadas por IA com base em sinais públicos para o nicho de Google Ads no Brasil são: Clinks, Casa do ADS, Spiner, MAVI Marketing Digital e Last Rocket. A Clinks tende a aparecer com força por se posicionar de forma muito direta como agência especializada em Google Ads. A Casa do ADS também aparece com bons sinais, especialmente por atuar com Google Ads, consultoria, treinamentos e imersões.",
+        "porqueEssasEmpresasSaoEscolhidas": "Essas empresas são escolhidas porque deixam sinais públicos que ajudam a IA a entender o que fazem: site oficial, páginas específicas sobre Google Ads, menção a Google Partner ou Google Premier Partner, conteúdo sobre performance, serviços bem definidos, depoimentos, cases, histórico, presença em mecanismos de busca e páginas externas. Quanto mais clara e repetida é a mensagem pública, maior a chance de a IA compreender e recomendar.",
+        "porqueMinhaEmpresaNaoERecomendada": "A Casa do ADS pode não ser recomendada em primeiro lugar quando a IA compara com concorrentes que apresentam mais provas organizadas, mais números públicos, mais cases, depoimentos estruturados, avaliações verificáveis e páginas de serviço com foco direto em contratação de gestão ou consultoria de Google Ads. Outro ponto é que a busca por 'Brasil' é ampla e nacional, então a disputa não é local simples: a empresa concorre com agências de performance de todo o país.",
+        "pontosFortesFracosEOQuePrecisaSerFeito": "O ponto forte da Casa do ADS é que foram encontrados sinais reais de presença digital, site oficial, páginas de imersão, discurso de especialização em Google Ads, educação aplicada, consultoria e atuação nacional. O ponto fraco é que alguns sinais de reputação, avaliações, cases e diferenciais podem estar menos organizados do que os concorrentes mais fortes. O que precisa ser feito é transformar a presença digital em uma base de autoridade mais clara para IA: páginas específicas por serviço, provas de resultado, depoimentos, avaliações com palavras-chave naturais, conteúdo estratégico e reforço do Google Perfil da Empresa."
+      },
+      "empresasMaisRecomendadas": [
+        {
+          "posicao": 1,
+          "nome": "Clinks",
+          "resumoAutoridade": "A Clinks aparece como uma referência forte em Google Ads no Brasil por ter um site muito focado no tema, posicionamento direto como agência Google Partner e comunicação abundante sobre experiência, certificações, depoimentos e números de campanhas.",
+          "porQueTemMaisAutoridade": "Ela parece ter mais autoridade porque comunica de forma objetiva que é uma agência 100% Google Ads, apresenta histórico desde 2010, declara grande volume de clientes, campanhas, investimentos gerenciados e depoimentos. Esses sinais facilitam a compreensão por IA e aumentam a confiança percebida.",
+          "sinaisFortes": [
+            "Site oficial claro e fortemente otimizado para Google Ads",
+            "Posicionamento específico como agência de Google Ads",
+            "Declaração de Google Partner e certificações",
+            "Depoimentos e provas sociais visíveis",
+            "Números públicos sobre clientes, campanhas e investimentos gerenciados"
+          ],
+          "possiveisFraquezas": [
+            "Parte das provas depende de informações declaradas no próprio site",
+            "A análise inicial não valida individualmente cada depoimento ou métrica apresentada"
+          ]
+        },
+        {
+          "posicao": 2,
+          "nome": "Casa do ADS",
+          "resumoAutoridade": "A Casa do ADS aparece com sinais relevantes porque possui site oficial, páginas específicas sobre imersão, discurso de especialização em Google Ads, educação aplicada, consultoria e atuação no Brasil.",
+          "porQueTemMaisAutoridade": "A empresa tem autoridade potencial porque comunica experiência, posiciona-se como parceira Google Partners, fala sobre consultoria, mentoria, imersões e treinamentos, além de aparecer em LinkedIn, Reclame Aqui, diretórios e menções externas. Isso ajuda a IA a entender que a marca atua no nicho de Google Ads.",
+          "sinaisFortes": [
+            "Site oficial encontrado e indexado",
+            "Página de imersão presencial relacionada a Google Ads",
+            "Posicionamento como empresa de marketing digital e educação aplicada",
+            "Menção pública a Google Partners e experiência no segmento",
+            "Presença em LinkedIn, Reclame Aqui e diretórios externos"
+          ],
+          "possiveisFraquezas": [
+            "Reputação pública e avaliações podem estar menos evidentes nos resultados pesquisados",
+            "Pode precisar organizar melhor cases, depoimentos, números e diferenciais em páginas específicas",
+            "A cidade informada como Brasil torna a concorrência nacional e mais difícil"
+          ]
+        },
+        {
+          "posicao": 3,
+          "nome": "Spiner",
+          "resumoAutoridade": "A Spiner aparece como agência de marketing digital certificada em Google Ads e com menção a Google Premier Partner, o que é um sinal forte para sistemas de busca e IA.",
+          "porQueTemMaisAutoridade": "Ela parece ter autoridade porque o resultado encontrado comunica diretamente Google Ads, certificação e selo de agência Google Premier Partner. Esses elementos são sinais objetivos que uma IA tende a considerar na hora de selecionar referências nacionais.",
+          "sinaisFortes": [
+            "Site oficial encontrado",
+            "Comunicação direta sobre Google Ads",
+            "Menção a agência certificada Google Ads",
+            "Menção a Google Premier Partner",
+            "Posicionamento como agência de marketing digital"
+          ],
+          "possiveisFraquezas": [
+            "A análise inicial não aprofundou avaliações, cases e reputação local",
+            "Pode ser menos específica em consultoria e imersão do que a Casa do ADS"
+          ]
+        },
+        {
+          "posicao": 4,
+          "nome": "MAVI Marketing Digital",
+          "resumoAutoridade": "A MAVI Marketing Digital aparece como agência de performance com foco em e-commerce, imobiliárias e indústrias, além de comunicar premiação e Google Premier Partner 2025.",
+          "porQueTemMaisAutoridade": "Ela pode ser recomendada porque apresenta sinais de performance, tráfego, CRM, automação e certificação Google Premier Partner. Para uma IA, esses termos ajudam a associar a marca a campanhas pagas e marketing de resultado.",
+          "sinaisFortes": [
+            "Site oficial encontrado",
+            "Posicionamento em performance digital",
+            "Menção a Google Premier Partner 2025",
+            "Atuação em tráfego, CRM e automação",
+            "Foco em segmentos específicos como e-commerce, imobiliárias e indústrias"
+          ],
+          "possiveisFraquezas": [
+            "Pode não ser tão focada exclusivamente em Google Ads quanto concorrentes especializados",
+            "A análise inicial não validou volume de avaliações ou cases detalhados"
+          ]
+        },
+        {
+          "posicao": 5,
+          "nome": "Last Rocket",
+          "resumoAutoridade": "A Last Rocket aparece como agência com página específica para campanhas Google Ads e performance para e-commerce, além de menção a Google Premier Partner.",
+          "porQueTemMaisAutoridade": "Ela tem sinais relevantes porque possui página específica de Google Ads, posicionamento em performance e afirma ser uma agência de confiança Google com selo Google Premier Partner. Isso ajuda a IA a entender rapidamente sua atuação.",
+          "sinaisFortes": [
+            "Página específica sobre campanhas Google Ads",
+            "Foco em performance para e-commerce",
+            "Menção a Google Premier Partner",
+            "Site oficial encontrado",
+            "Comunicação objetiva sobre campanhas e resultados"
+          ],
+          "possiveisFraquezas": [
+            "Pode ter foco mais específico em e-commerce, não necessariamente em consultoria e imersão",
+            "A análise inicial não aprofundou reputação, avaliações e presença local"
+          ]
+        }
+      ],
+      "empresasRecomendadas": [
+        "Clinks",
+        "Casa do ADS",
+        "Spiner",
+        "MAVI Marketing Digital",
+        "Last Rocket"
+      ],
+      "sinaisEncontradosDaEmpresa": [
+        "Foi encontrado site oficial da Casa do ADS em casadoads.com.br.",
+        "O site apresenta a Casa do ADS como empresa de marketing digital e educação aplicada, com atuação em Google Ads, tráfego pago, redes sociais e inteligência artificial.",
+        "Foram encontradas páginas específicas relacionadas a imersão presencial e experiência ADS.",
+        "Foi encontrada presença da Casa do ADS no LinkedIn, com descrição de atuação em marketing digital, gestão de tráfego pago e atendimento a empresas no Brasil.",
+        "Foi encontrada página da Casa do ADS no Reclame Aqui, embora o resultado indique empresa não verificada na plataforma.",
+        "Foram encontradas menções externas e diretórios relacionados à Casa do ADS, como PPC4, documentos públicos e conteúdos com referência à marca."
+      ],
+      "sinaisNaoEncontradosOuFracos": [
+        "Não foram encontrados, nesta análise inicial, dados suficientes e consolidados de avaliações verificadas no Google Perfil da Empresa.",
+        "Os sinais de reputação parecem mais espalhados do que os de concorrentes com páginas fortes de depoimentos, números e cases.",
+        "A proposta de consultoria, imersão, agência, mentoria e treinamento pode precisar de organização para ficar mais clara para IA e clientes leigos.",
+        "A busca nacional por Brasil aumenta a concorrência contra agências com forte posicionamento em Google Ads e Google Premier Partner.",
+        "Pode faltar uma página altamente objetiva para 'consultoria Google Ads no Brasil' e 'imersão Google Ads no Brasil'.",
+        "Cases, depoimentos, diferenciais, números e provas de confiança podem estar menos visíveis do que deveriam para aumentar recomendação por IA."
+      ],
+      "motivosDasEmpresasIndicadas": [
+        "Possuem presença digital mais clara e consistente para humanos e inteligências artificiais.",
+        "Deixam sinais públicos de confiança, reputação, especialidade e atuação nacional.",
+        "Têm conteúdos, páginas ou menções que ajudam a IA a entender o que fazem e onde atendem.",
+        "Apresentam provas de autoridade, como certificações, depoimentos, cases, diferenciais, histórico ou números públicos.",
+        "Comunicam melhor seus serviços, público atendido e motivos para serem escolhidas."
+      ],
+      "porQueSuaEmpresaPodeNaoAparecer": "A Casa do ADS aparece com sinais relevantes, mas pode não ser indicada como primeira opção quando a IA encontra concorrentes com autoridade mais fácil de interpretar: páginas específicas de Google Ads, certificações evidentes, depoimentos estruturados, cases, números, avaliações e reputação consolidada. Para IA, não basta a empresa ser boa; ela precisa deixar rastros claros, repetidos e confiáveis sobre quem é, o que faz, para quem faz, onde atende e por que merece ser recomendada.",
+      "diagnosticoDaEmpresa": {
+        "resumoEmpresa": "A Casa do ADS é uma empresa com presença pública real e sinais positivos no nicho de Google Ads, consultoria, educação aplicada e imersões. Foram encontrados site oficial, páginas específicas, presença no LinkedIn, menção a Google Partners e referências externas. Isso indica que a marca não está invisível. Porém, para competir nacionalmente com empresas muito fortes em Google Ads, precisa organizar melhor seus sinais de autoridade, reputação, diferenciais, avaliações, cases e páginas específicas para que humanos e inteligências artificiais entendam rapidamente por que a Casa do ADS deve ser recomendada.",
+        "pontosFortes": [
+          "Site oficial encontrado e indexado",
+          "Atuação clara em Google Ads, marketing digital, tráfego pago e educação aplicada",
+          "Oferta relacionada a consultoria, treinamentos, mentoria e imersão",
+          "Menção a Google Partners e experiência no segmento",
+          "Presença em LinkedIn, Reclame Aqui, diretórios e menções externas",
+          "Potencial de diferenciação por unir execução, educação prática e imersão presencial"
+        ],
+        "pontosFracos": [
+          "A autoridade pública pode estar menos organizada do que a de concorrentes nacionais mais fortes",
+          "Avaliações verificáveis e reputação local não ficaram suficientemente claras na pesquisa inicial",
+          "Cases, depoimentos, números e provas de resultado precisam estar mais visíveis e estruturados",
+          "A comunicação pode misturar agência, consultoria, mentoria, curso e imersão sem hierarquia clara para IA",
+          "Faltam sinais mais diretos para buscas como 'consultoria Google Ads Brasil' e 'imersão Google Ads Brasil'",
+          "Concorrentes com Google Premier Partner, páginas específicas e números fortes podem ser priorizados por IA"
+        ],
+        "prioridadeMaxima": "Criar uma estrutura de autoridade digital clara para que a Casa do ADS seja entendida como uma referência nacional em consultoria e imersão em Google Ads, com páginas específicas, provas de resultado, avaliações qualificadas, cases, diferenciais e presença local/nacional consistente."
+      },
+      "problemasUrgentes": [
+        "Site pouco claro para humanos e inteligências artificiais",
+        "Poucas avaliações ou avaliações sem palavras-chave relevantes",
+        "Falta de páginas específicas para serviços e cidade",
+        "Pouca presença em conteúdos, artigos, redes sociais e menções externas",
+        "Falta de prova de autoridade, como cases, depoimentos e diferenciais",
+        "Google Perfil da Empresa incompleto ou mal otimizado"
+      ],
+      "proximosPassos": [
+        "Organizar o site para explicar quem é a empresa, o que faz, para quem faz e onde atende",
+        "Melhorar avaliações no Google com palavras naturais dos clientes",
+        "Criar conteúdos que respondam perguntas reais dos clientes",
+        "Reforçar autoridade com cases, depoimentos, números e diferenciais",
+        "Preparar a empresa para ser compreendida por humanos e agentes de IA"
+      ],
+      "chamadaFinal": "O próximo movimento é transformar a presença pública da Casa do ADS em sinais claros de autoridade para que a empresa seja compreendida, confiável e mais recomendável por sistemas de IA."
+    },
+    "origem": "landing-diagnostico-ia",
+    "limiterKey": "0e8383756c691896f11f389b21763d384fe9b12952133542cb984a9bf0e0570c",
+    "browserLimiterKey": "f65884432e8880cf955915bffa810bb84e56f7f99184b2693db8481aa2229fee",
+    "clientId": "d8e997ac-3b9e-4d5a-b34e-5cfe22953e01",
+    "ip": "187.21.239.144",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36 Edg/150.0.0.0"
+  },
+  {
     "nome": "Matheus Bottaro",
     "whatsapp": "13997201891",
     "empresa": "Casa do ADS",

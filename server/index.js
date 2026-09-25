@@ -2,11 +2,12 @@ import "dotenv/config";
 import express from "express";
 import cors from "cors";
 import path from "node:path";
+import crypto from "node:crypto";
 import { fileURLToPath } from "node:url";
 import { gerarDiagnosticoComIA } from "./services/diagnostico-ai.service.js";
 import { gerarDiagnosticoReputacao } from "./services/reputacao-ai.service.js";
 import { validarFormularioDiagnostico, validarFormularioReputacao } from "./services/validation.service.js";
-import { listarLeads, salvarLead } from "./services/leads.repository.js";
+import { buscarLeadDoVendedorPorId, listarLeadsPorVendedor, salvarLead } from "./services/leads.repository.js";
 import { enviarLeadParaWebhook } from "./services/webhook.service.js";
 import {
   criarChavesLimiter,
@@ -17,6 +18,12 @@ import {
   obterClientId,
   obterIpRequisicao
 } from "./services/diagnostico-limiter.service.js";
+import {
+  autenticarVendedorPorCodigo,
+  criarSessaoVendedor,
+  extrairBearerToken,
+  validarSessaoVendedor
+} from "./services/vendedores-auth.service.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -64,6 +71,7 @@ function aplicarHeadersSeguranca(req, res, next) {
 
 const tentativasPorIp = new Map();
 const tentativasDiariasPorIp = new Map();
+const tentativasLoginVendedorPorIp = new Map();
 
 function obterDataAtualYYYYMMDD() {
   return new Date().toISOString().slice(0, 10);
@@ -103,6 +111,12 @@ function limparTentativasExpiradas() {
     }
   }
 
+  for (const [ip, registro] of tentativasLoginVendedorPorIp.entries()) {
+    if (registro.resetAt <= agora) {
+      tentativasLoginVendedorPorIp.delete(ip);
+    }
+  }
+
   const dataAtual = obterDataAtualYYYYMMDD();
   for (const [ip, registro] of tentativasDiariasPorIp.entries()) {
     if (registro.data !== dataAtual) {
@@ -111,6 +125,54 @@ function limparTentativasExpiradas() {
   }
 }
 
+function exigirVendedorAutenticado(req, res, next) {
+  try {
+    const token = extrairBearerToken(req);
+    const vendedor = validarSessaoVendedor(token);
+
+    if (!vendedor) {
+      return res.status(401).json({
+        code: "SESSAO_VENDEDOR_NECESSARIA",
+        message: "Sua sessão de vendedor expirou ou não é válida. Digite o código novamente."
+      });
+    }
+
+    req.vendedor = vendedor;
+    return next();
+  } catch (error) {
+    console.error("[vendedor-auth] erro ao validar sessão:", error.message);
+    return res.status(503).json({
+      code: error.code || "VENDEDOR_AUTH_INDISPONIVEL",
+      message: "O acesso por código de vendedor não está configurado corretamente no servidor."
+    });
+  }
+}
+
+function limitarLoginVendedor(req, res, next) {
+  limparTentativasExpiradas();
+
+  const janelaMinutos = Number(process.env.VENDEDOR_LOGIN_WINDOW_MINUTES) || 15;
+  const maxTentativas = Number(process.env.VENDEDOR_LOGIN_MAX_REQUESTS) || 10;
+  const agora = Date.now();
+  const janelaMs = Math.max(1, janelaMinutos) * 60 * 1000;
+  const ip = obterIpRequisicao(req);
+  const atual = tentativasLoginVendedorPorIp.get(ip);
+  const registro = atual && atual.resetAt > agora
+    ? atual
+    : { count: 0, resetAt: agora + janelaMs };
+
+  registro.count += 1;
+  tentativasLoginVendedorPorIp.set(ip, registro);
+
+  if (registro.count > maxTentativas) {
+    return res.status(429).json({
+      code: "MUITAS_TENTATIVAS_LOGIN",
+      message: "Muitas tentativas de código foram feitas. Aguarde alguns minutos e tente novamente."
+    });
+  }
+
+  return next();
+}
 
 function sanitizarDiagnosticoPublico(diagnostico = {}) {
   const {
@@ -199,7 +261,7 @@ app.use(
       return callback(new Error("Origem não permitida."));
     },
     methods: ["GET", "POST", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "x-client-id"],
+    allowedHeaders: ["Content-Type", "x-client-id", "Authorization"],
     credentials: false,
     maxAge: 86400
   })
@@ -211,7 +273,126 @@ app.get("/api/health", (req, res) => {
   res.json({ ok: true });
 });
 
-app.post("/api/diagnostico-reputacao", verificarOrigemDoFormulario, limitarDiagnosticoPorIp, limitarDiagnosticoDiarioPorIp, async (req, res) => {
+app.post("/api/vendedor/login", verificarOrigemDoFormulario, limitarLoginVendedor, (req, res) => {
+  try {
+    const codigo = typeof req.body?.codigo === "string" ? req.body.codigo.trim() : "";
+
+    if (!codigo) {
+      return res.status(400).json({
+        code: "CODIGO_VENDEDOR_OBRIGATORIO",
+        message: "Digite o código do vendedor."
+      });
+    }
+
+    const vendedor = autenticarVendedorPorCodigo(codigo);
+
+    if (!vendedor) {
+      return res.status(401).json({
+        code: "CODIGO_VENDEDOR_INVALIDO",
+        message: "Código de vendedor inválido."
+      });
+    }
+
+    const sessao = criarSessaoVendedor(vendedor);
+
+    return res.json({
+      ...sessao,
+      vendedor
+    });
+  } catch (error) {
+    console.error("[vendedor-auth] erro no login:", error.message);
+    return res.status(503).json({
+      code: error.code || "VENDEDOR_AUTH_INDISPONIVEL",
+      message: "O acesso por código de vendedor não está configurado corretamente no servidor."
+    });
+  }
+});
+
+app.get("/api/vendedor/me", exigirVendedorAutenticado, (req, res) => {
+  res.json({
+    vendedor: {
+      id: req.vendedor.id,
+      nome: req.vendedor.nome
+    },
+    expiresAt: req.vendedor.expiresAt
+  });
+});
+
+app.get("/api/historico-diagnosticos", exigirVendedorAutenticado, async (req, res) => {
+  try {
+    const solicitado = Number(req.query.limit) || 50;
+    const limit = Math.max(1, Math.min(solicitado, 100));
+    const leads = await listarLeadsPorVendedor(req.vendedor.id);
+
+    const historico = leads.slice(0, limit).map((lead) => ({
+      diagnosticoId: lead.diagnosticoId,
+      dataEnvio: lead.dataEnvio,
+      empresa: lead.empresa,
+      cidade: lead.cidade,
+      segmento: lead.segmento || "",
+      principalProduto: lead.principalProduto || "",
+      tipoDiagnostico: lead.tipoDiagnostico || "recomendacao_ia",
+      diagnosticoStatus: lead.diagnosticoStatus,
+      notaGeral: Number.isFinite(lead.notaGeral) ? lead.notaGeral : null,
+      resultadoDisponivel: Boolean(lead.diagnosticoId && lead.diagnosticoResultado)
+    }));
+
+    return res.json({
+      vendedor: {
+        id: req.vendedor.id,
+        nome: req.vendedor.nome
+      },
+      total: historico.length,
+      historico
+    });
+  } catch (error) {
+    console.error("[historico] erro ao listar:", error.message);
+    return res.status(500).json({
+      code: "ERRO_HISTORICO",
+      message: "Não foi possível carregar o histórico deste vendedor."
+    });
+  }
+});
+
+app.get("/api/historico-diagnosticos/:diagnosticoId", exigirVendedorAutenticado, async (req, res) => {
+  try {
+    const diagnosticoId = (req.params.diagnosticoId || "").trim();
+    const lead = await buscarLeadDoVendedorPorId(req.vendedor.id, diagnosticoId);
+
+    if (!lead) {
+      return res.status(404).json({
+        code: "DIAGNOSTICO_NAO_ENCONTRADO",
+        message: "Este diagnóstico não existe no histórico deste vendedor."
+      });
+    }
+
+    if (!lead.diagnosticoResultado) {
+      return res.status(404).json({
+        code: "RESULTADO_NAO_DISPONIVEL",
+        message: "O registro existe, mas o resultado completo não foi salvo."
+      });
+    }
+
+    return res.json({
+      diagnosticoId: lead.diagnosticoId,
+      tipoDiagnostico: lead.tipoDiagnostico || "recomendacao_ia",
+      dataEnvio: lead.dataEnvio,
+      empresa: lead.empresa,
+      cidade: lead.cidade,
+      segmento: lead.segmento || "",
+      principalProduto: lead.principalProduto || "",
+      diagnostico: lead.diagnosticoResultado
+    });
+  } catch (error) {
+    console.error("[historico] erro ao abrir diagnóstico:", error.message);
+    return res.status(500).json({
+      code: "ERRO_HISTORICO",
+      message: "Não foi possível abrir este diagnóstico."
+    });
+  }
+});
+
+app.post("/api/diagnostico-reputacao", verificarOrigemDoFormulario, exigirVendedorAutenticado, limitarDiagnosticoPorIp, limitarDiagnosticoDiarioPorIp, async (req, res) => {
   try {
     const validacao = validarFormularioReputacao(req.body);
 
@@ -227,7 +408,7 @@ app.post("/api/diagnostico-reputacao", verificarOrigemDoFormulario, limitarDiagn
     const chavesLimiter = criarChavesLimiter(validacao.data, clientId);
 
     if (!permitirDiagnosticosRepetidos()) {
-      const leadsAtuais = await listarLeads();
+      const leadsAtuais = await listarLeadsPorVendedor(req.vendedor.id);
       const diagnosticoDuplicado = encontrarDiagnosticoDuplicado(leadsAtuais, chavesLimiter, blockDays);
 
       if (diagnosticoDuplicado) {
@@ -245,10 +426,14 @@ app.post("/api/diagnostico-reputacao", verificarOrigemDoFormulario, limitarDiagn
 
     const lead = {
       ...validacao.data,
+      diagnosticoId: crypto.randomUUID(),
       tipoDiagnostico: "reputacao",
       dataEnvio: new Date().toISOString(),
       diagnosticoStatus: diagnostico.status,
       notaGeral: Number.isFinite(diagnostico.notaGeral) ? diagnostico.notaGeral : null,
+      vendedorId: req.vendedor.id,
+      vendedorNome: req.vendedor.nome,
+      diagnosticoResultado: diagnostico,
       origem: "landing-diagnostico-ia",
       limiterKey: chavesLimiter.limiterKey,
       browserLimiterKey: chavesLimiter.browserLimiterKey,
@@ -258,7 +443,8 @@ app.post("/api/diagnostico-reputacao", verificarOrigemDoFormulario, limitarDiagn
     };
 
     await salvarLead(lead);
-    enviarLeadParaWebhook(lead).catch((error) => {
+    const { diagnosticoResultado: _resultadoNaoEnviado, ...leadWebhook } = lead;
+    enviarLeadParaWebhook(leadWebhook).catch((error) => {
       console.error("Falha assíncrona no webhook de reputação:", error.message);
     });
 
@@ -288,7 +474,7 @@ app.post("/api/diagnostico-reputacao", verificarOrigemDoFormulario, limitarDiagn
   }
 });
 
-app.post("/api/diagnostico-ia", verificarOrigemDoFormulario, limitarDiagnosticoPorIp, limitarDiagnosticoDiarioPorIp, async (req, res) => {
+app.post("/api/diagnostico-ia", verificarOrigemDoFormulario, exigirVendedorAutenticado, limitarDiagnosticoPorIp, limitarDiagnosticoDiarioPorIp, async (req, res) => {
   try {
     const validacao = validarFormularioDiagnostico(req.body);
 
@@ -304,7 +490,7 @@ app.post("/api/diagnostico-ia", verificarOrigemDoFormulario, limitarDiagnosticoP
     const chavesLimiter = criarChavesLimiter(validacao.data, clientId);
 
     if (!permitirDiagnosticosRepetidos()) {
-      const leadsAtuais = await listarLeads();
+      const leadsAtuais = await listarLeadsPorVendedor(req.vendedor.id);
       const diagnosticoDuplicado = encontrarDiagnosticoDuplicado(leadsAtuais, chavesLimiter, blockDays);
 
       if (diagnosticoDuplicado) {
@@ -317,9 +503,13 @@ app.post("/api/diagnostico-ia", verificarOrigemDoFormulario, limitarDiagnosticoP
 
     const lead = {
       ...validacao.data,
+      diagnosticoId: crypto.randomUUID(),
       tipoDiagnostico: "recomendacao_ia",
       dataEnvio: new Date().toISOString(),
       diagnosticoStatus: diagnosticoPublico.status,
+      vendedorId: req.vendedor.id,
+      vendedorNome: req.vendedor.nome,
+      diagnosticoResultado: diagnosticoPublico,
       origem: "landing-diagnostico-ia",
       limiterKey: chavesLimiter.limiterKey,
       browserLimiterKey: chavesLimiter.browserLimiterKey,
@@ -329,7 +519,8 @@ app.post("/api/diagnostico-ia", verificarOrigemDoFormulario, limitarDiagnosticoP
     };
 
     await salvarLead(lead);
-    enviarLeadParaWebhook(lead).catch((error) => {
+    const { diagnosticoResultado: _resultadoNaoEnviado, ...leadWebhook } = lead;
+    enviarLeadParaWebhook(leadWebhook).catch((error) => {
       console.error("Falha assíncrona no webhook:", error.message);
     });
 

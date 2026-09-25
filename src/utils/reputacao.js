@@ -11,6 +11,10 @@ export async function gerarReputacaoViaApi(formData, options = {}) {
     headers["x-client-id"] = options.clientId;
   }
 
+  if (options.token) {
+    headers.Authorization = `Bearer ${options.token}`;
+  }
+
   let response;
 
   try {
@@ -40,6 +44,7 @@ export async function gerarReputacaoViaApi(formData, options = {}) {
     const error = new Error(data?.message || "Não foi possível gerar a análise de reputação neste momento.");
     error.errors = data?.errors || {};
     error.code = data?.code;
+    error.status = response.status;
     error.bloqueado = Boolean(data?.bloqueado);
     error.payload = data;
     throw error;

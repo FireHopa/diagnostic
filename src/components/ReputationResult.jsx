@@ -1,4 +1,6 @@
 import React from "react";
+import ExportAnalysis from "./ExportAnalysis.jsx";
+import AiBrandLogos from "./AiBrandLogos.jsx";
 
 const safeArray = (items) => (Array.isArray(items) ? items.filter(Boolean) : []);
 
@@ -243,7 +245,7 @@ function Sources({ fontes }) {
   );
 }
 
-export default function ReputationResult({ diagnostico, onCtaClick, ctaMessage }) {
+export default function ReputationResult({ diagnostico, contexto, onCtaClick, ctaMessage }) {
   if (!diagnostico) return null;
 
   const dadosInsuficientes = diagnostico.status === "dados_insuficientes" || !Number.isFinite(diagnostico.notaGeral);
@@ -254,9 +256,11 @@ export default function ReputationResult({ diagnostico, onCtaClick, ctaMessage }
   return (
     <section id="resultado" className="px-4 pb-16 pt-5 md:px-6 md:pb-24">
       <div className="mx-auto max-w-[920px] space-y-12">
+        <ExportAnalysis contexto={contexto} tipo="reputacao" />
+
         <section>
           <div className="mb-3 flex items-center gap-2">
-            <span className="ai-gradient-mark h-3.5 w-3.5 rounded-[4px]" aria-hidden="true" />
+            <AiBrandLogos className="shrink-0" />
             <p className="text-[13px] font-medium text-primary">Análise de reputação concluída</p>
           </div>
 
@@ -342,7 +346,7 @@ export default function ReputationResult({ diagnostico, onCtaClick, ctaMessage }
 
         <Sources fontes={diagnostico.fontes} />
 
-        <section className="border-t border-line pt-9">
+        <section className="border-t border-line pt-9" data-export-hide="true">
           <div className="grid gap-7 md:grid-cols-[1fr_auto] md:items-end">
             <div className="max-w-[690px]">
               <p className="text-[13px] font-medium text-primary">Próximo passo</p>

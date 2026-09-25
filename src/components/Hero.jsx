@@ -1,9 +1,10 @@
 import React from "react";
+import AiBrandLogos from "./AiBrandLogos.jsx";
 
 const conteudo = {
   inicial: {
     eyebrow: "Diagnóstico com Inteligência Artificial",
-    titulo: "O que você quer descobrir sobre sua empresa?",
+    titulo: "Sua empresa aparece nas respostas da IA do Google e está sendo recomendada pelo ChatGPT e/ou Gemini?",
     descricao: "Escolha uma análise para começar."
   },
   recomendacao_ia: {
@@ -26,9 +27,7 @@ export default function Hero({ tipoDiagnostico }) {
   return (
     <section className="px-4 pb-4 pt-12 md:px-6 md:pb-6 md:pt-16">
       <div className="mx-auto max-w-[800px] text-center">
-        <div className="mx-auto mb-5 flex h-10 w-10 items-center justify-center rounded-2xl border border-line bg-white shadow-sm">
-          <span className="ai-gradient-mark block h-4 w-4 rounded-[5px]" aria-hidden="true" />
-        </div>
+        <AiBrandLogos centered large className="mx-auto mb-5" />
         <p className="text-[13px] font-medium text-primary">{atual.eyebrow}</p>
         <h1 className="mt-3 text-[30px] font-semibold leading-[1.2] tracking-[-0.035em] text-dark md:text-[36px] md:leading-[44px]">
           {atual.titulo}

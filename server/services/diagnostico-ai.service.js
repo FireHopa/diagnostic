@@ -12,12 +12,13 @@ function completarDiagnosticoMock(formData, diagnosticoBase) {
     pesquisasRealizadas: [
       `${formData.empresa} ${formData.cidade}`,
       `${formData.segmento} ${formData.cidade}`,
+      `${formData.principalProduto} ${formData.cidade}`,
       `qual a empresa mais recomendada do nicho de ${formData.segmento} na cidade ${formData.cidade}`,
       `melhores empresas de ${formData.segmento} em ${formData.cidade}`,
       `concorrentes de ${formData.segmento} em ${formData.cidade}`
     ],
     sinaisEncontradosDaEmpresa: [
-      "Sinais iniciais de posicionamento podem ser organizados a partir do nome, nicho e cidade informados.",
+      "Sinais iniciais de posicionamento podem ser organizados a partir do nome, nicho, principal produto e cidade informados.",
       "Existe oportunidade de fortalecer a clareza sobre o que a empresa faz, para quem faz e onde atende.",
       "A empresa pode melhorar a leitura de autoridade com site, avaliações, conteúdos, provas e presença local."
     ],

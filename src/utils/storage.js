@@ -12,10 +12,6 @@ function normalizarTexto(texto = "") {
     .replace(/\s+/g, " ");
 }
 
-function normalizarWhatsapp(whatsapp = "") {
-  return whatsapp.toString().replace(/\D/g, "");
-}
-
 function gerarIdLocal() {
   if (window.crypto?.randomUUID) {
     return window.crypto.randomUUID();
@@ -41,22 +37,13 @@ export function obterClientId() {
 
 export function criarChaveDiagnostico(formData) {
   const tipoDiagnostico = formData.tipoDiagnostico === "reputacao" ? "reputacao" : "recomendacao_ia";
-  const whatsapp = normalizarWhatsapp(formData.whatsapp);
   const empresa = normalizarTexto(formData.empresa);
   const cidade = normalizarTexto(formData.cidade);
   const segmento = normalizarTexto(formData.segmento || "");
+  const principalProduto = normalizarTexto(formData.principalProduto || "");
 
   const complemento = tipoDiagnostico === "recomendacao_ia" ? `|${segmento}` : "";
-  return `${tipoDiagnostico}|${whatsapp}|${empresa}|${cidade}${complemento}`;
-}
-
-function criarChaveLegada(formData) {
-  const whatsapp = normalizarWhatsapp(formData.whatsapp);
-  const empresa = normalizarTexto(formData.empresa);
-  const cidade = normalizarTexto(formData.cidade);
-  const segmento = normalizarTexto(formData.segmento || "");
-
-  return `${whatsapp}|${empresa}|${cidade}|${segmento}`;
+  return `${tipoDiagnostico}|${empresa}|${cidade}${complemento}|${principalProduto}`;
 }
 
 export function obterLeadsSalvos() {
@@ -94,12 +81,7 @@ export function obterDiagnosticosSolicitados() {
 export function verificarBloqueioLocal(formData) {
   const chave = criarChaveDiagnostico(formData);
   const registros = obterDiagnosticosSolicitados();
-  let registro = registros[chave];
-
-  // Compatibilidade com bloqueios gravados pelo diagnóstico antigo antes da criação de tipoDiagnostico.
-  if (!registro && formData.tipoDiagnostico !== "reputacao") {
-    registro = registros[criarChaveLegada(formData)];
-  }
+  const registro = registros[chave];
 
   if (!registro) {
     return {
@@ -113,7 +95,7 @@ export function verificarBloqueioLocal(formData) {
     chave,
     registro,
     message:
-      "Este diagnóstico já foi solicitado neste navegador. Para evitar consultas repetidas com IA, não vamos gerar uma nova análise agora. Nossa equipe pode continuar pelo WhatsApp com base na solicitação já enviada."
+      "Este diagnóstico já foi solicitado neste navegador. O resultado anterior continua disponível no histórico do vendedor."
   };
 }
 
@@ -127,7 +109,7 @@ export function marcarDiagnosticoSolicitadoLocal(formData, lead) {
       empresa: lead.empresa,
       cidade: lead.cidade,
       segmento: lead.segmento || "",
-      whatsapp: lead.whatsapp,
+      principalProduto: lead.principalProduto || "",
       tipoDiagnostico: lead.tipoDiagnostico || formData.tipoDiagnostico || "recomendacao_ia",
       diagnosticoStatus: lead.diagnosticoStatus
     };

@@ -2,9 +2,9 @@ import React, { useState } from "react";
 
 const initialFormData = {
   nome: "",
-  whatsapp: "",
   empresa: "",
   cidade: "",
+  principalProduto: "",
   perfilGoogle: "",
   siteEmpresa: "",
   website: "",
@@ -36,11 +36,11 @@ export default function ReputationForm({ onSubmit, loading, onBack }) {
       maxLength: 80
     },
     {
-      id: "whatsapp",
-      label: "WhatsApp",
-      placeholder: "Seu WhatsApp",
-      type: "tel",
-      maxLength: 30
+      id: "cidade",
+      label: "Cidade",
+      placeholder: "Exemplo: São Paulo",
+      type: "text",
+      maxLength: 80
     },
     {
       id: "empresa",
@@ -51,11 +51,12 @@ export default function ReputationForm({ onSubmit, loading, onBack }) {
       full: true
     },
     {
-      id: "cidade",
-      label: "Cidade",
-      placeholder: "Exemplo: São Paulo",
+      id: "principalProduto",
+      label: "Principal produto",
+      placeholder: "Exemplo: Implantes dentários",
       type: "text",
-      maxLength: 80
+      maxLength: 160,
+      full: true
     },
     {
       id: "perfilGoogle",
@@ -82,12 +83,6 @@ export default function ReputationForm({ onSubmit, loading, onBack }) {
       newErrors.nome = "Informe seu nome.";
     }
 
-    if (!formData.whatsapp.trim()) {
-      newErrors.whatsapp = "Informe seu WhatsApp.";
-    } else if (formData.whatsapp.replace(/\D/g, "").length < 8) {
-      newErrors.whatsapp = "O WhatsApp precisa ter pelo menos 8 números.";
-    }
-
     if (!formData.empresa.trim()) {
       newErrors.empresa = "Informe o nome da empresa que será analisada.";
     } else if (formData.empresa.trim().length < 2) {
@@ -96,6 +91,10 @@ export default function ReputationForm({ onSubmit, loading, onBack }) {
 
     if (!formData.cidade.trim()) {
       newErrors.cidade = "Informe a cidade da empresa.";
+    }
+
+    if (!formData.principalProduto.trim()) {
+      newErrors.principalProduto = "Informe o principal produto ou serviço da empresa.";
     }
 
     if (!formData.perfilGoogle.trim()) {
@@ -203,7 +202,7 @@ export default function ReputationForm({ onSubmit, loading, onBack }) {
             <button
               type="submit"
               disabled={loading}
-              className="inline-flex min-h-11 w-full items-center justify-center rounded-xl bg-primary px-5 py-3 text-[14px] font-semibold text-white transition hover:bg-[#1765CC] disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
+              className="inline-flex min-h-11 w-full items-center justify-center rounded-xl bg-[#4285F4] px-5 py-3 text-[14px] font-semibold text-white transition hover:bg-[#3367D6] disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
             >
               {loading ? "Analisando reputação..." : "Iniciar análise"}
               {!loading ? <span className="ml-2" aria-hidden="true">→</span> : null}

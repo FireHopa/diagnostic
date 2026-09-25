@@ -6,6 +6,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const DATA_DIR = path.resolve(__dirname, "../data");
 const LEADS_FILE = path.join(DATA_DIR, "leadsDiagnosticoIA.json");
+let filaEscrita = Promise.resolve();
 
 async function garantirArquivoDeLeads() {
   await fs.mkdir(DATA_DIR, { recursive: true });
@@ -22,15 +23,34 @@ export async function listarLeads() {
   const conteudo = await fs.readFile(LEADS_FILE, "utf8");
 
   try {
-    return JSON.parse(conteudo);
+    const leads = JSON.parse(conteudo);
+    return Array.isArray(leads) ? leads : [];
   } catch {
     return [];
   }
 }
 
-export async function salvarLead(lead) {
-  const leadsAtuais = await listarLeads();
-  const leadsAtualizados = [lead, ...leadsAtuais];
-  await fs.writeFile(LEADS_FILE, JSON.stringify(leadsAtualizados, null, 2), "utf8");
-  return lead;
+export async function listarLeadsPorVendedor(vendedorId) {
+  const leads = await listarLeads();
+  return leads.filter((lead) => lead.vendedorId === vendedorId);
+}
+
+export async function buscarLeadDoVendedorPorId(vendedorId, diagnosticoId) {
+  const leads = await listarLeadsPorVendedor(vendedorId);
+  return leads.find((lead) => lead.diagnosticoId === diagnosticoId) || null;
+}
+
+export function salvarLead(lead) {
+  const operacao = filaEscrita.then(async () => {
+    const leadsAtuais = await listarLeads();
+    const leadsAtualizados = [lead, ...leadsAtuais];
+    const arquivoTemporario = `${LEADS_FILE}.${process.pid}.${Date.now()}.tmp`;
+
+    await fs.writeFile(arquivoTemporario, JSON.stringify(leadsAtualizados, null, 2), "utf8");
+    await fs.rename(arquivoTemporario, LEADS_FILE);
+    return lead;
+  });
+
+  filaEscrita = operacao.catch(() => undefined);
+  return operacao;
 }

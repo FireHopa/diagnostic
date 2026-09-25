@@ -1,4 +1,7 @@
 import React from "react";
+import ExportAnalysis from "./ExportAnalysis.jsx";
+import AiBrandLogos from "./AiBrandLogos.jsx";
+import PerguntasClientesIA from "./PerguntasClientesIA.jsx";
 
 const safeArray = (items) => (Array.isArray(items) ? items.filter(Boolean) : []);
 
@@ -32,7 +35,7 @@ const EmpresasTop5 = ({ empresas }) => {
     <section>
       <div className="max-w-[800px]">
         <div className="mb-3 flex items-center gap-2">
-          <span className="ai-gradient-mark h-3.5 w-3.5 rounded-[4px]" aria-hidden="true" />
+          <AiBrandLogos className="shrink-0" />
           <p className="text-[13px] font-medium text-primary">Análise concluída</p>
         </div>
         <h2 className="text-[28px] font-semibold leading-[1.25] tracking-[-0.035em] text-dark md:text-[32px]">
@@ -142,15 +145,19 @@ const EmpresaResumo = ({ diagnostico }) => {
   );
 };
 
-export default function DiagnosticResult({ diagnostico, onCtaClick, ctaMessage }) {
+export default function DiagnosticResult({ diagnostico, contexto, onCtaClick, ctaMessage }) {
   if (!diagnostico) return null;
 
   return (
     <section id="resultado" className="px-4 pb-16 pt-5 md:px-6 md:pb-24">
       <div className="mx-auto max-w-[920px]">
+        <ExportAnalysis contexto={contexto} tipo="recomendacao_ia" />
+
         <EmpresasTop5 empresas={diagnostico.empresasMaisRecomendadas} />
 
         <EmpresaResumo diagnostico={diagnostico} />
+
+        <PerguntasClientesIA analise={diagnostico.analisePerguntasClientes} />
 
         <div className="mt-12 grid gap-x-10 gap-y-9 lg:grid-cols-2">
           <SectionList
@@ -182,7 +189,7 @@ export default function DiagnosticResult({ diagnostico, onCtaClick, ctaMessage }
           />
         </div>
 
-        <section className="mt-14 border-t border-line pt-9">
+        <section className="mt-14 border-t border-line pt-9" data-export-hide="true">
           <div className="grid gap-7 md:grid-cols-[1fr_auto] md:items-end">
             <div className="max-w-[690px]">
               <p className="text-[13px] font-medium text-primary">Próximo passo</p>

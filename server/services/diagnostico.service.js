@@ -41,6 +41,9 @@ const proximosPassosPadrao = [
 const avisoAnaliseInicial =
   "Esta é uma análise inicial baseada em sinais públicos encontrados na web e em sinais comuns de autoridade digital. Não é uma auditoria definitiva. Para um diagnóstico completo, é necessário analisar site, Google Perfil da Empresa, avaliações, conteúdos, menções, presença local, clareza da proposta e dados de busca com ferramentas específicas.";
 
+const avisoPerguntasClientes =
+  "Estas perguntas são uma estimativa estratégica criada com base no comportamento de busca, nas dúvidas comuns do público e nas etapas de decisão de compra. Não representam volume oficial de buscas nem acesso ao histórico privado de perguntas de usuários do ChatGPT, Gemini, IA do Google ou outras plataformas.";
+
 export function normalizarTexto(texto = "") {
   return texto
     .toString()
@@ -106,10 +109,11 @@ function gerarQuatroQs(formData, aparece, empresasMaisRecomendadas) {
   const empresa = formData.empresa?.trim();
   const cidade = formData.cidade?.trim();
   const segmento = formData.segmento?.trim();
+  const principalProduto = formData.principalProduto?.trim();
   const top5 = empresasMaisRecomendadas.map((item) => item.nome).join(", ");
 
   return {
-    quemIARecomenda: `Nesta simulação, a IA tende a recomendar empresas com sinais mais claros no nicho de ${segmento} em ${cidade}. As 5 principais referências demonstrativas são: ${top5}.`,
+    quemIARecomenda: `Nesta simulação, a IA tende a recomendar empresas com sinais mais claros no nicho de ${segmento} em ${cidade}, especialmente para buscas relacionadas a ${principalProduto}. As 5 principais referências demonstrativas são: ${top5}.`,
     porqueEssasEmpresasSaoEscolhidas:
       "Elas parecem mais fáceis de entender porque apresentam sinais de autoridade, reputação, presença local, clareza de serviços e provas de confiança.",
     porqueMinhaEmpresaNaoERecomendada: aparece
@@ -122,11 +126,12 @@ function gerarQuatroQs(formData, aparece, empresasMaisRecomendadas) {
 
 function gerarDiagnosticoDaEmpresa(formData, aparece) {
   const empresa = formData.empresa?.trim();
+  const principalProduto = formData.principalProduto?.trim();
 
   return {
     resumoEmpresa: aparece
-      ? `${empresa} apresenta sinais iniciais que podem ajudar na compreensão por inteligências artificiais, mas ainda precisa consolidar autoridade digital para disputar recomendações com mais frequência.`
-      : `${empresa} ainda precisa fortalecer sua presença pública para que humanos e inteligências artificiais entendam com clareza quem é, o que faz, onde atende e por que deve ser escolhida.`,
+      ? `${empresa} apresenta sinais iniciais que podem ajudar na compreensão por inteligências artificiais, inclusive sobre seu principal produto (${principalProduto}), mas ainda precisa consolidar autoridade digital para disputar recomendações com mais frequência.`
+      : `${empresa} ainda precisa fortalecer sua presença pública para que humanos e inteligências artificiais entendam com clareza quem é, onde atende, como se posiciona e por que seu principal produto (${principalProduto}) deve ser escolhido.`,
     pontosFortes: aparece
       ? [
           "Nome ou posicionamento com sinais iniciais de especialidade",
@@ -148,11 +153,100 @@ function gerarDiagnosticoDaEmpresa(formData, aparece) {
   };
 }
 
+function gerarAnalisePerguntasClientes(formData) {
+  const segmento = formData.segmento?.trim() || "este mercado";
+  const cidade = formData.cidade?.trim() || "minha região";
+  const principalProduto = formData.principalProduto?.trim() || "esse serviço";
+
+  const grupos = {
+    entenderProblema: [
+      `Como saber se eu realmente preciso de ${principalProduto}?`,
+      `Quais problemas ${principalProduto} costuma resolver?`,
+      `Quando vale a pena procurar uma empresa de ${segmento}?`,
+      `Quais sinais mostram que eu deveria buscar ajuda para isso?`,
+      `O que pode acontecer se eu adiar a contratação de ${principalProduto}?`,
+      `Como funciona ${principalProduto} na prática?`
+    ],
+    procurarSolucao: [
+      `Quais são as melhores opções de ${principalProduto} em ${cidade}?`,
+      `Como escolher uma empresa de ${segmento} para ${principalProduto}?`,
+      `O que uma boa empresa de ${segmento} precisa oferecer?`,
+      `Onde encontrar especialistas em ${principalProduto} em ${cidade}?`,
+      `Qual tipo de profissional ou empresa devo procurar para ${principalProduto}?`,
+      `O que devo avaliar antes de pedir um orçamento de ${principalProduto}?`
+    ],
+    compararOpcoes: [
+      `Como comparar empresas que oferecem ${principalProduto} em ${cidade}?`,
+      `O que diferencia uma empresa realmente boa de ${segmento} das outras?`,
+      `Vale mais a pena escolher ${principalProduto} pelo preço ou pela experiência da empresa?`,
+      `Quais critérios devo usar para comparar dois orçamentos de ${principalProduto}?`,
+      `Como saber qual empresa de ${segmento} oferece o melhor custo-benefício?`,
+      `O que devo comparar além do preço antes de contratar ${principalProduto}?`
+    ],
+    precoConfiancaReputacao: [
+      `Quanto custa ${principalProduto} em ${cidade}?`,
+      `Como saber se uma empresa de ${segmento} é confiável?`,
+      `Quais avaliações devo olhar antes de contratar ${principalProduto}?`,
+      `Como identificar se as avaliações de uma empresa são realmente confiáveis?`,
+      `Que perguntas devo fazer antes de fechar um orçamento de ${principalProduto}?`,
+      `Como saber se o preço de ${principalProduto} está justo ou muito barato?`
+    ],
+    proximasDeComprar: [
+      `Qual é a melhor empresa para contratar ${principalProduto} em ${cidade}?`,
+      `Quais empresas de ${segmento} são mais recomendadas em ${cidade}?`,
+      `Quem tem as melhores avaliações para ${principalProduto} em ${cidade}?`,
+      `Quero contratar ${principalProduto}: quais empresas devo comparar primeiro?`,
+      `Onde posso pedir orçamento de ${principalProduto} em ${cidade}?`,
+      `Entre as principais empresas de ${segmento} em ${cidade}, qual parece mais confiável para contratar?`
+    ]
+  };
+
+  return {
+    avisoMetodologico: avisoPerguntasClientes,
+    grupos,
+    maiorIntencaoContratacao: [
+      grupos.proximasDeComprar[0],
+      grupos.proximasDeComprar[1],
+      grupos.proximasDeComprar[2],
+      grupos.proximasDeComprar[3],
+      grupos.proximasDeComprar[4],
+      grupos.proximasDeComprar[5],
+      grupos.precoConfiancaReputacao[0],
+      grupos.precoConfiancaReputacao[1],
+      grupos.precoConfiancaReputacao[4],
+      grupos.compararOpcoes[3]
+    ],
+    perguntasPrioritarias: [
+      grupos.proximasDeComprar[0],
+      grupos.procurarSolucao[1],
+      grupos.precoConfiancaReputacao[0],
+      grupos.precoConfiancaReputacao[1],
+      grupos.compararOpcoes[0],
+      grupos.compararOpcoes[1],
+      grupos.entenderProblema[0],
+      grupos.entenderProblema[5],
+      grupos.precoConfiancaReputacao[2],
+      grupos.proximasDeComprar[3]
+    ],
+    temasConteudo: [
+      `Preço, orçamento e custo-benefício de ${principalProduto}`,
+      `Como escolher uma empresa confiável de ${segmento}`,
+      `Comparativos e critérios para decidir entre fornecedores`,
+      `Avaliações, reputação e prova social antes da contratação`,
+      `Como funciona ${principalProduto}: processo, etapas e expectativas`,
+      `Problemas, necessidades e sinais que levam à busca por ${principalProduto}`,
+      `Dúvidas e objeções antes de contratar ${principalProduto}`,
+      `Melhores opções e referências locais de ${segmento} em ${cidade}`
+    ]
+  };
+}
+
 export function gerarDiagnostico(formData) {
   const nome = formData.nome?.trim();
   const empresa = formData.empresa?.trim();
   const cidade = formData.cidade?.trim();
   const segmento = formData.segmento?.trim();
+  const principalProduto = formData.principalProduto?.trim();
 
   const empresaNormalizada = normalizarTexto(empresa);
   const contemPalavraForte = palavrasFortes.some((palavra) =>
@@ -181,6 +275,7 @@ export function gerarDiagnostico(formData) {
     pesquisasRealizadas: [
       `${empresa} ${cidade}`,
       `${segmento} ${cidade}`,
+      `${principalProduto} ${cidade}`,
       `qual a empresa mais recomendada do nicho de ${segmento} na cidade ${cidade}`,
       `melhores empresas de ${segmento} em ${cidade}`,
       `${segmento} perto de mim ${cidade}`
@@ -200,6 +295,7 @@ export function gerarDiagnostico(formData) {
       ? "Mesmo quando a empresa tem bons sinais iniciais, ela pode não aparecer em todas as respostas se concorrentes tiverem mais avaliações, conteúdo mais específico, autoridade local mais forte, menções externas e páginas mais claras sobre serviços e cidade."
       : "A IA tende a recomendar empresas que deixam mais evidente quem são, o que fazem, onde atendem, quais problemas resolvem, quais provas possuem e por que são confiáveis. Quando essas informações estão fracas ou espalhadas, sua empresa pode ser ignorada nas respostas.",
     diagnosticoDaEmpresa: gerarDiagnosticoDaEmpresa(formData, aparece),
+    analisePerguntasClientes: gerarAnalisePerguntasClientes(formData),
     problemasUrgentes: problemasUrgentesPadrao,
     proximosPassos: proximosPassosPadrao,
     fontesConsultadas: [],

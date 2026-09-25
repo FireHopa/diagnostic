@@ -73,3 +73,96 @@ summary {
     radial-gradient(circle at 50% 0%, rgba(66, 133, 244, 0.045), transparent 30rem),
     #ffffff;
 }
+
+/* Exportação do diagnóstico */
+.export-document-brand {
+  display: none;
+}
+
+@media print {
+  @page {
+    size: A4;
+    margin: 14mm;
+  }
+
+  body.exportando-diagnostico {
+    background: #ffffff !important;
+  }
+
+  body.exportando-diagnostico .ai-page-shell > * {
+    display: none !important;
+  }
+
+  body.exportando-diagnostico .ai-page-shell > [data-print-container="true"] {
+    display: block !important;
+  }
+
+  body.exportando-diagnostico #resultado {
+    padding: 0 !important;
+  }
+
+  body.exportando-diagnostico #resultado > div {
+    max-width: none !important;
+  }
+
+  body.exportando-diagnostico #resultado,
+  body.exportando-diagnostico #resultado * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  body.exportando-diagnostico [data-export-hide="true"] {
+    display: none !important;
+  }
+
+  body.exportando-diagnostico .export-document-brand {
+    display: flex !important;
+    align-items: center;
+    gap: 18px;
+    margin-bottom: 28px;
+    padding-bottom: 22px;
+    border-bottom: 1px solid #e5e7eb;
+  }
+
+  body.exportando-diagnostico .export-document-brand img {
+    width: 62px;
+    height: auto;
+    object-fit: contain;
+  }
+
+  body.exportando-diagnostico .export-document-brand h1 {
+    margin: 0;
+    font-size: 22px;
+    line-height: 1.2;
+    color: #1f1f1f;
+  }
+
+  body.exportando-diagnostico .export-document-brand p {
+    margin: 5px 0 0;
+    font-size: 12px;
+    line-height: 1.5;
+    color: #6b7280;
+  }
+
+  body.exportando-diagnostico details,
+  body.exportando-diagnostico details > * {
+    display: block !important;
+  }
+
+  body.exportando-diagnostico summary {
+    list-style: none;
+  }
+
+  body.exportando-diagnostico a {
+    color: #1a73e8 !important;
+    text-decoration: none !important;
+    word-break: break-word;
+  }
+
+  body.exportando-diagnostico section,
+  body.exportando-diagnostico article,
+  body.exportando-diagnostico .rounded-2xl,
+  body.exportando-diagnostico .rounded-xl {
+    break-inside: avoid-page;
+  }
+}

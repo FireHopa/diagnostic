@@ -2,10 +2,10 @@ import React, { useState } from "react";
 
 const initialFormData = {
   nome: "",
-  whatsapp: "",
   empresa: "",
   cidade: "",
   segmento: "",
+  principalProduto: "",
   website: "",
   tipoDiagnostico: "recomendacao_ia"
 };
@@ -23,20 +23,6 @@ export default function DiagnosticForm({ onSubmit, loading, onBack }) {
       maxLength: 80
     },
     {
-      id: "whatsapp",
-      label: "WhatsApp",
-      placeholder: "Seu WhatsApp",
-      type: "tel",
-      maxLength: 30
-    },
-    {
-      id: "empresa",
-      label: "Nome da empresa",
-      placeholder: "Nome da sua empresa",
-      type: "text",
-      maxLength: 120
-    },
-    {
       id: "cidade",
       label: "Cidade",
       placeholder: "Exemplo: Lisboa",
@@ -44,11 +30,26 @@ export default function DiagnosticForm({ onSubmit, loading, onBack }) {
       maxLength: 80
     },
     {
+      id: "empresa",
+      label: "Nome da empresa",
+      placeholder: "Nome da sua empresa",
+      type: "text",
+      maxLength: 120,
+      full: true
+    },
+    {
       id: "segmento",
       label: "Nicho ou segmento",
       placeholder: "Exemplo: contabilidade",
       type: "text",
       maxLength: 100
+    },
+    {
+      id: "principalProduto",
+      label: "Principal produto",
+      placeholder: "Exemplo: Consultoria tributária para PMEs",
+      type: "text",
+      maxLength: 160
     }
   ];
 
@@ -57,12 +58,6 @@ export default function DiagnosticForm({ onSubmit, loading, onBack }) {
 
     if (!formData.nome.trim()) {
       newErrors.nome = "Informe seu nome para personalizar o diagnóstico.";
-    }
-
-    if (!formData.whatsapp.trim()) {
-      newErrors.whatsapp = "Informe seu WhatsApp para receber o convite depois.";
-    } else if (formData.whatsapp.replace(/\D/g, "").length < 8) {
-      newErrors.whatsapp = "O WhatsApp precisa ter pelo menos 8 números.";
     }
 
     if (!formData.empresa.trim()) {
@@ -75,12 +70,16 @@ export default function DiagnosticForm({ onSubmit, loading, onBack }) {
       newErrors.cidade = "Informe a cidade onde sua empresa atua.";
     }
 
-    if (formData.website?.trim()) {
-      newErrors.formulario = "Não foi possível validar o envio. Atualize a página e tente novamente.";
-    }
-
     if (!formData.segmento.trim()) {
       newErrors.segmento = "Informe o segmento da sua empresa.";
+    }
+
+    if (!formData.principalProduto.trim()) {
+      newErrors.principalProduto = "Informe o principal produto ou serviço da empresa.";
+    }
+
+    if (formData.website?.trim()) {
+      newErrors.formulario = "Não foi possível validar o envio. Atualize a página e tente novamente.";
     }
 
     setErrors(newErrors);
@@ -98,9 +97,7 @@ export default function DiagnosticForm({ onSubmit, loading, onBack }) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-
     if (!validate()) return;
-
     onSubmit(formData);
   };
 
@@ -147,7 +144,7 @@ export default function DiagnosticForm({ onSubmit, loading, onBack }) {
 
           <div className="grid gap-5 md:grid-cols-2">
             {campos.map((campo) => (
-              <label key={campo.id} className={campo.id === "empresa" ? "md:col-span-2" : ""}>
+              <label key={campo.id} className={campo.full ? "md:col-span-2" : ""}>
                 <span className="mb-2 block text-[13px] font-medium text-dark">{campo.label}</span>
                 <input
                   type={campo.type}
@@ -174,7 +171,7 @@ export default function DiagnosticForm({ onSubmit, loading, onBack }) {
             <button
               type="submit"
               disabled={loading}
-              className="inline-flex min-h-11 w-full items-center justify-center rounded-xl bg-primary px-5 py-3 text-[14px] font-semibold text-white transition hover:bg-[#1765CC] disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
+              className="inline-flex min-h-11 w-full items-center justify-center rounded-xl bg-[#4285F4] px-5 py-3 text-[14px] font-semibold text-white transition hover:bg-[#3367D6] disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
             >
               {loading ? "Analisando concorrentes..." : "Iniciar análise"}
               {!loading ? <span className="ml-2" aria-hidden="true">→</span> : null}
