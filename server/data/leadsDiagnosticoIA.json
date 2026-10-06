@@ -1,5 +1,483 @@
 [
   {
+    "nome": "matheus bottaro",
+    "empresa": "Casa do ADS",
+    "cidade": "são paulo",
+    "principalProduto": "Google ADS, AEO e GEO",
+    "perfilGoogle": "https://share.google/B9S5Lk0q3B303luKc",
+    "siteEmpresa": "https://casadoads.com.br/",
+    "tipoDiagnostico": "reputacao",
+    "diagnosticoId": "00d48e3b-cbf8-4777-bcbf-3c0ac94847f5",
+    "dataEnvio": "2026-10-06T16:43:57.190Z",
+    "diagnosticoStatus": "parcial",
+    "notaGeral": 76,
+    "vendedorId": "roberto",
+    "vendedorNome": "Roberto",
+    "diagnosticoResultado": {
+      "status": "parcial",
+      "nivelConfianca": "medio",
+      "empresa": {
+        "nome": "Casa do ADS",
+        "cidade": "são paulo",
+        "siteEmpresa": "https://casadoads.com.br/",
+        "perfilGoogle": "https://share.google/B9S5Lk0q3B303luKc"
+      },
+      "resumoExecutivo": "A Casa do ADS transmite uma base relevante de confiança e autoridade digital, especialmente por ter site ativo, posicionamento claro em Google Ads, IA, AEO/GEO, presença no LinkedIn, conteúdo recorrente, participação em eventos e sinais públicos de volume expressivo de avaliações positivas no Google. A empresa apresenta bons sinais de prova social no próprio site e em diretórios externos, mas a análise deve ser considerada parcial porque o Perfil da Empresa no Google informado por link encurtado não pôde ser auditado diretamente em profundidade nesta pesquisa. Foi encontrada uma página no Reclame Aqui com baixa amostragem: 1 reclamação registrada e ausência de índice de reputação por falta de volume suficiente. Isso não caracteriza reputação negativa consolidada, mas indica oportunidade de monitoramento e resposta pública. No conjunto, a empresa parece bem posicionada e confiável, com autoridade acima da média para uma PME do setor, mas ainda dependente de validação externa mais robusta e organizada fora dos canais próprios.",
+      "notaGeral": 76,
+      "classificacaoGeral": "Empresa bem posicionada e confiável",
+      "dimensoes": {
+        "presencaDigital": {
+          "nota": 84,
+          "classificacao": "Forte",
+          "analise": "A empresa possui site oficial ativo, páginas específicas de serviços e conteúdos recentes sobre Google Ads, IA, AEO, GEO, Perfil da Empresa no Google e reputação. Também há presença identificada no LinkedIn, diretórios locais e páginas de terceiros. A presença digital é clara e coerente com o serviço ofertado, mas poderia ser fortalecida com páginas institucionais mais verificáveis, organização de cases e padronização de endereços encontrados em fontes externas.",
+          "pontosPositivos": [
+            "Site oficial encontrado e ativo.",
+            "Conteúdo recente no blog sobre temas ligados a Google, IA, AEO e reputação digital.",
+            "Página no LinkedIn com descrição institucional, especializações, sede e seguidores.",
+            "Presença em diretórios e mapas, incluindo Waze e PPC4.",
+            "Identificação pública de atuação em São Paulo."
+          ],
+          "gargalos": [
+            "Algumas fontes externas mostram endereços diferentes, como Avenida Paulista, Rua Santa Cruz e filiais em outras cidades, o que pode gerar ruído de consistência.",
+            "Parte relevante da prova social está concentrada no próprio site, exigindo reforço de validação externa.",
+            "O Perfil da Empresa no Google informado não foi auditado diretamente em profundidade via interface completa."
+          ],
+          "melhorias": [
+            "Padronizar NAP: nome, endereço, telefone e site em todos os diretórios e redes sociais.",
+            "Criar uma página institucional robusta de 'Sobre a Casa do ADS' com CNPJ, histórico, equipe, unidades e diferenciais verificáveis.",
+            "Organizar páginas específicas para Google Ads, AEO, GEO, IA e gestão de tráfego com provas, FAQs, metodologia e exemplos de entregáveis.",
+            "Manter o blog com frequência e incluir autoria técnica, data de atualização e referências quando possível."
+          ],
+          "evidencias": [
+            {
+              "descricao": "Site oficial apresenta a empresa como especializada em marketing digital, educação aplicada, Google Partners, tráfego pago, redes sociais e inteligência artificial.",
+              "fonteUrl": "https://casadoads.com.br/"
+            },
+            {
+              "descricao": "LinkedIn informa setor, sede em São Paulo, tamanho da empresa, ano de fundação, especializações e seguidores.",
+              "fonteUrl": "https://br.linkedin.com/company/casa-do-ads"
+            },
+            {
+              "descricao": "Waze lista Casa do ADS em São Paulo com endereço, telefone, site e horário de funcionamento.",
+              "fonteUrl": "https://www.waze.com/live-map/directions/br/sp/casa-do-ads?to=place.ChIJk6bpg5NZzpQRE5w6TbRz0mA"
+            },
+            {
+              "descricao": "PPC4 lista a empresa como agência de marketing digital em São Paulo e aponta avaliação agregada do Google.",
+              "fonteUrl": "https://ppc4.com/digital-marketing/brazil/s-o-paulo/casa-do-ads"
+            }
+          ]
+        },
+        "confiancaPercebida": {
+          "nota": 76,
+          "classificacao": "Boa, com pontos de atenção",
+          "analise": "A confiança percebida é positiva porque há site profissional, posicionamento claro, presença em rede profissional, sinais de Google Partner e grande volume declarado de experiência e clientes. O site usa depoimentos e mensagens comerciais alinhadas ao serviço. O principal ponto de atenção é que algumas afirmações fortes, como número de clientes atendidos, treinados e maior volume de avaliações, aparecem principalmente em canais próprios ou agregadores, exigindo validação independente mais ampla para máxima confiança.",
+          "pontosPositivos": [
+            "Comunicação clara do que a empresa oferece: Google Ads, Meta Ads, Perfil de Empresa, YouTube Ads, Tag Manager, Google Analytics, ChatGPT, AEO e GEO.",
+            "Site apresenta chamadas para diagnóstico, mentorias, gestão de campanhas e imersões.",
+            "LinkedIn reforça atuação e especializações.",
+            "Há menções a Google Partners e histórico de atuação longo."
+          ],
+          "gargalos": [
+            "Algumas promessas e números de autoridade aparecem sem auditoria pública independente diretamente verificável na própria página.",
+            "A existência de uma reclamação no Reclame Aqui exige gestão ativa de reputação, ainda que o volume seja baixo.",
+            "Endereços diferentes em fontes externas podem reduzir percepção de organização para usuários mais criteriosos."
+          ],
+          "melhorias": [
+            "Adicionar no site uma seção de credenciais verificáveis com links para perfis oficiais, certificações, parceiros e políticas de atendimento.",
+            "Publicar cases com contexto, problema, solução, métricas permitidas e autorização do cliente.",
+            "Criar uma página de transparência com CNPJ, razão social, canais de atendimento, SLA e política de suporte.",
+            "Revisar e responder publicamente reclamações e dúvidas em plataformas de terceiros."
+          ],
+          "evidencias": [
+            {
+              "descricao": "Site informa atuação como empresa de marketing digital e educação aplicada, parceira Google Partners, com 15 anos de experiência.",
+              "fonteUrl": "https://casadoads.com.br/"
+            },
+            {
+              "descricao": "Página '15 anos' apresenta ofertas de mentoria, gestão de campanhas, depoimentos e números comerciais como anos de experiência e clientes atendidos.",
+              "fonteUrl": ""
+            },
+            {
+              "descricao": "Reclame Aqui registra perfil da empresa, sem reputação definida por volume insuficiente, com 1 reclamação recebida no período analisado pela plataforma.",
+              "fonteUrl": "https://www.reclameaqui.com.br/empresa/casa-do-ads-solucoes-google/"
+            }
+          ]
+        },
+        "provaSocial": {
+          "nota": 79,
+          "classificacao": "Forte, mas concentrada",
+          "analise": "A prova social é um dos pontos mais fortes encontrados. O site exibe depoimentos atribuídos ao Google via Trustindex e um agregador externo informa 4,9 com 1.088 avaliações do Google em agosto de 2026. Porém, como não foi possível auditar diretamente toda a base do Perfil da Empresa no Google nesta análise, a nota é conservadora. Há também sinais de participação em eventos e documentos de terceiros citando a empresa.",
+          "pontosPositivos": [
+            "Depoimentos visíveis no site, com relatos positivos sobre atendimento, treinamento, mentorias e transformação percebida.",
+            "Agregador externo PPC4 informa avaliação de 4,9 baseada em 1.088 avaliações do Google, com data de referência em agosto de 2026.",
+            "Participação como expositora em evento ligado ao Sebrae foi localizada em PDF público.",
+            "Menções externas em documentos e materiais de terceiros indicam atuação além do site próprio."
+          ],
+          "gargalos": [
+            "Dependência de agregadores e do próprio site para visualizar parte da prova social.",
+            "Ausência, na pesquisa realizada, de página pública estruturada de cases detalhados com métricas e nomes de clientes autorizados.",
+            "Depoimentos aparecem mais como avaliações curtas do que como evidências profundas de resultado."
+          ],
+          "melhorias": [
+            "Criar biblioteca de depoimentos por tipo de serviço: Google Ads, Meta Ads, Perfil da Empresa, AEO/GEO e IA.",
+            "Transformar avaliações positivas em estudos de caso, com autorização e contexto de negócio.",
+            "Inserir prints ou embeds auditáveis de avaliações do Google, mantendo conformidade com políticas das plataformas.",
+            "Destacar prova social por segmento atendido, já que a empresa afirma atender muitos nichos."
+          ],
+          "evidencias": [
+            {
+              "descricao": "Página '15 anos' exibe depoimentos positivos atribuídos a avaliações do Google via Trustindex.",
+              "fonteUrl": ""
+            },
+            {
+              "descricao": "PPC4 informa avaliação 4,9/5 baseada em 1.088 avaliações do Google em 23 de agosto de 2026.",
+              "fonteUrl": "https://ppc4.com/digital-marketing/brazil/s-o-paulo/casa-do-ads"
+            },
+            {
+              "descricao": "Lista de expositores da Feira do Empreendedor 2025 cita CASA DO ADS como expositora no segmento Serviços, eixo Marketing e Vendas.",
+              "fonteUrl": "https://feiradoempreendedor.sebraesp.com.br/wp-content/uploads/lista_expositores_completa_1310-15-32.pdf"
+            }
+          ]
+        },
+        "reputacao": {
+          "nota": 70,
+          "classificacao": "MODERADA",
+          "analise": "A reputação pública encontrada é majoritariamente positiva em termos de avaliações e depoimentos, mas a evidência é parcial. O Reclame Aqui registra baixo volume de reclamações e informa ausência de reputação definida por não haver reclamações avaliadas suficientes. Foi encontrada uma reclamação com título negativo na listagem, mas o próprio resultado indica baixa amostragem e, em uma listagem, aparece como resolvida. Portanto, não há base para classificar a reputação como negativa consolidada; o correto é tratar como reputação moderada, com forte sinal positivo em avaliações e ponto de atenção em atendimento público a reclamações.",
+          "pontosPositivos": [
+            "Grande volume de avaliações positivas indicado por agregador externo.",
+            "Depoimentos positivos no site mencionam equipe, treinamento, atendimento e mentorias.",
+            "Não foi encontrado volume relevante de reclamações públicas que sustente crise de reputação.",
+            "Reclame Aqui indica ausência de reputação definida por amostra insuficiente, não por índice ruim."
+          ],
+          "gargalos": [
+            "Existência de reclamação pública no Reclame Aqui com título negativo exige atenção.",
+            "Perfil no Reclame Aqui aparece como empresa não verificada e sem índice consolidado.",
+            "A ausência de índice no Reclame Aqui limita a leitura defensável da reputação nessa plataforma."
+          ],
+          "melhorias": [
+            "Verificar e completar o perfil no Reclame Aqui, se estrategicamente fizer sentido para o negócio.",
+            "Responder de forma objetiva e pública qualquer reclamação aberta ou futura, demonstrando processo de resolução.",
+            "Criar rotina de monitoramento mensal para Google, Reclame Aqui, redes sociais e menções orgânicas.",
+            "Publicar no site política clara de atendimento, suporte, escopo de entrega e expectativas sobre resultados de mídia paga."
+          ],
+          "evidencias": [
+            {
+              "descricao": "Reclame Aqui informa que a empresa está sem reputação definida por ainda não possuir 10 reclamações avaliadas para cálculo de reputação.",
+              "fonteUrl": "https://www.reclameaqui.com.br/empresa/casa-do-ads-solucoes-google/"
+            },
+            {
+              "descricao": "Listagem de reclamações do Reclame Aqui mostra 1 reclamação ativa com título negativo; a própria plataforma apresenta baixo volume de dados.",
+              "fonteUrl": "https://www.reclameaqui.com.br/empresa/casa-do-ads-solucoes-google/lista-reclamacoes/"
+            },
+            {
+              "descricao": "PPC4 informa avaliação agregada 4,9/5 em Google Reviews, indicando sinal positivo relevante de reputação local.",
+              "fonteUrl": "https://ppc4.com/digital-marketing/brazil/s-o-paulo/casa-do-ads"
+            }
+          ]
+        },
+        "consistenciaDigital": {
+          "nota": 68,
+          "classificacao": "Boa base, com inconsistências",
+          "analise": "A consistência digital é boa no nome da marca, setor e proposta de valor. Site, LinkedIn e fontes externas convergem para marketing digital, Google Ads, tráfego pago e IA. O principal problema é a variação de endereços e unidades encontradas em diferentes fontes, o que pode ser legítimo, mas precisa ser explicado para não parecer desorganização. Também há variação em números e afirmações de experiência em diferentes páginas, como 13 anos, 15 anos, 30 mil e 40 mil pessoas treinadas, o que pede padronização narrativa.",
+          "pontosPositivos": [
+            "Nome da marca e domínio aparecem de forma consistente nas principais fontes encontradas.",
+            "Tema central é coerente: Google Ads, tráfego pago, IA e marketing digital.",
+            "LinkedIn e site reforçam o mesmo posicionamento geral.",
+            "Há presença em São Paulo bem identificada."
+          ],
+          "gargalos": [
+            "Endereços diferentes aparecem em fontes externas, sem explicação clara de sede, filial, escritório ou endereço histórico.",
+            "Números de experiência e pessoas treinadas variam entre páginas, o que pode reduzir precisão percebida.",
+            "Algumas páginas usam linguagem comercial forte que precisa estar alinhada com provas públicas verificáveis."
+          ],
+          "melhorias": [
+            "Criar uma página 'Unidades e atendimento' explicando sede, filiais, endereços ativos e canais oficiais.",
+            "Padronizar números institucionais: anos de mercado, clientes atendidos, alunos treinados, avaliações e países atendidos.",
+            "Atualizar diretórios externos com o mesmo endereço, telefone e descrição curta oficial.",
+            "Inserir dados estruturados no site para Organization, LocalBusiness, Service, Review e FAQ, quando aplicável e em conformidade com políticas."
+          ],
+          "evidencias": [
+            {
+              "descricao": "Site oficial posiciona a empresa como Casa do Ads e lista serviços de Google Ads, Meta Ads, Perfil de Empresa, YouTube Ads, ChatGPT, Tag Manager, Analytics, AEO e GEO.",
+              "fonteUrl": "https://casadoads.com.br/"
+            },
+            {
+              "descricao": "LinkedIn lista sede em São Paulo e outras localidades no Rio de Janeiro e Florianópolis.",
+              "fonteUrl": "https://br.linkedin.com/company/casa-do-ads"
+            },
+            {
+              "descricao": "Waze lista endereço na Avenida Paulista, em São Paulo.",
+              "fonteUrl": "https://www.waze.com/live-map/directions/br/sp/casa-do-ads?to=place.ChIJk6bpg5NZzpQRE5w6TbRz0mA"
+            },
+            {
+              "descricao": "PPC4 lista endereço na Rua Santa Cruz, em São Paulo.",
+              "fonteUrl": "https://ppc4.com/digital-marketing/brazil/s-o-paulo/casa-do-ads"
+            }
+          ]
+        },
+        "autoridadePercebida": {
+          "nota": 80,
+          "classificacao": "ACIMA DA MÉDIA",
+          "analise": "A autoridade percebida é acima da média para uma empresa de marketing digital voltada a PMEs. A Casa do ADS publica conteúdos recentes sobre Google, IA, AEO, GEO e reputação; apresenta posicionamento de Google Partner; tem presença no LinkedIn; aparece em materiais de eventos e documentos externos; e comunica atuação educacional, mentorias e imersões. Ainda não é possível classificá-la como 'REFERÊNCIA' de forma plenamente defensável apenas com as evidências encontradas, porque parte da autoridade vem de canais próprios e seria necessário maior volume de menções editoriais independentes, palestras comprovadas por organizadores, cases auditáveis e presença recorrente em mídia especializada.",
+          "pontosPositivos": [
+            "Conteúdos recentes sobre temas atuais como AEO, GEO, IA e mudanças no Google Search.",
+            "Participação pública como expositora em evento relacionado a empreendedorismo e marketing.",
+            "LinkedIn com seguidores e descrição institucional detalhada.",
+            "Site apresenta oferta educacional, mentorias, gestão de campanhas e imersões.",
+            "Materiais externos citam a Casa do ADS em contexto de marketing, cursos e eventos."
+          ],
+          "gargalos": [
+            "Autoridade forte, mas ainda muito dependente de narrativa própria.",
+            "Poucas menções jornalísticas ou editoriais independentes foram encontradas na pesquisa.",
+            "Cases e resultados de clientes não aparecem organizados de forma robusta e verificável.",
+            "Afirmações de liderança, como maior volume de avaliações, precisam de fonte externa clara para máxima credibilidade."
+          ],
+          "melhorias": [
+            "Publicar cases aprofundados com métricas, contexto e autorização do cliente.",
+            "Buscar menções qualificadas em veículos, podcasts, eventos e entidades setoriais com páginas públicas dos organizadores.",
+            "Criar página de imprensa e eventos com comprovações, fotos, links e materiais apresentados.",
+            "Transformar artigos técnicos em guias completos assinados por especialistas, com referências e atualização periódica."
+          ],
+          "evidencias": [
+            {
+              "descricao": "Blog publica conteúdo sobre Search com IA, AEO/GEO, reputação e Perfil da Empresa no Google.",
+              "fonteUrl": ""
+            },
+            {
+              "descricao": "Página sobre Portugal apresenta fundador como especialista em Google Ads e IA aplicada a negócios e informa atuação no Brasil e Portugal.",
+              "fonteUrl": "https://casadoads.com.br/portugal/"
+            },
+            {
+              "descricao": "Página 'Estrategista Digital' apresenta programação educacional sobre Google Ads, IA, Analytics, Tag Manager, Instagram e Meta Ads.",
+              "fonteUrl": ""
+            },
+            {
+              "descricao": "PDF da Feira do Empreendedor lista CASA DO ADS como expositora em Marketing e Vendas.",
+              "fonteUrl": "https://feiradoempreendedor.sebraesp.com.br/wp-content/uploads/lista_expositores_completa_1310-15-32.pdf"
+            }
+          ]
+        },
+        "potencialIA": {
+          "nota": 74,
+          "classificacao": "Bom potencial, dependente de estruturação",
+          "analise": "O potencial de recomendação por inteligência artificial é bom, porque a empresa possui site indexável, conteúdo temático recente, páginas sobre AEO/GEO, sinais de avaliações, presença em LinkedIn e menções externas. Entretanto, IAs tendem a favorecer entidades bem descritas, consistentes e validadas por múltiplas fontes. As variações de endereço, a dependência de canais próprios e a ausência de muitos cases estruturados limitam a força da recomendação automática. Não é possível prometer que uma IA recomendará a empresa; apenas avaliar que há uma base favorável a ser fortalecida.",
+          "pontosPositivos": [
+            "A empresa produz conteúdo diretamente relacionado a AEO, GEO e IA.",
+            "Há entidade digital identificável: nome, site, LinkedIn, diretórios, avaliações e menções externas.",
+            "O site aborda reputação, avaliações e Perfil da Empresa no Google, temas relevantes para compreensão por mecanismos de resposta.",
+            "A presença em fontes de terceiros ajuda a validar a entidade além do domínio próprio."
+          ],
+          "gargalos": [
+            "Dados institucionais e endereços precisam ser mais consistentes para reduzir ambiguidade algorítmica.",
+            "Faltam cases estruturados em formato facilmente interpretável por buscadores e IAs.",
+            "Autoridade externa ainda pode ser ampliada com fontes independentes e especializadas.",
+            "Parte das provas sociais está em widgets ou agregadores, que podem não ser interpretados plenamente por todos os sistemas."
+          ],
+          "melhorias": [
+            "Implementar dados estruturados Schema.org para organização, serviços, FAQ, artigos e avaliações quando permitido.",
+            "Criar páginas de serviço com perguntas e respostas objetivas para consultas conversacionais, como 'melhor agência de Google Ads para pequenas empresas em São Paulo'.",
+            "Publicar estudos de caso em formato claro: problema, diagnóstico, ações, métricas e depoimento.",
+            "Padronizar descrições institucionais em LinkedIn, Google, diretórios e rodapé do site.",
+            "Conquistar menções externas qualificadas para reforçar autoridade de entidade."
+          ],
+          "evidencias": [
+            {
+              "descricao": "Site possui páginas e artigos sobre AEO, GEO, IA, Google Search e reputação.",
+              "fonteUrl": "https://casadoads.com.br/"
+            },
+            {
+              "descricao": "Artigo sobre AEO explica importância de avaliações, depoimentos, experiências reais e Perfil da Empresa no Google.",
+              "fonteUrl": ""
+            },
+            {
+              "descricao": "Artigo recente aborda por que empresas aparecem no Google, mas podem não ser recomendadas por IAs.",
+              "fonteUrl": ""
+            },
+            {
+              "descricao": "LinkedIn contribui para entidade digital com setor, sede, funcionários e especializações.",
+              "fonteUrl": "https://br.linkedin.com/company/casa-do-ads"
+            }
+          ]
+        }
+      },
+      "oQueEstaoFalando": {
+        "classificacao": "MODERADA",
+        "elogios": [
+          "Depoimentos exibidos no site elogiam equipe, atendimento, treinamento, mentorias e materiais.",
+          "Agregador externo informa avaliação 4,9/5 com mais de mil avaliações no Google.",
+          "Comentários exibidos no site indicam satisfação com aprendizado, acompanhamento e suporte."
+        ],
+        "criticas": [
+          "Foi localizada uma reclamação pública no Reclame Aqui com título negativo relacionado a promessa e entrega.",
+          "O Reclame Aqui mostra ausência de reputação definida e perfil não verificado, o que é mais uma lacuna de validação do que prova de má reputação consolidada."
+        ],
+        "temasRecorrentes": [
+          "Google Ads e gestão de tráfego.",
+          "Treinamentos, mentorias e imersões.",
+          "Inteligência artificial aplicada a marketing.",
+          "Perfil da Empresa no Google e reputação local.",
+          "Atendimento e acompanhamento."
+        ],
+        "percepcaoGeral": "A percepção geral encontrada é positiva, com boa prova social e autoridade comercial. A única crítica pública localizada não tem volume suficiente para caracterizar reputação negativa consolidada, mas deve ser tratada como ponto de atenção operacional e reputacional."
+      },
+      "explicacaoNota": "A nota geral 78 foi atribuída porque a Casa do ADS apresenta presença digital forte, conteúdo recente, posicionamento claro, prova social relevante, presença no LinkedIn e menções externas. A nota não foi maior porque a pesquisa teve limitações para auditar diretamente o Perfil da Empresa no Google, parte dos números de autoridade vem de canais próprios, há variações de endereço em fontes externas, faltam cases públicos mais robustos e existe uma reclamação registrada no Reclame Aqui com baixa amostragem. O conjunto sustenta confiança e autoridade acima da média, mas ainda não uma classificação máxima de referência incontestável.",
+      "pontosPositivos": [
+        "Site oficial ativo, claro e alinhado ao serviço principal.",
+        "Conteúdo recente sobre Google Ads, IA, AEO, GEO e reputação.",
+        "Presença no LinkedIn com seguidores, funcionários e especializações.",
+        "Prova social expressiva indicada por avaliações do Google e depoimentos no site.",
+        "Menções externas em diretórios, documentos e eventos.",
+        "Posicionamento especializado em Google Ads e inteligência artificial para negócios.",
+        "Participação em evento de empreendedorismo/marketing como expositora.",
+        "Comunicação comercial voltada a pequenas e médias empresas, com ofertas claras de mentoria e gestão."
+      ],
+      "gargalos": [
+        "Auditoria direta do Perfil da Empresa no Google foi limitada pelo link informado e pela disponibilidade pública na pesquisa.",
+        "Endereços diferentes aparecem em fontes externas e podem gerar inconsistência de confiança.",
+        "Faltam cases públicos detalhados e verificáveis com métricas de resultado.",
+        "Parte da autoridade é sustentada por canais próprios, com menor volume de validação editorial independente.",
+        "Existe uma reclamação pública no Reclame Aqui e o perfil aparece sem reputação definida por baixa amostragem."
+      ],
+      "planoAcao": {
+        "prioridades": [
+          "Padronizar imediatamente nome, endereço, telefone, site, descrição e unidades oficiais em Google, LinkedIn, diretórios, rodapé do site e materiais comerciais.",
+          "Criar uma área pública de prova social no site com avaliações, depoimentos, cases por segmento, autorização de clientes e links verificáveis.",
+          "Responder e monitorar Reclame Aqui, avaliações Google e menções públicas, tratando reclamações como ativo de confiança e não apenas como suporte.",
+          "Publicar estudos de caso detalhados de Google Ads, Perfil da Empresa, AEO/GEO e IA, com problema, estratégia, execução e indicadores permitidos.",
+          "Fortalecer autoridade externa com participação documentada em eventos, entrevistas, podcasts, artigos convidados, parcerias e páginas públicas de organizadores."
+        ],
+        "site": {
+          "provaSocial": [
+            "Criar uma página 'Resultados e Depoimentos' separando avaliações curtas, depoimentos em vídeo e cases completos.",
+            "Transformar depoimentos já existentes em histórias de cliente com contexto, tipo de serviço contratado e aprendizados, sem prometer resultados universais.",
+            "Adicionar selos, avaliações e widgets de forma auditável e em conformidade com as políticas das plataformas."
+          ],
+          "reputacao": [
+            "Incluir uma página de transparência com razão social, CNPJ, canais oficiais, endereço das unidades, horário de atendimento e política de suporte.",
+            "Explicar com clareza o escopo dos serviços de mentoria, gestão de campanhas e consultoria para reduzir desalinhamento de expectativa.",
+            "Criar FAQ sobre prazos, responsabilidades do cliente, investimento em mídia, acompanhamento e limites de garantia em tráfego pago."
+          ],
+          "autoridade": [
+            "Publicar cases técnicos com estrutura padronizada: cenário inicial, diagnóstico, estratégia, execução, aprendizados e métricas autorizadas.",
+            "Criar uma página 'Eventos, Imersões e Palestras' com registros, fotos, locais, datas e links externos quando disponíveis.",
+            "Assinar artigos técnicos com autores, credenciais e data de atualização para reforçar E-E-A-T e compreensão por IA."
+          ]
+        },
+        "perfilEmpresaGoogle": {
+          "provaSocial": [
+            "Estimular avaliações legítimas após entregas relevantes, sem incentivo indevido e sem direcionar o conteúdo do comentário.",
+            "Responder avaliações positivas citando de forma natural o serviço prestado, quando apropriado, como Google Ads, mentoria, gestão de tráfego ou Perfil da Empresa.",
+            "Adicionar fotos reais de equipe, eventos, salas, imersões e bastidores para reforçar existência operacional."
+          ],
+          "reputacao": [
+            "Responder avaliações negativas ou neutras com postura objetiva, solução proposta e canal de continuidade.",
+            "Manter serviços, horários, endereço, telefone e site sempre atualizados para evitar fricção de confiança.",
+            "Criar rotina de auditoria mensal do Perfil da Empresa no Google para identificar alterações indevidas, dúvidas não respondidas e avaliações recentes."
+          ],
+          "autoridade": [
+            "Usar postagens do Perfil da Empresa para divulgar imersões, conteúdos educacionais, eventos e novidades relevantes.",
+            "Cadastrar serviços detalhados, como Google Ads, Meta Ads, AEO, GEO, Perfil da Empresa, YouTube Ads e Analytics, com descrições consistentes.",
+            "Publicar perguntas e respostas frequentes no próprio perfil, ajudando clientes e mecanismos de busca a entenderem especialidades."
+          ]
+        },
+        "redesSociais": {
+          "provaSocial": [
+            "Publicar depoimentos em vídeo ou carrossel com autorização, conectando a avaliação ao tipo de solução entregue.",
+            "Criar séries de bastidores de imersões, mentorias e atendimentos para mostrar operação real.",
+            "Destacar clientes e segmentos atendidos sem expor dados sensíveis ou prometer resultados garantidos."
+          ],
+          "reputacao": [
+            "Fixar nos perfis informações oficiais de contato, site e canais de suporte para evitar ruído com perfis falsos ou contatos dispersos.",
+            "Monitorar comentários com dúvidas e reclamações, respondendo publicamente quando for útil e levando casos sensíveis para canal adequado.",
+            "Evitar promessas absolutas de resultado em anúncios e conteúdos, reforçando método, diagnóstico e responsabilidade compartilhada."
+          ],
+          "autoridade": [
+            "Publicar análises práticas sobre mudanças no Google Ads, IA, AEO, GEO e comportamento de busca, com exemplos aplicáveis a PMEs.",
+            "Reaproveitar artigos do blog em vídeos curtos, lives e posts educativos assinados por especialistas da empresa.",
+            "Buscar colaborações com Sebrae, associações comerciais, podcasts e eventos de marketing, sempre documentando publicamente as participações."
+          ]
+        }
+      },
+      "fontes": [
+        {
+          "titulo": "https://www.reclameaqui.com.br/empresa/casa-do-ads-solucoes-google/lista-reclamacoes/",
+          "url": "https://www.reclameaqui.com.br/empresa/casa-do-ads-solucoes-google/lista-reclamacoes/"
+        },
+        {
+          "titulo": "https://www.reclameaqui.com.br/empresa/casa-do-ads-solucoes-google/",
+          "url": "https://www.reclameaqui.com.br/empresa/casa-do-ads-solucoes-google/"
+        },
+        {
+          "titulo": "https://www.waze.com/live-map/directions/br/sp/casa-do-ads?to=place.ChIJk6bpg5NZzpQRE5w6TbRz0mA",
+          "url": "https://www.waze.com/live-map/directions/br/sp/casa-do-ads?to=place.ChIJk6bpg5NZzpQRE5w6TbRz0mA"
+        },
+        {
+          "titulo": "https://br.linkedin.com/company/casa-do-ads",
+          "url": "https://br.linkedin.com/company/casa-do-ads"
+        },
+        {
+          "titulo": "https://casadoads.com.br/",
+          "url": "https://casadoads.com.br/"
+        },
+        {
+          "titulo": "https://ppc4.com/digital-marketing/brazil/s-o-paulo/casa-do-ads",
+          "url": "https://ppc4.com/digital-marketing/brazil/s-o-paulo/casa-do-ads"
+        },
+        {
+          "titulo": "https://br.linkedin.com/in/anacmattos",
+          "url": "https://br.linkedin.com/in/anacmattos"
+        },
+        {
+          "titulo": "https://casadoads.com.br/portugal/",
+          "url": "https://casadoads.com.br/portugal/"
+        },
+        {
+          "titulo": "https://www.jusbrasil.com.br/nome/casa-do-ads-solucoes-google/cnpj-PSH4bEBzFRd",
+          "url": "https://www.jusbrasil.com.br/nome/casa-do-ads-solucoes-google/cnpj-PSH4bEBzFRd"
+        },
+        {
+          "titulo": "https://www.benditoguia.com.br/empresa/casa-do-ads-bela-vista-sao-paulo",
+          "url": "https://www.benditoguia.com.br/empresa/casa-do-ads-bela-vista-sao-paulo"
+        },
+        {
+          "titulo": "https://br.linkedin.com/in/liliansouzaoliveira",
+          "url": "https://br.linkedin.com/in/liliansouzaoliveira"
+        },
+        {
+          "titulo": "https://www.infojobs.com.br/availacoes-casa-do-ads__-8449242.aspx?ij=1000350&pn=1&ps=20",
+          "url": "https://www.infojobs.com.br/availacoes-casa-do-ads__-8449242.aspx?ij=1000350&pn=1&ps=20"
+        },
+        {
+          "titulo": "https://feiradoempreendedor.sebraesp.com.br/wp-content/uploads/lista_expositores_completa_1310-15-32.pdf",
+          "url": "https://feiradoempreendedor.sebraesp.com.br/wp-content/uploads/lista_expositores_completa_1310-15-32.pdf"
+        },
+        {
+          "titulo": "https://online.crcsp.org.br/lib/visualizadorHandler.axd?CM=jfLPzPltV83dZ4KULWArUWNLh4xpq2Nsm77IscxQHB0Deao1hmaYc4alrkUypKtZ5CbOdABf%2FYJ3%2FDFFSb%2FZeEwaSvs8lA…",
+          "url": "https://online.crcsp.org.br/lib/visualizadorHandler.axd?CM=jfLPzPltV83dZ4KULWArUWNLh4xpq2Nsm77IscxQHB0Deao1hmaYc4alrkUypKtZ5CbOdABf%2FYJ3%2FDFFSb%2FZeEwaSvs8lAkiY1Yx7qao14o%3D&CP=false&token=031610"
+        },
+        {
+          "titulo": "https://online.crcsp.org.br/lib/visualizadorHandler.axd?CM=jfLPzPltV83dZ4KULWArUWNLh4xpq2Nsm77IscxQHB0Deao1hmaYc4alrkUypKtZ5CbOdABf%2FYJ3%2FDFFSb%2FZeA5vTJZn1q…",
+          "url": "https://online.crcsp.org.br/lib/visualizadorHandler.axd?CM=jfLPzPltV83dZ4KULWArUWNLh4xpq2Nsm77IscxQHB0Deao1hmaYc4alrkUypKtZ5CbOdABf%2FYJ3%2FDFFSb%2FZeA5vTJZn1qRo1pBmm%2BAQ%2Fsk%3D&CP=false&token=013932"
+        }
+      ],
+      "avisos": [
+        "A análise é parcial porque o Perfil da Empresa no Google informado por link encurtado não foi auditado diretamente em profundidade nesta pesquisa.",
+        "Números de avaliações do Google foram considerados a partir de agregador externo e trechos públicos encontrados; idealmente devem ser confirmados diretamente no Perfil da Empresa no Google.",
+        "Afirmações de volume de clientes, pessoas treinadas e liderança regional aparecem principalmente em canais próprios da empresa; foram tratadas como sinais de posicionamento, não como comprovação independente plena.",
+        "A reclamação localizada no Reclame Aqui não permite concluir reputação negativa consolidada, pois a amostra é muito pequena e a própria plataforma indica ausência de reputação definida.",
+        "Não foram atribuídas críticas, elogios ou cases que não tivessem suporte nas fontes encontradas."
+      ],
+      "dataAnalise": "2026-10-06T16:43:57.189Z",
+      "tipoDiagnostico": "reputacao"
+    },
+    "origem": "landing-diagnostico-ia",
+    "limiterKey": "38b7beafd0c9b53676630a47096e9dcf57c086be37e48df5fa813fa9f153246f",
+    "browserLimiterKey": "9226293a5ff2af8c830aa1257c3f0075597bc2162fa21cc5b2aab611e4ce04c9",
+    "clientId": "cfa6b5c8-6a68-448e-91d0-8cddd05ab61d",
+    "ip": "187.21.239.144",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36 Edg/154.0.0.0"
+  },
+  {
     "nome": "Mais Credit",
     "empresa": "Mais Credit",
     "cidade": "Brasil",
