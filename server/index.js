@@ -179,7 +179,6 @@ function sanitizarDiagnosticoPublico(diagnostico = {}) {
     tipoAnalise,
     nivelConfianca,
     pesquisasRealizadas,
-    fontesConsultadas,
     geradoPor,
     observacaoTecnica,
     avisoSimulacao,
@@ -187,6 +186,37 @@ function sanitizarDiagnosticoPublico(diagnostico = {}) {
   } = diagnostico;
 
   return publico;
+}
+
+function clienteQuerStream(req) {
+  return String(req.headers.accept || "").toLowerCase().includes("application/x-ndjson");
+}
+
+function iniciarStream(res) {
+  res.status(200);
+  res.setHeader("Content-Type", "application/x-ndjson; charset=utf-8");
+  res.setHeader("Cache-Control", "no-cache, no-transform");
+  res.setHeader("Connection", "keep-alive");
+  res.setHeader("X-Accel-Buffering", "no");
+  res.flushHeaders?.();
+}
+
+function escreverEventoStream(res, event) {
+  if (res.writableEnded || res.destroyed) return;
+  res.write(`${JSON.stringify(event)}\n`);
+}
+
+function encerrarStreamComErro(res, error, fallback) {
+  if (res.writableEnded || res.destroyed) return;
+  escreverEventoStream(res, {
+    type: "error",
+    code: error?.code || fallback.code,
+    status: error?.status || fallback.status || 500,
+    message: error?.message || fallback.message,
+    bloqueado: Boolean(error?.bloqueado),
+    payload: error?.payload || null
+  });
+  res.end();
 }
 
 function limitarDiagnosticoPorIp(req, res, next) {
@@ -393,11 +423,15 @@ app.get("/api/historico-diagnosticos/:diagnosticoId", exigirVendedorAutenticado,
 });
 
 app.post("/api/diagnostico-reputacao", verificarOrigemDoFormulario, exigirVendedorAutenticado, limitarDiagnosticoPorIp, limitarDiagnosticoDiarioPorIp, async (req, res) => {
+  const stream = clienteQuerStream(req);
+  let streamIniciado = false;
+
   try {
     const validacao = validarFormularioReputacao(req.body);
 
     if (!validacao.isValid) {
       return res.status(400).json({
+        code: "DADOS_INVALIDOS",
         message: "Confira os campos do formulário antes de continuar.",
         errors: validacao.errors
       });
@@ -416,13 +450,29 @@ app.post("/api/diagnostico-reputacao", verificarOrigemDoFormulario, exigirVended
       }
     }
 
+    if (stream) {
+      iniciarStream(res);
+      streamIniciado = true;
+      escreverEventoStream(res, {
+        type: "progress",
+        key: "accepted",
+        label: "Dados validados",
+        detail: "A empresa foi identificada e a leitura começou.",
+        timestamp: new Date().toISOString()
+      });
+    }
+
+    const onProgress = stream
+      ? (event) => escreverEventoStream(res, { type: "progress", ...event })
+      : undefined;
+
     console.log("[reputacao] diagnóstico iniciado", {
       empresa: validacao.data.empresa,
       cidade: validacao.data.cidade,
       tipoDiagnostico: "reputacao"
     });
 
-    const diagnostico = await gerarDiagnosticoReputacao(validacao.data);
+    const diagnostico = await gerarDiagnosticoReputacao(validacao.data, { onProgress });
 
     const lead = {
       ...validacao.data,
@@ -442,6 +492,13 @@ app.post("/api/diagnostico-reputacao", verificarOrigemDoFormulario, exigirVended
       userAgent: req.headers["user-agent"] || ""
     };
 
+    onProgress?.({
+      key: "saving",
+      label: "Salvando o diagnóstico",
+      detail: "Registrando o resultado no histórico do vendedor.",
+      timestamp: new Date().toISOString()
+    });
+
     await salvarLead(lead);
     const { diagnosticoResultado: _resultadoNaoEnviado, ...leadWebhook } = lead;
     enviarLeadParaWebhook(leadWebhook).catch((error) => {
@@ -454,32 +511,53 @@ app.post("/api/diagnostico-reputacao", verificarOrigemDoFormulario, exigirVended
       notaGeral: diagnostico.notaGeral
     });
 
+    if (stream) {
+      escreverEventoStream(res, {
+        type: "progress",
+        key: "completed",
+        label: "Leitura concluída",
+        detail: "O resultado está pronto para ser revelado.",
+        timestamp: new Date().toISOString()
+      });
+      escreverEventoStream(res, { type: "result", diagnostico, diagnosticoId: lead.diagnosticoId });
+      return res.end();
+    }
+
+    res.setHeader("X-Diagnostico-Id", lead.diagnosticoId);
     return res.json(diagnostico);
   } catch (error) {
     console.error("[reputacao] erro no endpoint:", error.message);
 
-    if (error.code === "PESQUISA_INDISPONIVEL") {
-      return res.status(503).json({
-        code: "PESQUISA_INDISPONIVEL",
-        message:
-          "A pesquisa pública necessária para avaliar a reputação não está disponível neste momento. Nenhuma nota fictícia foi gerada. Tente novamente mais tarde."
-      });
+    const resposta = error.code === "PESQUISA_INDISPONIVEL"
+      ? {
+          code: "PESQUISA_INDISPONIVEL",
+          status: 503,
+          message: "A pesquisa pública necessária para avaliar a reputação não está disponível neste momento. Tente novamente mais tarde."
+        }
+      : {
+          code: error.code || "ERRO_PESQUISA_REPUTACAO",
+          status: 502,
+          message: error.message || "Não foi possível concluir uma avaliação confiável da reputação neste momento."
+        };
+
+    if (streamIniciado) {
+      return encerrarStreamComErro(res, error, resposta);
     }
 
-    return res.status(502).json({
-      code: "ERRO_PESQUISA_REPUTACAO",
-      message:
-        "Não foi possível concluir uma avaliação confiável da reputação neste momento. Nenhuma análise fictícia foi exibida."
-    });
+    return res.status(resposta.status).json({ code: resposta.code, message: resposta.message });
   }
 });
 
 app.post("/api/diagnostico-ia", verificarOrigemDoFormulario, exigirVendedorAutenticado, limitarDiagnosticoPorIp, limitarDiagnosticoDiarioPorIp, async (req, res) => {
+  const stream = clienteQuerStream(req);
+  let streamIniciado = false;
+
   try {
     const validacao = validarFormularioDiagnostico(req.body);
 
     if (!validacao.isValid) {
       return res.status(400).json({
+        code: "DADOS_INVALIDOS",
         message: "Confira os campos do formulário antes de continuar.",
         errors: validacao.errors
       });
@@ -498,7 +576,23 @@ app.post("/api/diagnostico-ia", verificarOrigemDoFormulario, exigirVendedorAuten
       }
     }
 
-    const diagnostico = await gerarDiagnosticoComIA(validacao.data);
+    if (stream) {
+      iniciarStream(res);
+      streamIniciado = true;
+      escreverEventoStream(res, {
+        type: "progress",
+        key: "accepted",
+        label: "Dados validados",
+        detail: "A empresa foi identificada e a leitura começou.",
+        timestamp: new Date().toISOString()
+      });
+    }
+
+    const onProgress = stream
+      ? (event) => escreverEventoStream(res, { type: "progress", ...event })
+      : undefined;
+
+    const diagnostico = await gerarDiagnosticoComIA(validacao.data, { onProgress });
     const diagnosticoPublico = sanitizarDiagnosticoPublico(diagnostico);
 
     const lead = {
@@ -518,18 +612,46 @@ app.post("/api/diagnostico-ia", verificarOrigemDoFormulario, exigirVendedorAuten
       userAgent: req.headers["user-agent"] || ""
     };
 
+    onProgress?.({
+      key: "saving",
+      label: "Salvando o diagnóstico",
+      detail: "Registrando o resultado no histórico do vendedor.",
+      timestamp: new Date().toISOString()
+    });
+
     await salvarLead(lead);
     const { diagnosticoResultado: _resultadoNaoEnviado, ...leadWebhook } = lead;
     enviarLeadParaWebhook(leadWebhook).catch((error) => {
       console.error("Falha assíncrona no webhook:", error.message);
     });
 
+    if (stream) {
+      escreverEventoStream(res, {
+        type: "progress",
+        key: "completed",
+        label: "Leitura concluída",
+        detail: "O resultado está pronto para ser revelado.",
+        timestamp: new Date().toISOString()
+      });
+      escreverEventoStream(res, { type: "result", diagnostico: diagnosticoPublico, diagnosticoId: lead.diagnosticoId });
+      return res.end();
+    }
+
+    res.setHeader("X-Diagnostico-Id", lead.diagnosticoId);
     return res.json(diagnosticoPublico);
   } catch (error) {
     console.error("Erro ao gerar diagnóstico:", error.message);
-    return res.status(500).json({
-      message: "Não foi possível gerar o diagnóstico neste momento. Tente novamente em alguns instantes."
-    });
+    const resposta = {
+      code: error.code || "ERRO_DIAGNOSTICO",
+      status: error.status || 500,
+      message: error.message || "Não foi possível gerar o diagnóstico neste momento. Tente novamente em alguns instantes."
+    };
+
+    if (streamIniciado) {
+      return encerrarStreamComErro(res, error, resposta);
+    }
+
+    return res.status(resposta.status).json({ code: resposta.code, message: resposta.message });
   }
 });
 

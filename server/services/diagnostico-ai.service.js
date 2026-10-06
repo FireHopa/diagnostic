@@ -43,15 +43,35 @@ function temChaveOpenAIValida() {
   return true;
 }
 
-export async function gerarDiagnosticoComIA(formData) {
+function emitirProgresso(onProgress, event) {
+  if (typeof onProgress !== "function") return;
+  try {
+    onProgress({ ...event, timestamp: new Date().toISOString() });
+  } catch (error) {
+    console.warn("[diagnostico] falha ao emitir progresso:", error?.message || error);
+  }
+}
+
+export async function gerarDiagnosticoComIA(formData, options = {}) {
+  const { onProgress } = options;
+  emitirProgresso(onProgress, {
+    key: "foundation",
+    label: "Preparando o contexto da empresa",
+    detail: "Organizando empresa, nicho, cidade e oferta antes da pesquisa pública."
+  });
   const diagnosticoBase = gerarDiagnostico(formData);
 
   if (!temChaveOpenAIValida()) {
+    emitirProgresso(onProgress, {
+      key: "synthesis",
+      label: "Montando uma leitura inicial",
+      detail: "A pesquisa pública avançada não está disponível; preparando a leitura local."
+    });
     return completarDiagnosticoMock(formData, diagnosticoBase);
   }
 
   try {
-    const diagnosticoIA = await gerarDiagnosticoComOpenAI(formData, diagnosticoBase);
+    const diagnosticoIA = await gerarDiagnosticoComOpenAI(formData, diagnosticoBase, { onProgress });
 
     return {
       ...diagnosticoIA,

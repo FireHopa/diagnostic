@@ -1,18 +1,26 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
+import { flushSync } from "react-dom";
 import Hero from "./components/Hero.jsx";
 import DiagnosticSelector from "./components/DiagnosticSelector.jsx";
 import DiagnosticForm from "./components/DiagnosticForm.jsx";
 import DiagnosticResult from "./components/DiagnosticResult.jsx";
 import ReputationForm from "./components/ReputationForm.jsx";
 import ReputationResult from "./components/ReputationResult.jsx";
+import SimplifiedResult from "./components/SimplifiedResult.jsx";
+import DeliveryModeSwitch from "./components/DeliveryModeSwitch.jsx";
 import InfoSection from "./components/InfoSection.jsx";
 import Footer from "./components/Footer.jsx";
 import Header from "./components/Header.jsx";
 import VendedorAccessGate from "./components/VendedorAccessGate.jsx";
 import VendedorHistory from "./components/VendedorHistory.jsx";
-import AiBrandLogos from "./components/AiBrandLogos.jsx";
+import AnalysisExperience from "./components/AnalysisExperience.jsx";
+import ResultReveal from "./components/ResultReveal.jsx";
+import LastDiagnosticCard from "./components/LastDiagnosticCard.jsx";
+import UxNotice from "./components/UxNotice.jsx";
+import NextStepJourney from "./components/NextStepJourney.jsx";
 import { gerarDiagnostico, gerarDiagnosticoViaApi } from "./utils/diagnostico.js";
 import { gerarReputacaoViaApi } from "./utils/reputacao.js";
+import { montarPayloadDiagnostico } from "./utils/payload.js";
 import {
   enviarLeadParaWebhook,
   marcarDiagnosticoSolicitadoLocal,
@@ -27,27 +35,68 @@ import {
   obterSessaoVendedor,
   validarSessaoAtual
 } from "./utils/vendedor.js";
+import { carregarUltimoDiagnostico, salvarUltimoDiagnostico } from "./utils/uxPersistence.js";
 
 const aguardar = (ms) => new Promise((resolve) => window.setTimeout(resolve, ms));
 
-const loadingStepsPorTipo = {
-  recomendacao_ia: [
-    "Identificando quem aparece com mais força no seu nicho e na sua cidade...",
-    "Comparando sinais de autoridade, reputação e clareza digital...",
-    "Organizando os motivos que podem fazer concorrentes aparecerem antes...",
-    "Mapeando as perguntas que seus clientes provavelmente fazem às Inteligências Artificiais...",
-    "Preparando os 4Q's do seu diagnóstico...",
-    "Finalizando prioridades de conteúdo e próximos passos..."
-  ],
-  reputacao: [
-    "Localizando a presença digital da empresa...",
-    "Analisando avaliações e sinais de confiança...",
-    "Investigando o que clientes e outras fontes estão falando...",
-    "Analisando prova social e autoridade digital...",
-    "Avaliando os sinais encontrados por mecanismos de busca e Inteligência Artificial...",
-    "Organizando o plano de ação de autoridade de reputação..."
-  ]
+const progressSteps = {
+  recomendacao_ia: {
+    accepted: 0,
+    foundation: 0,
+    web_search: 1,
+    interpretation: 2,
+    synthesis: 3,
+    saving: 4,
+    completed: 4
+  },
+  reputacao: {
+    accepted: 0,
+    google_profile: 1,
+    google_ready: 1,
+    web_search: 2,
+    interpretation: 3,
+    synthesis: 3,
+    saving: 4,
+    completed: 4
+  }
 };
+
+function executarViewTransition(update) {
+  const reduced = window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches;
+  if (!document.startViewTransition || reduced) {
+    flushSync(update);
+    return null;
+  }
+  return document.startViewTransition(() => flushSync(update));
+}
+
+function avisoParaErro(error, tipo) {
+  if (error?.code === "DIAGNOSTICO_JA_SOLICITADO" || error?.bloqueado) {
+    return { kind: "info", title: "Este diagnóstico já existe.", message: error.message || "Abra o histórico para consultar a análise anterior." };
+  }
+  if (error?.code === "DADOS_INVALIDOS") {
+    const detalhes = Object.values(error?.errors || {}).filter(Boolean).join(" ");
+    return {
+      kind: "warning",
+      title: "Alguns dados precisam ser corrigidos.",
+      message: detalhes || error.message || "Revise os campos antes de tentar novamente."
+    };
+  }
+  if (String(error?.code || "").startsWith("TIMEOUT")) {
+    return { kind: "warning", title: "A leitura demorou mais do que o limite.", message: error.message, detail: "Os dados preenchidos foram preservados; você pode tentar novamente sem refazer o formulário." };
+  }
+  if (error?.code === "PESQUISA_INDISPONIVEL") {
+    return { kind: "warning", title: "A pesquisa pública está indisponível.", message: error.message, detail: "Nenhuma nota fictícia será mostrada enquanto a fonte necessária estiver indisponível." };
+  }
+  if (error instanceof TypeError) {
+    return { kind: "error", title: "O navegador perdeu contato com o servidor.", message: "Verifique a conexão e tente novamente.", detail: "Os dados do formulário continuam salvos nesta tela." };
+  }
+  return {
+    kind: tipo === "reputacao" ? "warning" : "error",
+    title: tipo === "reputacao" ? "Não foi possível fechar uma leitura confiável." : "A análise foi interrompida.",
+    message: error?.message || "Tente novamente em alguns instantes."
+  };
+}
 
 export default function App() {
   const sessaoInicial = obterSessaoVendedor();
@@ -62,15 +111,21 @@ export default function App() {
   const [contextoResultado, setContextoResultado] = useState(null);
 
   const [tipoDiagnostico, setTipoDiagnostico] = useState(null);
+  const [modoEntrega, setModoEntrega] = useState("completo");
   const [loading, setLoading] = useState(false);
   const [diagnostico, setDiagnostico] = useState(null);
   const [ctaMessage, setCtaMessage] = useState("");
   const [apiNotice, setApiNotice] = useState("");
   const [loadingStep, setLoadingStep] = useState(0);
+  const [analysisProgress, setAnalysisProgress] = useState(null);
   const [elapsedSeconds, setElapsedSeconds] = useState(0);
+  const [revealPending, setRevealPending] = useState(false);
+  const [lastSnapshot, setLastSnapshot] = useState(null);
+  const [lastAttemptPayload, setLastAttemptPayload] = useState(null);
+  const [formDrafts, setFormDrafts] = useState({ recomendacao_ia: null, reputacao: null });
+  const [nextStepOpen, setNextStepOpen] = useState(false);
   const resultRef = useRef(null);
-
-  const loadingSteps = loadingStepsPorTipo[tipoDiagnostico] || loadingStepsPorTipo.recomendacao_ia;
+  const analysisRef = useRef(null);
 
   useEffect(() => {
     let active = true;
@@ -100,24 +155,60 @@ export default function App() {
   }, []);
 
   useEffect(() => {
+    const vendedorId = sessaoVendedor?.vendedor?.id;
+    setLastSnapshot(vendedorId ? carregarUltimoDiagnostico(vendedorId) : null);
+  }, [sessaoVendedor?.vendedor?.id]);
+
+  useEffect(() => {
     if (!loading) return undefined;
 
-    setLoadingStep(0);
     setElapsedSeconds(0);
-
-    const stepTimer = window.setInterval(() => {
-      setLoadingStep((current) => Math.min(current + 1, loadingSteps.length - 1));
-    }, 9000);
-
     const secondsTimer = window.setInterval(() => {
       setElapsedSeconds((current) => current + 1);
     }, 1000);
 
     return () => {
-      window.clearInterval(stepTimer);
       window.clearInterval(secondsTimer);
     };
-  }, [loading, tipoDiagnostico, loadingSteps.length]);
+  }, [loading]);
+
+  useEffect(() => {
+    if (!diagnostico || revealPending) return undefined;
+    const root = resultRef.current;
+    if (!root) return undefined;
+
+    const targets = Array.from(root.querySelectorAll("section, article")).filter((node) => !node.classList.contains("result-reveal"));
+    const reduced = window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches;
+    if (reduced || !("IntersectionObserver" in window)) {
+      targets.forEach((node) => node.classList.add("motion-reveal", "is-visible"));
+      return undefined;
+    }
+
+    targets.forEach((node) => node.classList.add("motion-reveal"));
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add("is-visible");
+        observer.unobserve(entry.target);
+      });
+    }, { threshold: 0.1, rootMargin: "0px 0px -8% 0px" });
+    targets.forEach((node) => observer.observe(node));
+    return () => observer.disconnect();
+  }, [diagnostico, revealPending, modoEntrega]);
+
+  useEffect(() => {
+    if (!diagnostico) {
+      document.title = "Diagnóstico de Presença na IA";
+      return;
+    }
+    const empresa = contextoResultado?.empresa || diagnostico?.empresa?.nome || "Empresa";
+    const nota = Number.isFinite(diagnostico?.notaGeral) ? `${diagnostico.notaGeral}/100 — ` : "Diagnóstico — ";
+    document.title = `${nota}${empresa}`;
+  }, [diagnostico, contextoResultado]);
+
+  const handleRevealComplete = useCallback(() => {
+    executarViewTransition(() => setRevealPending(false));
+  }, []);
 
   const handleLogin = async (codigo) => {
     const sessao = await loginVendedor(codigo);
@@ -135,10 +226,16 @@ export default function App() {
     setHistoryItems([]);
     setHistoryError("");
     setTipoDiagnostico(null);
+    setModoEntrega("completo");
     setDiagnostico(null);
     setContextoResultado(null);
     setCtaMessage("");
     setApiNotice("");
+    setRevealPending(false);
+    setLastSnapshot(null);
+    setLastAttemptPayload(null);
+    setAnalysisProgress(null);
+    setNextStepOpen(false);
     setAccessNotice("");
   };
 
@@ -148,20 +245,37 @@ export default function App() {
     setHistoryOpen(false);
     setHistoryItems([]);
     setTipoDiagnostico(null);
+    setModoEntrega("completo");
     setDiagnostico(null);
     setContextoResultado(null);
     setApiNotice("");
+    setRevealPending(false);
+    setLastSnapshot(null);
+    setLastAttemptPayload(null);
+    setAnalysisProgress(null);
+    setNextStepOpen(false);
     setAccessNotice(message || "Sua sessão expirou. Digite o código do vendedor novamente.");
   };
 
-  const selecionarDiagnostico = (tipo) => {
+  const selecionarDiagnostico = (tipo, sourceNode) => {
     if (!sessaoVendedor) return;
-    setHistoryOpen(false);
-    setTipoDiagnostico(tipo);
-    setDiagnostico(null);
-    setContextoResultado(null);
-    setCtaMessage("");
-    setApiNotice("");
+    if (sourceNode) sourceNode.style.viewTransitionName = "diagnostic-stage";
+
+    const transition = executarViewTransition(() => {
+      setHistoryOpen(false);
+      setTipoDiagnostico(tipo);
+      setDiagnostico(null);
+      setContextoResultado(null);
+      setCtaMessage("");
+      setApiNotice("");
+      setRevealPending(false);
+      setAnalysisProgress(null);
+      setNextStepOpen(false);
+    });
+
+    transition?.finished?.finally(() => {
+      if (sourceNode) sourceNode.style.removeProperty("view-transition-name");
+    });
 
     window.setTimeout(() => {
       document.getElementById("diagnostico")?.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -176,6 +290,9 @@ export default function App() {
     setContextoResultado(null);
     setCtaMessage("");
     setApiNotice("");
+    setRevealPending(false);
+    setAnalysisProgress(null);
+    setNextStepOpen(false);
 
     window.setTimeout(() => {
       document.getElementById("diagnosticos")?.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -209,6 +326,8 @@ export default function App() {
     setContextoResultado(null);
     setCtaMessage("");
     setApiNotice("");
+    setRevealPending(false);
+    setNextStepOpen(false);
     await carregarHistorico();
   };
 
@@ -230,6 +349,8 @@ export default function App() {
       setHistoryOpen(false);
       setCtaMessage("");
       setApiNotice("");
+      setRevealPending(false);
+      setNextStepOpen(false);
 
       window.setTimeout(() => {
         resultRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -245,6 +366,27 @@ export default function App() {
     }
   };
 
+  const abrirUltimoDiagnostico = () => {
+    if (!lastSnapshot?.diagnostico || !lastSnapshot?.contexto) return;
+    setHistoryOpen(false);
+    setTipoDiagnostico(lastSnapshot.tipo === "reputacao" ? "reputacao" : "recomendacao_ia");
+    setModoEntrega(lastSnapshot.modoEntrega === "simplificado" ? "simplificado" : "completo");
+    setContextoResultado(lastSnapshot.contexto);
+    setDiagnostico(lastSnapshot.diagnostico);
+    setApiNotice("");
+    setCtaMessage("");
+    setRevealPending(false);
+    setNextStepOpen(false);
+    window.setTimeout(() => resultRef.current?.scrollIntoView({ behavior: "smooth", block: "start" }), 80);
+  };
+
+  const handleDraftChange = useCallback((tipo, data) => {
+    setFormDrafts((current) => ({ ...current, [tipo]: data }));
+  }, []);
+
+  const handleRecommendationDraft = useCallback((data) => handleDraftChange("recomendacao_ia", data), [handleDraftChange]);
+  const handleReputationDraft = useCallback((data) => handleDraftChange("reputacao", data), [handleDraftChange]);
+
   const handleDiagnosticSubmit = async (formData) => {
     if (!sessaoVendedor?.token) {
       expirarSessao("Digite o código do vendedor antes de iniciar uma análise.");
@@ -252,27 +394,65 @@ export default function App() {
     }
 
     const tipoAtual = formData.tipoDiagnostico === "reputacao" ? "reputacao" : "recomendacao_ia";
-    const payload = { ...formData, tipoDiagnostico: tipoAtual };
-    setContextoResultado({
+    const payload = montarPayloadDiagnostico(formData, tipoAtual);
+    const contextoAtual = {
       empresa: payload.empresa?.trim() || "",
       cidade: payload.cidade?.trim() || "",
       segmento: payload.segmento?.trim() || "",
       principalProduto: payload.principalProduto?.trim() || "",
       tipoDiagnostico: tipoAtual
+    };
+
+    setLastAttemptPayload(payload);
+    setFormDrafts((current) => ({ ...current, [tipoAtual]: payload }));
+    setLoadingStep(0);
+    setAnalysisProgress({
+      key: "accepted",
+      label: "Preparando a conexão com o diagnóstico",
+      detail: "Enviando os dados validados para o backend."
     });
-    setDiagnostico(null);
-    setCtaMessage("");
-    setApiNotice("");
-    setLoading(true);
+
+    executarViewTransition(() => {
+      setContextoResultado(contextoAtual);
+      setDiagnostico(null);
+      setCtaMessage("");
+      setApiNotice("");
+      setRevealPending(false);
+      setNextStepOpen(false);
+      setLoading(true);
+    });
+
+    window.setTimeout(() => analysisRef.current?.scrollIntoView({ behavior: "smooth", block: "start" }), 80);
+
+    let completed = false;
+
+    const onProgress = (event) => {
+      setAnalysisProgress(event);
+      const next = progressSteps[tipoAtual]?.[event.key];
+      if (Number.isFinite(next)) setLoadingStep(next);
+    };
+
+    const finalizarComResultado = (resultado) => {
+      executarViewTransition(() => {
+        setDiagnostico(resultado);
+        setRevealPending(true);
+        setLoading(false);
+      });
+    };
 
     try {
       const clientId = obterClientId();
-      const options = { timeoutMs: 300000, clientId, token: sessaoVendedor.token };
+      const options = {
+        timeoutMs: 300000,
+        clientId,
+        token: sessaoVendedor.token,
+        onProgress
+      };
       const chamada = tipoAtual === "reputacao"
         ? gerarReputacaoViaApi(payload, options)
         : gerarDiagnosticoViaApi(payload, options);
 
-      const [resultado] = await Promise.all([chamada, aguardar(2000)]);
+      const [resultado] = await Promise.all([chamada, aguardar(1200)]);
 
       const lead = {
         nome: payload.nome.trim(),
@@ -293,30 +473,36 @@ export default function App() {
       salvarLeadNoLocalStorage(lead);
       marcarDiagnosticoSolicitadoLocal(payload, lead);
       enviarLeadParaWebhook(lead);
-      setDiagnostico(resultado);
+
+      const snapshot = { tipo: tipoAtual, modoEntrega, diagnostico: resultado, contexto: contextoAtual };
+      salvarUltimoDiagnostico(sessaoVendedor.vendedor.id, snapshot);
+      setLastSnapshot({ ...snapshot, savedAt: new Date().toISOString() });
+      completed = true;
+      finalizarComResultado(resultado);
     } catch (error) {
       if (error.status === 401 || error.code === "SESSAO_VENDEDOR_NECESSARIA") {
+        setLoading(false);
         expirarSessao(error.message);
         return;
       }
 
       if (error.code === "DIAGNOSTICO_JA_SOLICITADO" || error.bloqueado) {
-        setApiNotice(error.message || "Este diagnóstico já foi solicitado anteriormente por este vendedor.");
+        setApiNotice(avisoParaErro(error, tipoAtual));
+        setLoading(false);
         return;
       }
 
       console.warn("Não foi possível concluir a análise completa agora.", error);
 
       if (tipoAtual === "reputacao") {
-        setApiNotice(
-          error.message ||
-            "Não foi possível realizar uma avaliação confiável da reputação neste momento. Nenhuma nota fictícia foi gerada."
-        );
+        setApiNotice(avisoParaErro(error, tipoAtual));
+        setLoading(false);
         return;
       }
 
-      // Mantém o fallback legado somente para uma sessão de vendedor ainda válida.
-      await aguardar(1200);
+      // O diagnóstico de recomendação mantém o fallback legado, mas deixa claro
+      // quando a pesquisa pública real não pôde ser concluída.
+      await aguardar(700);
       const resultadoLocal = gerarDiagnostico(payload);
       const lead = {
         nome: payload.nome.trim(),
@@ -334,27 +520,43 @@ export default function App() {
       salvarLeadNoLocalStorage(lead);
       marcarDiagnosticoSolicitadoLocal(payload, lead);
       enviarLeadParaWebhook(lead);
-      setApiNotice(
-        "A análise completa levou mais tempo que o esperado. Exibimos uma prévia inicial. Como esta prévia foi gerada localmente, ela não entra no histórico do servidor."
-      );
-      setDiagnostico(resultadoLocal);
-    } finally {
-      setLoading(false);
+      setApiNotice({
+        kind: "info",
+        title: "Leitura inicial exibida.",
+        message: "A pesquisa pública completa não fechou, então o sistema preservou a experiência com uma prévia local.",
+        detail: "Esta prévia não substitui o diagnóstico salvo no histórico do servidor."
+      });
 
-      window.setTimeout(() => {
-        resultRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
-      }, 100);
+      const snapshot = { tipo: tipoAtual, modoEntrega, diagnostico: resultadoLocal, contexto: contextoAtual };
+      salvarUltimoDiagnostico(sessaoVendedor.vendedor.id, snapshot);
+      setLastSnapshot({ ...snapshot, savedAt: new Date().toISOString() });
+      completed = true;
+      finalizarComResultado(resultadoLocal);
+    } finally {
+      if (!completed) setLoading(false);
+
+      if (completed) {
+        window.setTimeout(() => {
+          resultRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+        }, 120);
+      }
     }
   };
 
-  const handleCtaClick = () => {
-    const message = "Solicitação registrada com sucesso. O vendedor responsável pode dar continuidade a partir deste diagnóstico.";
-    setCtaMessage(message);
-    window.alert(message);
+  const handleRetry = () => {
+    if (!lastAttemptPayload || loading) return;
+    setApiNotice("");
+    handleDiagnosticSubmit(lastAttemptPayload);
   };
 
-  const loadingMessage = loadingSteps[loadingStep] || loadingSteps[0];
-  const showDelayNotice = elapsedSeconds >= 25;
+  const handleCtaClick = () => {
+    setCtaMessage("");
+    setNextStepOpen(true);
+    window.setTimeout(() => {
+      document.getElementById("proximo-passo")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 80);
+  };
+
   const autenticado = !checkingSession && Boolean(sessaoVendedor?.token && sessaoVendedor?.vendedor);
 
   return (
@@ -384,89 +586,113 @@ export default function App() {
         />
       ) : (
         <>
+          {!tipoDiagnostico && lastSnapshot ? (
+            <LastDiagnosticCard snapshot={lastSnapshot} onOpen={abrirUltimoDiagnostico} />
+          ) : null}
+
           {!tipoDiagnostico ? (
             <DiagnosticSelector onSelect={selecionarDiagnostico} disabled={loading} />
           ) : null}
 
-          {tipoDiagnostico === "recomendacao_ia" ? (
-            <DiagnosticForm onSubmit={handleDiagnosticSubmit} loading={loading} onBack={voltarParaSelecao} />
+          {tipoDiagnostico && !diagnostico && !loading ? (
+            <DeliveryModeSwitch
+              value={modoEntrega}
+              onChange={setModoEntrega}
+              disabled={loading}
+            />
           ) : null}
 
-          {tipoDiagnostico === "reputacao" ? (
-            <ReputationForm onSubmit={handleDiagnosticSubmit} loading={loading} onBack={voltarParaSelecao} />
+          {tipoDiagnostico === "recomendacao_ia" && !loading && !diagnostico ? (
+            <DiagnosticForm
+              onSubmit={handleDiagnosticSubmit}
+              loading={loading}
+              onBack={voltarParaSelecao}
+              initialData={formDrafts.recomendacao_ia}
+              onDraftChange={handleRecommendationDraft}
+            />
+          ) : null}
+
+          {tipoDiagnostico === "reputacao" && !loading && !diagnostico ? (
+            <ReputationForm
+              onSubmit={handleDiagnosticSubmit}
+              loading={loading}
+              onBack={voltarParaSelecao}
+              initialData={formDrafts.reputacao}
+              onDraftChange={handleReputationDraft}
+            />
           ) : null}
 
           {loading ? (
-            <section className="px-4 py-10 md:px-6 md:py-12">
-              <div className="mx-auto max-w-[720px] rounded-2xl border border-line bg-white p-5 md:p-6">
-                <div className="flex items-center gap-3">
-                  <AiBrandLogos className="shrink-0" />
-                  <div>
-                    <p className="text-[15px] font-semibold text-dark">Analisando sua empresa</p>
-                    <p className="mt-0.5 text-[12px] text-gray-400">A IA está organizando os sinais encontrados</p>
-                  </div>
-                </div>
-
-                <div className="mt-6 divide-y divide-line border-y border-line">
-                  {loadingSteps.map((step, index) => {
-                    const completed = index < loadingStep;
-                    const active = index === loadingStep;
-                    return (
-                      <div key={step} className="flex gap-3 py-3.5">
-                        <span
-                          className={`mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-[10px] font-semibold ${
-                            completed
-                              ? "bg-[#E6F4EA] text-[#137333]"
-                              : active
-                                ? "bg-blue-50 text-primary"
-                                : "bg-surface text-gray-400"
-                          }`}
-                        >
-                          {completed ? "✓" : active ? "•" : "○"}
-                        </span>
-                        <p className={`text-[13px] leading-5 ${active ? "font-medium text-dark" : completed ? "text-gray-500" : "text-gray-400"}`}>
-                          {step}
-                        </p>
-                      </div>
-                    );
-                  })}
-                </div>
-
-                <div className="mt-5 flex items-center justify-between gap-4 text-[12px] text-gray-400">
-                  <span>{loadingMessage}</span>
-                  <span className="shrink-0 font-medium text-gray-500">{elapsedSeconds}s</span>
-                </div>
-
-                {showDelayNotice ? (
-                  <div className="mt-5 rounded-xl border border-[#F3D7A3] bg-[#FEF7E0] p-4 text-[13px] font-medium leading-5 text-[#8A4D00]">
-                    {tipoDiagnostico === "reputacao"
-                      ? "A análise pode levar alguns segundos porque estamos cruzando fontes públicas antes de atribuir qualquer nota. Não feche a página."
-                      : "A análise pode levar alguns segundos porque estamos comparando sinais de autoridade e concorrência antes de entregar o resultado. Não feche a página."}
-                  </div>
-                ) : null}
-              </div>
-            </section>
+            <div ref={analysisRef}>
+              <AnalysisExperience
+                tipo={tipoDiagnostico}
+                contexto={contextoResultado}
+                activeStep={loadingStep}
+                elapsedSeconds={elapsedSeconds}
+                progressEvent={analysisProgress}
+              />
+            </div>
           ) : null}
 
-          {tipoDiagnostico === "recomendacao_ia" ? <InfoSection /> : null}
+          {tipoDiagnostico === "recomendacao_ia" && modoEntrega === "completo" && !loading && !diagnostico ? <InfoSection /> : null}
 
-          {apiNotice ? (
-            <section className="px-4 py-4 md:px-6">
-              <div className="mx-auto max-w-[840px] rounded-xl border border-[#F3D7A3] bg-[#FEF7E0] p-4 text-[13px] font-medium leading-5 text-[#8A4D00]">
-                {apiNotice}
-              </div>
-            </section>
-          ) : null}
+          <UxNotice
+            notice={apiNotice}
+            onRetry={apiNotice && apiNotice?.kind !== "info" && lastAttemptPayload ? handleRetry : null}
+            onReturn={() => document.getElementById("diagnostico")?.scrollIntoView({ behavior: "smooth", block: "start" })}
+            onDismiss={() => setApiNotice("")}
+          />
 
           <div ref={resultRef} data-print-container="true">
-            {tipoDiagnostico === "recomendacao_ia" ? (
+            {diagnostico && revealPending ? (
+              <ResultReveal
+                tipo={tipoDiagnostico}
+                diagnostico={diagnostico}
+                contexto={contextoResultado}
+                onComplete={handleRevealComplete}
+              />
+            ) : null}
+
+            {diagnostico && !revealPending ? (
+              <div className="px-4 pt-5 md:px-6" data-export-hide="true">
+                <div className="mx-auto max-w-[920px]">
+                  <DeliveryModeSwitch
+                    value={modoEntrega}
+                    onChange={setModoEntrega}
+                    compact
+                    disabled={loading}
+                  />
+                </div>
+              </div>
+            ) : null}
+
+            {diagnostico && !revealPending && modoEntrega === "simplificado" ? (
+              <SimplifiedResult
+                tipo={tipoDiagnostico}
+                diagnostico={diagnostico}
+                contexto={contextoResultado}
+                onCtaClick={handleCtaClick}
+                ctaMessage={ctaMessage}
+              />
+            ) : null}
+
+            {diagnostico && !revealPending && modoEntrega === "completo" && tipoDiagnostico === "recomendacao_ia" ? (
               <DiagnosticResult diagnostico={diagnostico} contexto={contextoResultado} onCtaClick={handleCtaClick} ctaMessage={ctaMessage} />
             ) : null}
 
-            {tipoDiagnostico === "reputacao" ? (
+            {diagnostico && !revealPending && modoEntrega === "completo" && tipoDiagnostico === "reputacao" ? (
               <ReputationResult diagnostico={diagnostico} contexto={contextoResultado} onCtaClick={handleCtaClick} ctaMessage={ctaMessage} />
             ) : null}
           </div>
+
+          {diagnostico && !revealPending && nextStepOpen ? (
+            <NextStepJourney
+              tipo={tipoDiagnostico}
+              diagnostico={diagnostico}
+              contexto={contextoResultado}
+              onNewAnalysis={voltarParaSelecao}
+            />
+          ) : null}
         </>
       )}
 

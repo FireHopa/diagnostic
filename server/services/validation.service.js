@@ -21,6 +21,25 @@ function campoMuitoLongo(valor = "", limite) {
   return valor.toString().trim().length > limite;
 }
 
+
+function campoTemConteudo(valor) {
+  return String(valor ?? "").trim().length > 0;
+}
+
+function validarChavesDoBody(body, camposPermitidos, camposConhecidosVazios, errors) {
+  for (const campo of Object.keys(body || {})) {
+    if (camposPermitidos.has(campo)) continue;
+
+    // Compatibilidade defensiva com versões anteriores do frontend: campos do
+    // outro diagnóstico são tolerados somente quando chegam vazios. Campos
+    // desconhecidos ou campos cruzados preenchidos continuam sendo rejeitados.
+    if (camposConhecidosVazios.has(campo) && !campoTemConteudo(body[campo])) continue;
+
+    errors.formulario = "Não foi possível validar o envio. Atualize a página e tente novamente.";
+    break;
+  }
+}
+
 function validarCamposComuns(body, errors) {
   const nomeOriginal = body.nome?.toString() || "";
   const empresaOriginal = body.empresa?.toString() || "";
@@ -98,12 +117,12 @@ export function validarFormularioDiagnostico(body = {}) {
     "tipoDiagnostico"
   ]);
 
-  for (const campo of Object.keys(body || {})) {
-    if (!camposPermitidos.has(campo)) {
-      errors.formulario = "Não foi possível validar o envio. Atualize a página e tente novamente.";
-      break;
-    }
-  }
+  validarChavesDoBody(
+    body,
+    camposPermitidos,
+    new Set(["siteEmpresa", "perfilGoogle"]),
+    errors
+  );
 
   if (body.site || body.url) {
     errors.formulario = "Não foi possível validar o envio. Atualize a página e tente novamente.";
@@ -149,12 +168,12 @@ export function validarFormularioReputacao(body = {}) {
     "tipoDiagnostico"
   ]);
 
-  for (const campo of Object.keys(body || {})) {
-    if (!camposPermitidos.has(campo)) {
-      errors.formulario = "Não foi possível validar o envio. Atualize a página e tente novamente.";
-      break;
-    }
-  }
+  validarChavesDoBody(
+    body,
+    camposPermitidos,
+    new Set(["segmento"]),
+    errors
+  );
 
   validarHoneypot(body, errors);
   const comuns = validarCamposComuns(body, errors);

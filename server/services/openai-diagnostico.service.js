@@ -661,7 +661,17 @@ function garantirCamposObrigatorios(diagnostico, formData, diagnosticoBase, font
   return final;
 }
 
-export async function gerarDiagnosticoComOpenAI(formData, diagnosticoBase) {
+function emitirProgresso(onProgress, event) {
+  if (typeof onProgress !== "function") return;
+  try {
+    onProgress({ ...event, timestamp: new Date().toISOString() });
+  } catch {
+    // Progresso é auxiliar e nunca pode derrubar o diagnóstico.
+  }
+}
+
+export async function gerarDiagnosticoComOpenAI(formData, diagnosticoBase, options = {}) {
+  const { onProgress } = options;
   const modelo = process.env.OPENAI_MODEL || "gpt-5.5";
   const searchContextSize = process.env.OPENAI_SEARCH_CONTEXT_SIZE || "low";
   const reasoningEffort = process.env.OPENAI_REASONING_EFFORT || "low";
@@ -694,6 +704,11 @@ export async function gerarDiagnosticoComOpenAI(formData, diagnosticoBase) {
   }
 
   const openai = criarClienteOpenAI();
+  emitirProgresso(onProgress, {
+    key: "web_search",
+    label: "Pesquisando sinais públicos",
+    detail: "Consultando referências, concorrentes e sinais públicos do mercado."
+  });
   const response = await openai.responses.create(payload);
   const texto = response.output_text;
 
@@ -701,8 +716,21 @@ export async function gerarDiagnosticoComOpenAI(formData, diagnosticoBase) {
     throw new Error("A OpenAI não retornou output_text.");
   }
 
+  emitirProgresso(onProgress, {
+    key: "interpretation",
+    label: "Interpretando autoridade e contexto",
+    detail: "A pesquisa terminou; agora os sinais encontrados estão sendo organizados."
+  });
+
   const diagnostico = extrairJson(texto);
   const fontesDaApi = extrairFontesDaResposta(response);
+  const final = garantirCamposObrigatorios(diagnostico, formData, diagnosticoBase, fontesDaApi);
 
-  return garantirCamposObrigatorios(diagnostico, formData, diagnosticoBase, fontesDaApi);
+  emitirProgresso(onProgress, {
+    key: "synthesis",
+    label: "Construindo o veredito",
+    detail: "Consolidando sinais fortes, lacunas, referências e perguntas de maior intenção."
+  });
+
+  return final;
 }

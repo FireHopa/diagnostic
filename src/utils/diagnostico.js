@@ -1,3 +1,6 @@
+import { consumirRespostaApi } from "./streamingApi.js";
+import { montarPayloadDiagnostico } from "./payload.js";
+
 const palavrasFortes = [
   "premium",
   "consultoria",
@@ -313,48 +316,35 @@ export async function gerarDiagnosticoViaApi(formData, options = {}) {
   const timeoutId = window.setTimeout(() => controller.abort(), timeoutMs);
 
   const headers = {
-    "Content-Type": "application/json"
+    "Content-Type": "application/json",
+    Accept: options.onProgress ? "application/x-ndjson" : "application/json"
   };
 
-  if (options.clientId) {
-    headers["x-client-id"] = options.clientId;
-  }
-
-  if (options.token) {
-    headers.Authorization = `Bearer ${options.token}`;
-  }
-
-  let response;
+  if (options.clientId) headers["x-client-id"] = options.clientId;
+  if (options.token) headers.Authorization = `Bearer ${options.token}`;
 
   try {
-    response = await fetch("/api/diagnostico-ia", {
+    const payload = montarPayloadDiagnostico(formData, "recomendacao_ia");
+    const response = await fetch("/api/diagnostico-ia", {
       method: "POST",
       headers,
-      body: JSON.stringify(formData),
+      body: JSON.stringify(payload),
       signal: controller.signal
+    });
+
+    return await consumirRespostaApi(response, {
+      onProgress: options.onProgress,
+      onResultMeta: options.onResultMeta,
+      fallbackMessage: "Não foi possível gerar o diagnóstico pelo backend neste momento."
     });
   } catch (error) {
     if (error.name === "AbortError") {
-      throw new Error("A análise real demorou demais. Tente novamente ou reduza a profundidade da pesquisa no .env.");
+      const timeoutError = new Error("A análise demorou mais do que o esperado. Tente novamente em alguns instantes.");
+      timeoutError.code = "TIMEOUT_DIAGNOSTICO";
+      throw timeoutError;
     }
-
     throw error;
   } finally {
     window.clearTimeout(timeoutId);
   }
-
-  const data = await response.json().catch(() => null);
-
-  if (!response.ok) {
-    const mensagem = data?.message || "Não foi possível gerar o diagnóstico pelo backend neste momento.";
-    const error = new Error(mensagem);
-    error.errors = data?.errors || {};
-    error.code = data?.code;
-    error.status = response.status;
-    error.bloqueado = Boolean(data?.bloqueado);
-    error.payload = data;
-    throw error;
-  }
-
-  return data;
 }
